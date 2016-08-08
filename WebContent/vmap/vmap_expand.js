@@ -291,6 +291,8 @@ vietek = {
 					this.infowindow = new google.maps.InfoWindow({
 					    content: strContent
 					});
+				} else {
+					this.infowindow.setOptions({content: strContent});
 				}
 				this.infowindow.setOptions({disableAutoPan : false});
 				this.marker.addListener('click', function() {
