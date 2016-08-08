@@ -343,6 +343,15 @@ public class ReportTotalViolateQC31 extends AbstractReportWindow implements Even
 			}
 		});
 	}
+	
+	@Override
+	public void setStyleForGridData() {
+		getGridData().setVflex("true");
+		getGridData().setMold("paging");
+		gridData.setAutopaging(true);
+		// getGridData().setPageSize(20);
+		getGridData().setSclass("grid_report_total");
+	}
 
 	@Override
 	public void renderReportWithListBox() {

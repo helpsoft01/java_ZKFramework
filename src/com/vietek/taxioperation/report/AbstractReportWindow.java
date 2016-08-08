@@ -350,11 +350,12 @@ public abstract class AbstractReportWindow extends Window implements EventListen
 			gridData = new Grid();
 			gridData.setParent(hlayout);
 			gridData.setHflex("8");
+			this.setStyleForGridData();
 			// gridData.setMold("paging");
 			// gridData.setAutopaging(true);
 			// gridData.setPageSize(20);
-			gridData.setVflex("true");
-			gridData.setSclass("grid_report_total");
+			// gridData.setVflex("true");
+			// gridData.setSclass("grid_report_total");
 			Frozen frozen = new Frozen();
 			frozen.setParent(gridData);
 			frozen.setColumns(2);
@@ -601,6 +602,10 @@ public abstract class AbstractReportWindow extends Window implements EventListen
 	}
 
 	public void renderExtraReport() {
+
+	}
+
+	public void setStyleForGridData() {
 
 	}
 
