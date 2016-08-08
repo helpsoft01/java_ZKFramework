@@ -644,6 +644,7 @@ class UpdateWorker extends TimerTask {
 				executor.execute(rider);
 			}
 		}
+		
 		executor.shutdown();
 	}
 }
