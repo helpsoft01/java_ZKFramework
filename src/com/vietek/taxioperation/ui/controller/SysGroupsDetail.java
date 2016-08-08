@@ -150,7 +150,7 @@ public class SysGroupsDetail extends BasicDetailWindow {
 		btnAddFunction = new Button();
 		btnAddFunction.setParent(leftLayout);
 		btnAddFunction.setVflex("1");
-		btnAddFunction.setLabel("Chọn chức năng");
+		btnAddFunction.setLabel("Cập nhật chức năng");
 		btnAddFunction.setSclass("btn_sys_group");
 		btnAddFunction.addEventListener(Events.ON_CLICK, this);
 	}
@@ -486,22 +486,43 @@ public class SysGroupsDetail extends BasicDetailWindow {
 	public void onEvent(Event event) throws Exception {
 		if (event.getTarget().equals(btnAddFunction)) {
 			if (beforAction()) {
-				List<SysGroupLine> lstTmp = new ArrayList<>();
+				List<SysFunction> lstFunction = new ArrayList<>();
 				Set<Treeitem> items = tree.getSelectedItems();
 				for (Treeitem treeitem : items) {
 					TreeNode<SysMenu> node = treeitem.getValue();
 					if (node.isLeaf()) {
 						SysMenu sysMenu = node.getData();
 						SysFunction function = sysMenu.getFunction();
-						if (!isExistGroup(function)) {
-							SysGroupLine tmp = createGroupLineTree(function);
-							if (tmp != null) {
-								lstTmp.add(tmp);
-							}
+						lstFunction.add(function);
+						// if (!isExistGroup(function)) {
+						// SysGroupLine tmp = createGroupLineTree(function);
+						// if (tmp != null) {
+						// lstTmp.add(tmp);
+						// }
+						// }
+					}
+				}
+				List<SysGroupLine> lstDel = new ArrayList<>();
+				SysGroup model = (SysGroup) this.getModel();
+				for (SysGroupLine sysGroupLine : model.getSysGroupLines()) {
+					SysFunction func = sysGroupLine.getSysFunction();
+					if (!lstFunction.contains(func)) {
+						lstDel.add(sysGroupLine);
+					}
+				}
+				for (SysGroupLine sysGroupLine : lstDel) {
+					model.getSysGroupLines().remove(sysGroupLine);
+					sysGroupLine.delete();
+				}
+				List<SysGroupLine> lstTmp = new ArrayList<>();
+				for (SysFunction sysFunction : lstFunction) {
+					if (!isExistGroup(sysFunction)) {
+						SysGroupLine tmp = createGroupLineTree(sysFunction);
+						if (tmp != null) {
+							lstTmp.add(tmp);
 						}
 					}
 				}
-				SysGroup model = (SysGroup) this.getModel();
 				for (SysGroupLine sysGroupLine : lstTmp) {
 					model.getSysGroupLines().add(sysGroupLine);
 				}
@@ -542,10 +563,10 @@ public class SysGroupsDetail extends BasicDetailWindow {
 			hlayout.setParent(winAction);
 			hlayout.setStyle("align:center");
 			Button btnSave = new Button();
-			btnSave.setLabel("Lưu");
+			btnSave.setLabel("Xác nhận");
 			btnSave.setParent(hlayout);
 			Button btnCancel = new Button();
-			btnCancel.setLabel("Hủy");
+			btnCancel.setLabel("Hủy bỏ");
 			btnCancel.setParent(hlayout);
 			btnSave.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
 				@Override
@@ -969,7 +990,7 @@ public class SysGroupsDetail extends BasicDetailWindow {
 						Treeitem item = (Treeitem) row.getParent();
 						MenuTreeNode node = item.getValue();
 						if (node.isLeaf) {
-							System.out.println("Chon la");
+//							System.out.println("Chon la");
 						} else {
 							if (item.isSelected()) {
 								doCheckChild(item, true);
