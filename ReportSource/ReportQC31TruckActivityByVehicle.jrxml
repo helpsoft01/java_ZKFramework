@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportQC31TruckActivityByVehicle" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef3b1ca6-e0e7-431e-ab92-66fbc8c886aa">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="DataSetTruckActivityVehicle" uuid="065dffbb-6e19-42c9-8918-204c5e54a8eb">
+		<parameter name="fromdate" class="java.sql.Timestamp"/>
+		<parameter name="todate" class="java.sql.Timestamp"/>
+		<parameter name="groupId" class="java.lang.String"/>
+		<parameter name="vehicleId" class="java.lang.String"/>
+		<parameter name="user" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[{call txm_tracking.rptTruckStdActivityByVehicle($P{fromdate},$P{todate},$P{groupId},$P{vehicleId},$P{user})}]]>
+		</queryString>
+		<field name="rptID" class="java.lang.Double"/>
+		<field name="CompanyName" class="java.lang.String">
+			<fieldDescription><![CDATA[Tên doanh nghiệp]]></fieldDescription>
+		</field>
+		<field name="LicensePlate" class="java.lang.String">
+			<fieldDescription><![CDATA[BKS]]></fieldDescription>
+		</field>
+		<field name="VehicleNumber" class="java.lang.String">
+			<fieldDescription><![CDATA[Xe]]></fieldDescription>
+		</field>
+		<field name="TypeName" class="java.lang.String"/>
+		<field name="KmGPS" class="java.lang.Long"/>
+		<field name="FivePerPath" class="java.lang.Double"/>
+		<field name="FiveTime" class="java.lang.Long"/>
+		<field name="TenPerPath" class="java.lang.Double"/>
+		<field name="TenTime" class="java.lang.Long"/>
+		<field name="TwentyPerPath" class="java.lang.Double"/>
+		<field name="TwentyTime" class="java.lang.Long"/>
+		<field name="ThirthPerPath" class="java.lang.Double"/>
+		<field name="ThirthTime" class="java.lang.Long"/>
+		<field name="StopCounting" class="java.lang.Integer">
+			<fieldDescription><![CDATA[Số lần dừng đỗ]]></fieldDescription>
+		</field>
+		<field name="Note" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="_fromdate" class="java.sql.Timestamp"/>
+	<parameter name="_todate" class="java.sql.Timestamp"/>
+	<parameter name="lst_groupId" class="java.lang.String"/>
+	<parameter name="lst_vehicleId" class="java.lang.String"/>
+	<parameter name="_user" class="java.lang.String"/>
+	<parameter name="REPORT_PREFIX_COMPANY" class="java.lang.String"/>
+	<parameter name="REPORT_PREFIX_AGENT" class="java.lang.String"/>
+	<parameter name="REPORT_IMAGE_PATH" class="java.lang.String"/>
+	<parameter name="REPORT_NAME" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select 1]]>
+	</queryString>
+	<field name="1" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="133" splitType="Stretch">
+			<textField>
+				<reportElement x="220" y="21" width="431" height="20" uuid="b750c443-de3e-4c50-8f54-8f3847c47ee7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PREFIX_COMPANY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="51" width="431" height="20" uuid="6f5d89d9-5af7-4bb1-9592-a3614fe2f6e4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PREFIX_AGENT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="81" width="802" height="20" uuid="4f2f694c-f820-459c-9c93-813a786f900f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="646" y="101" width="41" height="20" uuid="36625d3d-240c-467b-816b-f8638aaecdf0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Ngày : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="687" y="101" width="100" height="20" uuid="1df20737-4e8d-42ab-9b4e-993693553380"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="12" y="0" width="195" height="81" uuid="0fba36ed-d21f-4029-a26d-36fde16fdcc2"/>
+				<imageExpression><![CDATA[$P{REPORT_IMAGE_PATH} + "logo_main_800.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="142" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="12" y="0" width="360" height="112" isPrintInFirstWholeBand="true" uuid="008a9e83-ad6f-497c-8f3b-e05176fe5c63"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataSetTruckActivityVehicle" uuid="06c88afa-1c39-45f9-9684-b25de39b719c">
+						<datasetParameter name="fromdate">
+							<datasetParameterExpression><![CDATA[$P{_fromdate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="todate">
+							<datasetParameterExpression><![CDATA[$P{_todate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="groupId">
+							<datasetParameterExpression><![CDATA[$P{lst_groupId}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="vehicleId">
+							<datasetParameterExpression><![CDATA[$P{lst_vehicleId}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="user">
+							<datasetParameterExpression><![CDATA[$P{_user}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="0" uuid="3bd80fcb-b345-4d40-89f7-58624d4a78d0">
+						<jr:tableHeader height="64" rowSpan="2"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="44" uuid="0e0276e7-fe06-477e-ba41-319e9e453537">
+						<jr:tableHeader height="64" rowSpan="2">
+							<staticText>
+								<reportElement style="table_CH" x="0" y="0" width="44" height="63" uuid="c40a8563-de1c-47a0-899b-ac0781ab8cdb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<text><![CDATA[Thứ tự]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="44" height="30" uuid="31014cb8-12cb-4fa4-b4ca-7307e52da304"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="126" uuid="e99b4d69-5a3c-4fb7-9ef9-ba1b4fc48763">
+						<jr:tableHeader height="64" rowSpan="2">
+							<staticText>
+								<reportElement style="table_CH" x="0" y="0" width="126" height="63" uuid="03aa0099-36d8-4a9b-b2b3-5264fb5c7da7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<text><![CDATA[Biển kiểm soát]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="126" height="30" uuid="ca62880e-ae2f-46a5-883f-0c56451e8791"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LicensePlate}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="76" uuid="6f559cd3-5825-4629-87d6-524436bc508f">
+						<jr:tableHeader height="64" rowSpan="2">
+							<staticText>
+								<reportElement style="table_CH" x="0" y="0" width="76" height="63" uuid="1d329f6d-1b36-48b9-bf55-1e33234bbea9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<text><![CDATA[Loại kinh doanh]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="76" height="30" uuid="b2d438c9-8915-4aae-9c75-df290d341ea9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TypeName}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="53" uuid="77806ac3-3618-4e25-87b4-db3bd9cdfbce">
+						<jr:tableHeader height="64" rowSpan="2">
+							<staticText>
+								<reportElement style="table_CH" x="0" y="0" width="53" height="63" uuid="e935f4f7-e629-48fe-acd0-9949852c3cee"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<text><![CDATA[ Tổng Km]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="53" height="30" uuid="dfd83604-f0eb-4de8-a327-408920fa96c1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{KmGPS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:columnGroup width="166" uuid="850a071e-0a84-454e-84b0-b6bf6c0856aa">
+						<jr:tableHeader height="31" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" x="0" y="0" width="166" height="30" uuid="1240dc30-90a3-4a06-8e6d-978ab2c4dd39"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<text><![CDATA[Tỷ lệ quá tốc độ giới hạn/
+Tổng km(%)]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:column width="43" uuid="b43dfac1-a40e-4398-928e-1f0a236e4835">
+							<jr:tableHeader height="33" rowSpan="1">
+								<staticText>
+									<reportElement style="table_CH" x="0" y="0" width="43" height="33" uuid="8ccf8ec1-9ca2-44fc-8075-36883ff4af0e"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<text><![CDATA[5 Km]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:columnHeader height="0" rowSpan="1"/>
+							<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+							<jr:detailCell style="table_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="1" y="0" width="42" height="30" uuid="336479fe-f462-48ab-a78d-02bb6106ca6b"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{FivePerPath}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="42" uuid="714b6c3f-358d-46f6-ba8f-7f8748fef357">
+							<jr:tableHeader height="33" rowSpan="1">
+								<staticText>
+									<reportElement style="table_CH" x="0" y="0" width="42" height="33" uuid="f05a89d3-74d4-4ea8-9cef-b29a8cd092cb"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<text><![CDATA[10 Km]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:columnHeader height="0" rowSpan="1"/>
+							<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+							<jr:detailCell style="table_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="42" height="30" uuid="92d7e1a4-8293-493b-b4b8-fde3a3c1e26b"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{TenPerPath}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="41" uuid="561fc8a3-270c-46b7-8977-4753607e7e3a">
+							<jr:tableHeader height="33" rowSpan="1">
+								<staticText>
+									<reportElement style="table_CH" x="0" y="0" width="41" height="33" uuid="3cda169f-46c0-4480-b60d-b52205f33ce8"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<text><![CDATA[20 Km]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:columnHeader height="0" rowSpan="1"/>
+							<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+							<jr:detailCell style="table_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="41" height="30" uuid="58472137-864e-4bc6-8347-0f662db304ea"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{TwentyPerPath}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="40" uuid="999cd6f9-5281-48e9-ad43-3956764464ca">
+							<jr:tableHeader height="33" rowSpan="1">
+								<staticText>
+									<reportElement style="table_CH" x="0" y="0" width="40" height="33" uuid="75195016-3e47-4563-9040-53db9c8d674a"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<text><![CDATA[30 Km]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:columnHeader height="0" rowSpan="1"/>
+							<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+							<jr:detailCell style="table_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="40" height="30" uuid="f04c91c2-3a8d-48c6-af77-ceeaf6244a9b"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{ThirthPerPath}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+					<jr:columnGroup width="168" uuid="f84ef48a-6479-4d1b-890c-cc2aabdaa771">
+						<jr:tableHeader height="31" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" x="0" y="0" width="168" height="30" uuid="8f004fe8-1be8-40b1-b36f-756c82762c38"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<text><![CDATA[Số lần quá tốc độ giới hạn/
+Tổng km(%)]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:column width="42" uuid="4ee87a01-1890-48a0-b876-0c08dd44b3d5">
+							<jr:tableHeader height="33" rowSpan="1">
+								<staticText>
+									<reportElement style="table_CH" x="0" y="0" width="42" height="33" uuid="68c84932-46f0-4c6b-b4bd-3f8cec4cc736"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<text><![CDATA[5 Km]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:columnHeader height="0" rowSpan="1"/>
+							<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+							<jr:detailCell style="table_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="42" height="30" uuid="14f445f4-6fa2-438e-a3cc-1c62e85a684e"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{FiveTime}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="43" uuid="1ffb44f0-0814-4af3-a1b0-2778d5162a4d">
+							<jr:tableHeader height="33" rowSpan="1">
+								<staticText>
+									<reportElement style="table_CH" x="0" y="0" width="43" height="33" uuid="6e7939b0-a023-4ff4-87bb-ff400610f9cf"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<text><![CDATA[10 Km]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:columnHeader height="0" rowSpan="1"/>
+							<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+							<jr:detailCell style="table_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="43" height="30" uuid="fb55d3ef-f775-4e1d-9777-47083d6fa055"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{TenTime}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="42" uuid="33b7f7e7-a8dd-4042-befc-a96a4282b6b4">
+							<jr:tableHeader height="33" rowSpan="1">
+								<staticText>
+									<reportElement style="table_CH" x="0" y="0" width="42" height="33" uuid="bf94fc03-bf91-4834-9713-71c810fc27cd"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<text><![CDATA[20 Km]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:columnHeader height="0" rowSpan="1"/>
+							<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+							<jr:detailCell style="table_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="1" y="0" width="41" height="30" uuid="3f248106-a1ea-48fe-80fc-e118dea21f95"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{TwentyTime}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="41" uuid="6adeec13-c95a-47b9-b39d-398cbc0dde67">
+							<jr:tableHeader height="33" rowSpan="1">
+								<staticText>
+									<reportElement style="table_CH" x="0" y="0" width="41" height="33" uuid="6b078ab2-55d4-439b-a2b4-e3f411b1fb9a"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<text><![CDATA[30 Km]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:columnHeader height="0" rowSpan="1"/>
+							<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+							<jr:detailCell style="table_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="1" y="0" width="40" height="30" uuid="863f1f4d-5a6f-4e5b-9d91-67ea07044df5"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{ThirthTime}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+					<jr:column width="42" uuid="83f47db1-3a21-4041-a420-e283c6122554">
+						<jr:tableHeader height="64" rowSpan="2">
+							<staticText>
+								<reportElement style="table_CH" x="0" y="0" width="42" height="63" uuid="42d68b6c-a7ee-4133-960d-0ae33195a75e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<text><![CDATA[Số lần
+dừng đỗ]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="42" height="30" uuid="774397d8-01c5-4c03-a8f8-42a6b8c76bca"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{StopCounting}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="05d35415-ab1a-4425-aebf-02800c7314bc">
+						<jr:tableHeader height="64" rowSpan="2">
+							<staticText>
+								<reportElement style="table_CH" x="0" y="0" width="90" height="63" uuid="8adcd1e9-8937-406a-a369-6d05625982fb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<text><![CDATA[Ghi chú]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="0" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" uuid="8c5008f4-e342-42d7-8f4a-b8fbf5b998ed"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Note}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="249" height="20" uuid="4793b308-1a35-4078-81a4-f77ed44ed9cb"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Copyright © 2015 Vietek JSC - http://vietek.com.vn]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="629" y="2" width="80" height="20" uuid="2854aa1e-ec1b-4174-8be2-051f78dc559d"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="11" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Trang "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="709" y="2" width="40" height="20" uuid="c2746679-ed89-49ca-8bf9-79a58dff7a9e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="624" y="0" width="100" height="20" uuid="d5cdb1ac-be27-41c1-84df-f013eca6b05f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Người phụ trách]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

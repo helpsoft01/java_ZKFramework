@@ -1,0 +1,9 @@
+<?script type="text/javascript" src="themes/common_chosenbox.js" ?>
+<?script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js" ?>
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:w="client" xmlns:n="native">
+	<div
+		apply="com.vietek.taxioperation.componentExtend.ExtFilterComponent">
+		New Content Here!
+	</div>
+</zk>

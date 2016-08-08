@@ -1,0 +1,9 @@
+<?page title="Login" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/ico" href="themes/images/ml_lg.ico" ?>
+
+<?link rel="stylesheet" type="text/css" href="themes/login.css"?>
+<?script type="text/javascript" src="themes/common.js" ?>
+<?script type="text/javascript" src="themes/jquery-2.1.4.js" ?>
+<div apply="com.vietek.taxioperation.ui.controller.LoginController" style="width: 100%; height: 100%;">
+	<div id="login_page" sclass="login_page_landscape" style="width: 100%; height: 100%;"></div>
+</div>

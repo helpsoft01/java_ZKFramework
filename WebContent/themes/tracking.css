@@ -1,0 +1,289 @@
+.veh-tracking-searchdiv {
+	position: absolute !important;
+	left: 5px !important;
+	top: 15px !important;
+	padding: 5px;
+	background: white;
+	width: 300px;
+	height: 450px
+}
+
+.veh-tracking-searchtype, .veh-tracking-maptype {
+	min-width: 60px !important;
+}
+
+.veh-tracking-maptype .z-combobox-input {
+	font-size: 12px !important;
+	height: 25px !important;
+}
+
+.veh-tracking-searchtype .z-combobox-input, .veh-tracking-searchinput .z-combobox-input
+	{
+	font-size: 14px !important;
+	height: 30px !important;
+	border: 1px solid #cfcfcf;
+	border-right: 0;
+}
+
+.veh-tracking-maptype .z-combobox-button {
+	height: 25px !important;
+}
+
+.veh-tracking-searchtype .z-combobox-button {
+	height: 30px !important;
+	border-left: 0;
+	border-right: 0;
+	border-radius: 0;
+	border: 1px solid #cfcfcf;
+}
+
+.veh-tracking-searchtype .z-combobox-content {
+	width: 100px !important;
+}
+
+.veh-tracking-searchtype .z-combobox-content .z-comboitem {
+	height: 30px !important;
+}
+
+.veh-tracking-searchtype .z-combobox-content .z-comboitem .z-comboitem-text
+	{
+	font-size: 14px !important;
+}
+
+.veh-tracking-searchinput {
+	border-left: 0;
+	border-radius: 0;
+}
+
+.cbb_vehicletracking .z-combobox-input, .cbb_vehicletracking .z-combobox-button
+	{
+	height: 30px !important;
+}
+
+.listbox_vehicle_tracking .z-listbox-body {
+	height: 88% !important;
+	position: static;
+}
+.listbox_vehicle_tracking .z-listbox-body table tbody tr td div img {
+	width: 16px;
+	height: 16px;
+}
+
+.btn_detail_vehicle_tracking {
+	padding: 0px;
+}
+
+.btn_detail_vehicle_tracking .btn-image {
+	height: 18px;
+}
+
+.btn_vehicle_tracking_setting, .btn_vehicle_tracking_setting .btn-image
+	{
+	padding: 0px;
+	height: 25px;
+}
+
+.vehicle_tracking_cb_maptype {
+	width: 207px;
+}
+.vehicle_tracking_cb_maptype, .vehicle_tracking_cb_maptype .z-combobox-input,
+	.vehicle_tracking_cb_maptype .z-combobox-button {
+	font-size: 14px !important;
+}
+
+.btn_vehicle_tracking_map_config:hover, .btn_vehicle_tracking_map_config:focus
+	{
+	color: yellow;
+}
+
+.tracking_window {
+	background: white !important;
+}
+
+.tracking_window .z-window-header {
+	font-weight: bold;
+	font-size: 14px;
+	color: green;
+	text-shadow: none;
+	text-transform: uppercase;
+	margin-left: 5px;
+}
+
+.tracking_window .z-window-header .z-window-close {
+	background: none;
+	border: none;
+}
+
+.veh-tracking-searchdiv {
+	position: absolute !important;
+	left: 5px !important;
+	top: 15px !important;
+	padding: 5px;
+	background: white;
+	width: 300px;
+	height: 450px
+}
+
+.veh-tracking-searchtype, .veh-tracking-maptype {
+	min-width: 60px !important;
+}
+
+.veh-tracking-maptype .z-combobox-input {
+	font-size: 12px !important;
+	height: 25px !important;
+}
+
+.veh-tracking-searchtype .z-combobox-input, .veh-tracking-searchinput .z-combobox-input
+	{
+	font-size: 12px !important;
+	height: 24px !important;
+	border: 1px solid #cfcfcf;
+}
+.veh-tracking-searchtype>ul>li{
+	margin-bottom: 2px;
+}
+.veh-tracking-maptype .z-combobox-button {
+	height: 24px !important;
+}
+
+.veh-tracking-searchtype .z-combobox-button {
+	height: 24px !important;
+	border-left: 0;
+	border-right: 0;
+	border-radius: 0;
+	border: 1px solid #cfcfcf;
+}
+
+.veh-tracking-searchtype .z-combobox-content {
+	width: 100px !important;
+}
+
+.veh-tracking-searchtype .z-combobox-content .z-comboitem {
+	height: 24px !important;
+}
+
+.veh-tracking-searchtype .z-combobox-content .z-comboitem .z-comboitem-text
+	{
+	font-size: 14px !important;
+}
+
+.veh-tracking-searchinput {
+	border-left: 0;
+	border-radius: 0;
+}
+
+.cbb_vehicletracking .z-combobox-input, .cbb_vehicletracking .z-combobox-button {
+	height: 24px !important;
+	font-size: 12px !important;
+}
+
+.listbox_vehicle_tracking .z-listbox-body {
+	height: 88% !important;
+	position: static;
+}
+
+.btn_detail_vehicle_tracking {
+	padding: 0px;
+}
+
+.btn_detail_vehicle_tracking .btn-image {
+	height: 18px;
+}
+
+.btn_vehicle_tracking_setting, .btn_vehicle_tracking_setting .btn-image
+	{
+	padding: 0px;
+	height: 25px;
+}
+
+
+
+.vmarker_label {
+	color: white;
+	background-color: red;
+	font-family: "Lucida Grande", "Arial", sans-serif;
+	font-size: 10px;
+	text-align: center;
+	width: 30px;
+	white-space: nowrap;
+}
+
+.tab_panel {
+	width: 250px;
+	display: inline-block;
+}
+.tab_link {
+	padding-left: 0px;
+}
+.tab_link:after {
+	display: block;
+	padding-top: 31px;
+	content: '';
+}
+
+.tab_link li {
+	float: left;
+	list-style: none;
+	border: 1px solid gainsboro;
+    border-bottom: 0px;
+    height: 40px;
+    width: 25%;
+}
+
+.tab_link a {
+	padding: 2px 15px;
+	display: inline-block;
+	font-weight: bold;
+	color: #4c4c4c;
+}
+
+.tab_link a:hover {
+	background: #b7c7e5;
+	text-decoration: none;
+}
+
+li.active a, li.active a:hover {
+	background: #e6e6e6;
+	color: #0094ff;
+	text-decoration: none;
+}
+
+.content_area {
+	padding-top: 10px;
+	border-radius: 3px;
+	box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
+	background: #fff;
+	border-top: 1px solid #ccc;
+}
+.content_area>div, .content_area>div>table {
+	width: 100%;
+}
+.content_area>div>table>tbody>tr {
+	border-bottom: 1px solid gainsboro;
+	line-height: 20px;
+}
+.inactive {
+	display: none;
+}
+
+.active {
+	display: block;
+}
+td.markerOnline_left {
+    width: 80px;
+    font-weight: bold;
+}
+td.markerOnline_right {
+    padding-left: 10px;
+}
+.vmarker_label {
+	width: auto;
+	background: black;
+	color: white;
+	font-weight: bold;
+	border: 1px solid gray;
+	padding:  1px 3px;
+}
+.gm-style-iw {
+	height: auto !important;
+}

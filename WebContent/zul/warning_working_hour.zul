@@ -1,0 +1,6 @@
+<zk>
+	<style>
+		.panel-body{ padding: 5px !important; } 
+	</style>
+	<div use = "com.vietek.tracking.ui.statistic.WarningWorkingHour"></div>
+</zk>

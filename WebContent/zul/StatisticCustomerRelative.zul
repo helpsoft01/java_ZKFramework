@@ -1,0 +1,39 @@
+<zk>
+	<style dynamic="true">
+    	.panel .panel-body {
+    		padding: 5px;
+    	}
+    	.z-combobox-input{
+    		height: 30px !important;
+    		font-size: 16px !important;
+    	}
+    	.z-combobox-button {
+		    height: 30px !important;
+		}
+		.z-row-content {
+			padding: 10px 5px !important;
+		}
+		.gridcus .z-grid-odd .z-row-inner {
+			background-color: antiquewhite !important;	
+		}
+		
+		.gridcus .z-grid-body {
+			overflow-y: auto !important;
+		}
+		
+		.gridcus .z-label {
+			font-size: 14px !important;
+			color: #84178A !important;
+		}
+		.gridcus .z-row .z-detail-outer {
+			padding: 6px 6px !important;
+		}	
+		.gridcus .z-row-content {
+			padding: 3px 5px !important;
+		}
+		.gridcus .btn {
+			padding: 2px 12px !important;
+		}			
+	</style>
+	<div use = "com.vietek.taxioperation.report.StatisticCustomerRelative"></div>
+</zk>

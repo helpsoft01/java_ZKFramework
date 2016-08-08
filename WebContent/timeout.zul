@@ -1,0 +1,13 @@
+<window width="80%" title="Quá lâu không sử dụng phần mềm, Bạn cần tải lại trang" border="normal">
+	<attribute name="onOK">
+		Executions.sendRedirect("/");
+	</attribute>
+	<vbox>
+		<button label = "Tải lại trang">
+			<attribute name="onClick">
+//				Executions.createComponents("/index.zul", null, null);
+				Executions.sendRedirect("/");
+			</attribute>
+		</button>
+	</vbox>
+</window>

@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+.cssSearchExtend {
+	height: 27px !important;
+	border-bottom: 1px solid #ccc !important;
+	border-top: 1px solid #ccc !important;
+}
+
+.cssSearchExtend .z-comboitem-image {
+	background: url('../themes/images/find_zoom-16.png') no-repeat
+		!important;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	width: 18px !important;
+	height: 17px !important;
+	display: block !important;
+	float: left !important;
+	/* padding-top: 4px; */
+	margin: 0px;
+}
+
+.cssSearchExtend  .z-comboitem-text {
+	font-size: 14px !important;;
+	font-style: italic !important;;
+	font-weight: bold !important;;
+	/* left: 26px; */
+	/* 	padding-left: 23px !important;; */
+	background-size: cover !important;
+	color: #DF4C3C !important; /* rebeccapurple*/
+}
+
+.SearchEditorExt .btn-success {
+	margin: 3px !important;
+}
+
+.SearchEditorExt .btn-default {
+	/* 	margin-bottom: 3px !important; */
+	
+}

@@ -1,0 +1,176 @@
+@CHARSET "ISO-8859-1";
+table{
+	width: 100%;
+	height:100%;
+} 
+.zk-div {
+	z-index:5;
+	width: 100%;
+	height: 100%;
+}
+.z-notification .z-notification-content {
+	background: none repeat scroll 0 center transparent;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0 !important;
+	overflow: hidden;
+	color: white;
+	width: 300px;
+	min-height: 53px;
+}
+.z-notification-error {
+	top: 55% !important;
+}
+.z-notification .z-notification-content { 
+	background-color: #ED1A24; 
+	margin-bottom: 100px;
+}
+/*.lbShift {
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    margin-top: 24%;
+    z-index: 30;
+    cursor: pointer;
+}
+.hlShift {
+	width: 55%;
+	height: 24px;
+	float: right;
+	background: transparent; 
+	z-index: 16;
+	right: 30px;
+}
+.hlShift .z-hlayout-inner {
+	float: right;
+	margin-right: 20px;
+}
+
+.cbShift  .z-combobox-input{
+	width: 50px;
+	margin-left: 5px;
+}
+.divShift {
+	width: 100%;
+    height: 100%;
+}
+*/
+.div_appname {
+	position: fixed;
+    top: 20px;
+    width: 100%;
+    text-align: center
+}
+.app_name {
+	text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+.app_name_small {
+	text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+.login_page_landscape {
+	width: 100%; 
+	height: 100%; 
+	background-image:url('./images/login_landscape.jpg');
+	/*background-position: center;*/
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-color: #26831B;
+}
+.login_page_portraint {
+	width: 100%; 
+	height: 100%; 
+	background-image:url('./images/login_portrait.jpg');
+	background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #26831B;
+}
+.vl_main {
+	height: 240px;
+    width: 280px;
+    min-width: 250px;
+    min-height: 240px;
+    max-height: 240px;
+    position: absolute;
+    top: 20%;
+    right: 10%;
+	background-color: white;
+}
+.login_title {
+	margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 25px;
+}
+.login_icon {
+	width: 40px;
+    height: 40px;
+}
+.login_label {
+	text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 40px;
+    color: #029834;
+}
+.login_vlform {
+	width: 90%;
+    margin-left: 5%;
+}
+.login_hlInput {
+	border: 1px solid #029834;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+.tb_input {
+	border: none;
+}
+.lb_shift {
+	font-size: 14px;
+    font-weight: bold;
+    color: #029834;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.lb_shift:hover, .lb_shift:focus {
+	color: forestgreen;
+}
+.login_btn {
+	width: 90%;
+    margin-left: 5%;
+    margin-top: 20px;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    background: green;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: none;
+}
+.login_btn:hover, .login_btn:focus {
+	color: yellow;
+}
+.login_mlvt {
+	position: absolute;
+    top: 50px;
+    right: 10%;
+}
+.comp_info {
+	position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    font-size: 14px;
+}
+.hl_copyright {
+	position: fixed;
+    right: 10px;
+    bottom: 10px;
+    text-transform: uppercase;
+    color: white;
+}

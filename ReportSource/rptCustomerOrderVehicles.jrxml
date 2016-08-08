@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptCustomerOrderVehicles2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7465b8a1-0e81-4d4a-8021-9d66f352acd9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="datefrom" class="java.sql.Timestamp"/>
+	<parameter name="dateto" class="java.sql.Timestamp"/>
+	<parameter name="REPORT_PREFIX_COMPANY" class="java.lang.String"/>
+	<parameter name="REPORT_PREFIX_AGENT" class="java.lang.String"/>
+	<parameter name="REPORT_NAME" class="java.lang.String"/>
+	<parameter name="REPORT_IMAGE_PATH" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM (
+
+SELECT
+    DATE_FORMAT(t.timelog, '%Y-%m-%d') AS 'Day',
+    HOUR(t.timelog) AS 'Hour',
+    '2.Tổng đài' AS 'Type of booking',
+    SUM(t.normalOrder) AS 'Values'
+  FROM taxi_order_variation_log t
+   WHERE (t.timelog BETWEEN $P{datefrom} AND $P{dateto})
+  GROUP BY HOUR(t.timelog),
+           DATE_FORMAT(t.timelog, '%Y-%m-%d')
+  UNION
+  SELECT
+    DATE_FORMAT(t.timelog, '%Y-%m-%d') AS 'Day',
+    HOUR(t.timelog) AS 'Hour',
+    '1.Mobile' AS 'Type of booking',
+    SUM(t.mobileOrder) AS 'Values'
+  FROM taxi_order_variation_log t
+  WHERE (t.timelog BETWEEN $P{datefrom} AND $P{dateto})
+  GROUP BY HOUR(t.timelog),
+           DATE_FORMAT(t.timelog, '%Y-%m-%d')
+  UNION
+  SELECT
+    DATE_FORMAT(t.timelog, '%Y-%m-%d') AS 'Day',
+    HOUR(t.timelog) AS 'Hour',
+    '3.Web' AS 'Type of booking',
+    SUM(t.webOrder) AS 'Values'
+  FROM taxi_order_variation_log t
+  WHERE (t.timelog BETWEEN $P{datefrom} AND $P{dateto})
+  GROUP BY HOUR(t.timelog),
+           DATE_FORMAT(t.timelog, '%Y-%m-%d')
+  UNION
+  SELECT
+    DATE_FORMAT(t.timelog, '%Y-%m-%d') AS 'Day',
+    HOUR(t.timelog) AS 'Hour',
+    '4.Loại khác' AS 'Type of booking',
+    SUM(t.otherOrder) AS 'Values'
+  FROM taxi_order_variation_log t
+  WHERE (t.timelog BETWEEN $P{datefrom} AND $P{dateto})
+  GROUP BY HOUR(t.timelog),
+           DATE_FORMAT(t.timelog, '%Y-%m-%d')) AS tb
+   WHERE ('1.Mobile,2.Tổng đài,3.Web,4.Loại khác' = '0' OR '1.Mobile,2.Tổng đài,3.Web,4.Loại khác' = '' OR FIND_IN_SET(tb.`Type of booking`,'1.Mobile,2.Tổng đài,3.Web,4.Loại khác')) ;]]>
+	</queryString>
+	<field name="Day" class="java.lang.String"/>
+	<field name="Hour" class="java.lang.Long"/>
+	<field name="Type of booking" class="java.lang.String"/>
+	<field name="Values" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="236" splitType="Stretch">
+			<staticText>
+				<reportElement x="670" y="167" width="109" height="20" uuid="1d83dd83-4b7a-4114-a94d-e0e47a7332a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Người phụ trách]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH:mm:ss">
+				<reportElement x="666" y="147" width="113" height="20" uuid="ce925d7c-512a-4243-8d01-865ae65d5baa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="219" y="16" width="556" height="20" uuid="912e6a28-f5c3-4664-9772-f1642abbcb2c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PREFIX_COMPANY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="219" y="36" width="556" height="20" uuid="bb4243a8-4d45-4ac9-9baa-a0bf32493b66"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PREFIX_AGENT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="106" width="802" height="20" uuid="b731be2c-6e75-4a3b-9831-eabe90cc1c7c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="126" width="802" height="20" uuid="187d4959-2325-441f-aac4-3dba88163e7d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{datefrom}.equals($P{dateto}))?
+"Dữ liệu báo cáo trong ngày " + $P{datefrom}.getDate() + "/" + ($P{datefrom}.getMonth() + 1) + "/" + ($P{datefrom}.getYear()+1900):
+"Dữ liệu báo cáo từ ngày " + $P{datefrom}.getDate() + "/" + ($P{datefrom}.getMonth() + 1) + "/" + ($P{datefrom}.getYear()+1900) + " tới ngày " + $P{dateto}.getDate() + "/" + ($P{dateto}.getMonth() + 1) + "/" + ($P{dateto}.getYear()+1900)]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="30" y="16" width="177" height="79" uuid="bf285ec5-f84a-42bb-80d8-b4e3d7e872ad"/>
+				<imageExpression><![CDATA[$P{REPORT_IMAGE_PATH} + "logo_main_800.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<summary>
+		<band height="124" splitType="Stretch">
+			<crosstab>
+				<reportElement x="30" y="0" width="772" height="124" uuid="42966409-1b5f-4110-9a30-880af580fcd8"/>
+				<rowGroup name="Day" width="81" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{Day}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="16" y="6" width="55" height="15" uuid="ac891d05-6445-426f-8009-970f0e739d99"/>
+								<textElement>
+									<font fontName="Times New Roman" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{Day}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#CCCCFF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="81" height="25" uuid="6dc7b5a6-92e3-40a3-b845-c5c9a1e0d50a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Tổng cộng]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="Hour" height="30" totalPosition="End">
+					<bucket class="java.lang.Long">
+						<bucketExpression><![CDATA[$F{Hour}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="9" width="25" height="18" uuid="7a24ca1f-d5e6-4aee-a042-e26598a0aa28"/>
+								<textElement>
+									<font fontName="Times New Roman" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{Hour} + "h"]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#CCCCFF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="65" height="30" uuid="e6bdca83-da16-45fb-b058-1c0e6bea0f1e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Tổng]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="ValuesMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{Values}]]></measureExpression>
+				</measure>
+				<crosstabCell width="25" height="24">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="6" width="25" height="15" uuid="30dd2951-7842-484e-91e1-66a615b2b199"/>
+							<textElement>
+								<font fontName="Times New Roman"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{ValuesMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="25" height="25" rowTotalGroup="Day">
+					<cellContents backcolor="#FFFFFF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="7" width="25" height="15" uuid="bb7d2cf7-e7fc-437a-81b6-38b9ed326566"/>
+							<textElement>
+								<font fontName="Times New Roman" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{ValuesMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="65" height="24" columnTotalGroup="Hour">
+					<cellContents backcolor="#FFFFFF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="1" y="6" width="64" height="15" uuid="bcecdfd5-6b4b-456e-bf45-6dbed0cb50a0"/>
+							<textElement>
+								<font fontName="Times New Roman" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{ValuesMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="65" height="25" rowTotalGroup="Day" columnTotalGroup="Hour">
+					<cellContents backcolor="#CCCCFF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="1" y="7" width="64" height="15" uuid="ed68b665-45c4-4604-9ae7-cc48d93bf7bf"/>
+							<textElement>
+								<font fontName="Times New Roman" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{ValuesMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

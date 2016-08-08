@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration>
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threadhold" value="INFO" />
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p]-[%-23d{ISO8601}]-[%-20t]-[%M]%m%n" />
+		</layout>
+	</appender>
+	<appender name="systemlog" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/TaxiOperation/tms_system.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="threshold" value="DEBUG" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p]-[%-23d{ISO8601}]-[%-20t]-[%C%M]%m%n" />
+		</layout>
+	</appender>
+	<appender name="user_action" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"
+			value="${catalina.base}/logs/TaxiOperation/tms_user_history.log" />
+		<param name="threshold" value="INFO" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p]-[%-23d{ISO8601}]-[%-20t]-[%c]-[%M]%m%n" />
+		</layout>
+	</appender>
+	<appender name="debug" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/TaxiOperation/tms_debug.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p]-[%-23d{ISO8601}]-[%-20t]-[%c]-[%M]%m%n" />
+		</layout>
+	</appender>
+	<appender name="debug_taxi_order" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"
+			value="${catalina.base}/logs/TaxiOperation/tms_taxi_order.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p]-[%-23d{ISO8601}]-[%-20t]-[%c]-[%M]%m%n" />
+		</layout>
+	</appender>
+	<appender name="logtracking" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"
+			value="${catalina.base}/logs/TaxiOperation/logtracking.log" />
+		<param name="DatePattern" value="'.'yyyyMMdd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p]-[%-23d{ISO8601}]-[%-20t]-[%c]-[%M]%m%n" />
+		</layout>
+	</appender>
+	<appender name="v_warning" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/TaxiOperation/v_warning.log" />
+		<param name="DatePattern" value="'.'yyyyMMddHH" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%-5p]-[%-23d{ISO8601}]-[%-20t]-[%c{1}]-[%M]%m%n" />
+		</layout>
+	</appender>
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="console" />
+		<appender-ref ref="systemlog" />
+	</root>
+	<logger name="LOG_USER_ACTION">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+		<appender-ref ref="user_action" />
+	</logger>
+	<logger name="LOG_DEBUG">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+		<appender-ref ref="debug" />
+	</logger>
+	<logger name="LOG_DEBUG_TAXIORDER">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+		<appender-ref ref="debug_taxi_order" />
+	</logger>
+	<logger name="LOG_TRACKING">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+		<appender-ref ref="logtracking" />
+	</logger>
+	<logger name="V_Warning">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+		<appender-ref ref="v_warning" />
+	</logger>
+</log4j:configuration>

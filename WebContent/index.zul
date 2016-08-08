@@ -1,0 +1,113 @@
+<?page title="TMS"?>
+<?meta http-equiv="cache-control" content="max-age=0" ?>
+<?meta http-equiv="cache-control" content="no-cache" ?>
+<?meta http-equiv="pragma" content="no-cache" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-${param.theme}.min.css" if="${not empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?script type="text/javascript" src="themes/jquery-2.1.4.js" ?>
+<?script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ?>
+<?script type="text/javascript" src="vmap/RotateIcon.js" ?>
+<?script type="text/javascript" src="vmap/vmap_expand.js" ?>
+<?script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAocRnSkbbpbc2yed6l-JnO28vmLo5Z0n0&libraries=places,drawing&callback=vietek.didLoadGoogleMapLibrary" async defer ?>
+<?script type="text/javascript" src="vmap/markerwithlabel.js" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?link rel="stylesheet" type="text/css" href="themes/common.css"?>
+<?link rel="stylesheet" type="text/css" href="themes/componentExtend.css"?>
+<?link rel="stylesheet" type="text/css" href="themes/statistic.css"?>
+<?link rel="stylesheet" type="text/css" href="themes/chat.css"?>
+<?link rel="stylesheet" type="text/css" href="themes/TaxiOrder2.css"?>
+<?link rel="stylesheet" type="text/css" href="themes/mapmaker.css"?>
+<?link rel="stylesheet" type="text/css" href="themes/tracking.css"?>
+<?link rel="shortcut icon" type="image/ico" href="themes/images/ml_lg.ico" ?>
+
+<?script type="text/javascript" src="vmap/jqueryrotate.js" ?>
+<?script type="text/javascript" src="themes/common.js" ?>
+<?script type="text/javascript" src="themes/tracking_online.js" ?>
+<?script type="text/javascript" src="themes/common_chosenbox.js" ?>
+<!-- <?script type="text/javascript" src="themes/chat.js" ?> -->
+<?script type="text/javascript" src="themes/report.js" ?>
+
+<?script src="/bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<?init class="com.vietek.taxioperation.services.AuthenticationInit"?>
+<zk xmlns:w="client" xmlns:n="native">
+
+	<script type="text/javascript">
+
+
+
+
+		
+		<![CDATA[ zk.afterLoad("zul.inp", function () {
+		zul.inp.InputWidget.onChangingDelay=0; }); ]]>
+		
+		
+		
+		
+		
+	</script>
+
+	<div apply="com.vietek.taxioperation.ui.controller.HomePage"
+		height="100%" width="100%">
+		<div id="hl_header"
+			class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+			<image class="navbar-brand"
+				src="./themes/images/logo_small.png"
+				style="padding: 6px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;">
+			</image>
+			<navbar id="nb_menu" zclass="none" sclass="navbar-collapse"
+				style="margin-left: 80px;">
+			</navbar>
+			<hlayout id="hl_setting" sclass="hlmnu_setting">
+				<div id="account_setting">
+					<menupopup id="menu_user_setting">
+						<menuitem label="Thông tin tài khoản"
+							id="mnu_account_info" />
+						<menuseparator />
+						<menuitem label="Đăng xuất" id="mnu_logout" />
+					</menupopup>
+					<div class="btn_group btn-group-xs">
+						<button id="btn_user_menu" dir="reverse"
+							class="btn-success" popup="menu_user_setting, after_end"
+							iconSclass="caret" style="background: transparent;">
+							Tuanpa
+						</button>
+					</div>
+
+				</div>
+				<button id="bt_menu" sclass="bt_menu"
+					src="themes/images/menubg.png">
+				</button>
+			</hlayout>
+		</div>
+		<div id="div_mnu_collapse" visible="false"
+			sclass="div_mnu_collapse">
+		</div>
+		<div height="100%" id="divTab">
+			<tabbox id="tbMain" height="100%">
+				<tabs id="tabs">
+					<tab id="tabHomePage" label="Homepage" />
+				</tabs>
+				<tabpanels>
+					<tabpanel style="overflow:auto">
+						<div
+							use="com.vietek.taxioperation.ui.controller.Index">
+						</div>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+
+		</div>
+	</div>
+	<!-- 	<div apply="com.vietek.taxioperation.chat.ChatWindow"> -->
+	<!-- 		<div id="divChat" class="divChat"> -->
+	<!-- 			<button id="btnChat" dir="reverse" class="btnChat"></button> -->
+	<!-- 			<panel id="panelChat" class="panelChat" border="normal" -->
+	<!-- 				visible="false"> -->
+	<!-- 			</panel> -->
+	<!-- 		</div> -->
+
+	<!-- 	</div> -->
+
+</zk>

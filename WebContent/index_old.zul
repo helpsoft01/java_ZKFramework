@@ -1,0 +1,78 @@
+<?link rel="stylesheet" type="text/css" href="themes/common.css"?>
+<?page title="Taxi Operation"?>
+<?init class="com.vietek.taxioperation.services.AuthenticationInit"?>
+<div apply="com.vietek.taxioperation.ui.controller.MainApp"
+	vflex="true">
+	<vlayout vflex="true" style="padding-top: 5px">
+		<hlayout
+			style="background-image: url(./themes/images/logo_small.png); background-repeat: no-repeat">
+			<div hflex="true" style="padding-left: 200px;"
+				align="center">
+				<label
+					style="font-size: 26px; font-weight: bold; color: green;">
+					HỆ THỐNG ĐIỀU HÀNH TAXI
+				</label>
+			</div>
+			<div>
+				<menupopup id="menu_function">
+				</menupopup>
+				<div class="btn_group">
+					<button id="btnChat" dir="reverse" class="btn-primary">
+						Chat
+					</button>
+					<button dir="reverse" class="btn-default"
+						popup="menu_function, after_end" iconSclass="caret">
+						Thiết lập
+					</button>
+				</div>
+			</div>
+			<div>
+				<menupopup id="menu_user_setting">
+					<menuitem label="Thông tin tài khoản"
+						id="mnu_account_info" />
+					<menuseparator />
+					<menuitem label="Đăng xuất" id="mnu_logout" />
+				</menupopup>
+				<div class="btn_group">
+					<button id="btn_user_menu" dir="reverse"
+						class="btn-success" popup="menu_user_setting, after_end"
+						iconSclass="caret">
+					</button>
+				</div>
+			</div>
+		</hlayout>
+		<navbar style="padding-left: 0px;" id="nb_menu"></navbar>
+		<div id="div_content" vflex="1" style="overflow: auto"></div>
+		<div
+			style="background-color: darkgreen; color: yellow; border-radius: 4px;"
+			align="center">
+			© 2015 - VIETEK
+		</div>
+		<window id="win" title="Chat Room" width="600px" border="normal" mode="overlapped" position="center,top"
+ 		apply="com.vietek.taxioperation.util.ChatComposer" visible="false">
+ 		<div id="scrollDiv" visible="true" style="height: 300px;width:580px;">
+ 		 <borderlayout>
+            <center border="none" flex="true"  style="overflow:scoll">
+                <columnlayout width="100%" height="100%">
+      			<columnchildren width="380px" height="100%" id="clmnBoard">
+      			</columnchildren>
+      			</columnlayout>
+            </center>
+            
+            <east  size="30%" border="none"  flex="true" maxsize="250" splittable="true" collapsible="true">
+                <vbox id="lstUserChat" height="100%"/>
+            </east>
+        </borderlayout>
+ 		</div>
+ 		<vbox id="inputVb" visible="true" style="margin-top: 10px;">
+ 		<hbox>
+ 		<textbox id="msgTb" style="width:500px; height:40px;" />
+ 		<button id="sendBtn" label="Gửi" style="width:80px; height:40px;" class="btn-success"/>
+ 		</hbox>
+ 		</vbox>
+		</window>
+	</vlayout >
+	
+</div>
+
+ 

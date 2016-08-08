@@ -1,0 +1,1267 @@
+@CHARSET "UTF-8";
+
+@font-face {
+	font-family: digital;
+	src: url(digital-7.ttf);
+}
+
+.dash_div_datetime {
+	position: fixed;
+	z-index: 1;
+	top: 34px;
+	right: 20px;
+	height: 60px;
+}
+
+.dash_time {
+	font-size: 35px;
+	font-family: digital;
+	font-weight: bold;
+}
+
+.dash_date {
+	font-size: 13px;
+	font-weight: bold;
+	float: right;
+}
+
+.btn_datetime_action {
+	float: right;
+	padding: 0px;
+	background: transparent;
+}
+
+.btn_datetime_action .btn-image {
+	width: 16px;
+}
+
+.dash_time {
+	font-size: 35px;
+	font-family: digital;
+	font-weight: bold;
+}
+
+.dash_date {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.z-window {
+	background: green;
+}
+
+.z-window-header {
+	font-weight: bold;
+	font-size: 14px;
+	color: white;
+	text-shadow: none;
+	text-transform: uppercase;
+	margin-left: 5px;
+}
+
+.vt-form .z-row-content, .vt-form .z-row-inner, .vt-form .z-rows,
+	.vt-form .z-row, .vt-form .z-grid-odd, .vt-form .z-grid-body, .vt-form .z-grid-header,
+	.vt-form .z-cell {
+	background: transparent !important;
+	border: none !important;
+	color: black !important;
+}
+
+span {
+	
+}
+
+.z-div {
+	
+}
+
+.navbar-fixed-top {
+	background-image: url("./images/headerbgr.jpg");
+	background-size: contain;
+	max-height: 35px;
+}
+
+.bs-docs-nav .navbar-nav>li>a:hover {
+	color: yellow;
+}
+
+.navbar-collapse .navbar-collapse {
+	margin-left: 0px !important;
+	padding: 0px;
+}
+
+.nav>li {
+	position: relative;
+	display: inline-block;
+}
+
+.open .dropdown-dropdown-toggle {
+	background-color: transparent !important;
+}
+
+.navbar-nav>li>ul {
+	position: absolute !important;
+	background: white !important;
+}
+
+.navbar-nav .open .dropdown-menu>li>a {
+	color: black !important;
+}
+
+.navbar-nav .open .dropdown-menu>li>a:hover, navbar-nav .open .dropdown-menu>li>a:focus
+	{
+	color: blue !important;
+}
+
+.navbar-collapse>ul {
+	padding: 0px;
+	margin: 0px;
+	position: fixed;
+}
+
+.bs-docs-nav .navbar-collapse {
+	max-height: 35px;
+	padding: 0px;
+	margin-left: 10px;
+	border-color: transparent;
+	position: fixed;
+}
+
+.container, .z-menubar-hor, .z-menubar-ver {
+	border: 1px solid #D8D8D8;
+}
+
+.z-menubar-hor {
+	width: 580px;
+}
+
+.z-menubar-ver {
+	border-right: 0 none;
+	height: 420px;
+}
+
+.div_mnu_collapse {
+	position: fixed;
+	width: 110px;
+	z-index: 100;
+	right: 10px;
+	top: 30px;
+}
+
+.z-menubar-vertical {
+	box-shadow: 0px 0px 1px 1px gainsboro;
+}
+
+ul>li>.z-menu-content, .z-menuitem-content {
+	/*color: white;*/
+	font-style: italic;
+	text-shadow: none;
+}
+
+.z-menu, .z-menu-clickable, .z-menu-hover, .z-menu-selected {
+	/*color: yellow;
+	background: green;*/
+	
+}
+
+.z-menu-hover>.z-menu-content, .z-menu-selected>.z-menu-content,
+	.z-menuitem-content:hover, .z-menuitem-content:focus {
+	/*color: yellow;
+	background: green;*/
+	border: none;
+}
+
+.-shadow>ul {
+	/*background: green;*/
+	
+}
+
+.-shadow>ul>li>a {
+	/*color: white;*/
+	text-shadow: none;
+}
+
+.-shadow>ul>.z-menu-hover>a:hover, .-shadow>ul>li>a:focus {
+	/*color: yellow !important;*/
+	
+}
+
+.-shadow .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+	/*color: yellow;*/
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.dropdown-menu>li>a {
+	display: inline-block;
+	padding: 3px 20px;
+	clear: both;
+	font-weight: normal;
+	line-height: 1.428571429;
+	color: #333;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+	color: blue;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.navbar-collapse>ul>li>ul>li>a:hover {
+	color: blue !important;
+}
+
+.hlmnu_setting {
+	position: fixed;
+	top: 5px;
+	right: 5px;
+}
+
+.btn-success {
+	font-size: 14px !important;
+}
+
+.main_div {
+	width: 99%;
+	height: 99%;
+	background-image: url('images/login_background.png');
+	background-size: contain;
+	position: absolute;
+	/**display: block;*/
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.main_landscape {
+	width: 99%;
+	height: 99%;
+	background-image: url('images/login_brg_lanscape.png');
+	background-size: contain;
+	position: absolute;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.login_content {
+	width: 33%;
+	height: 33%;
+	min-width: 291px;
+	min-height: 198px;
+	max-width: 410px;
+	max-height: 198px;
+	background: transparent;
+	position: absolute;
+	z-index: 12;
+	border-radius: 10px;
+
+	/**background-color: #E8E8CA;*/
+}
+
+.logoPanel {
+	width: 100%;
+	height: 20%;
+	background-image: url('images/mlg_circle.png');
+	background-size: contain;
+	position: absolute;
+	background-position: left;
+	background-repeat: no-repeat;
+	z-index: 15;
+}
+
+.titleText {
+	width: auto;
+	margin-left: auto;
+	position: absolute;
+	z-index: 16;
+	text-align: justify;
+	font-weight: bold;
+	font-size: 20px;
+	color: #009632;
+}
+
+.inputInfo {
+	width: 100%;
+	height: 60%;
+	/*background-image: url('images/loginPanel_bgr.png');*/
+	background-color: #019733;
+	background-size: contain;
+	background-position: center;
+	background-repeat: repeat;
+	z-index: 14;
+	position: absolute !important;
+	-moz-box-shadow: inset 0 0 10px #000000;
+	-webki-box-shadow: inset 0 0 10px #000000;
+	box-shadow: inset 0 0 10px #000000;
+}
+
+.vlayoutInput {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	z-index: 15;
+}
+
+.vboxInput {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	position: absolute;
+	z-index: 15;
+	margin-top: 1%;
+}
+
+.hUser {
+	width: 90%;
+	height: 24px;
+	background: transparent;
+	margin-top: 5px;
+	z-index: 16;
+}
+
+.hPass {
+	width: 90%;
+	height: 24px;
+	background: transparent;
+	margin-bottom: 5px;
+	z-index: 16;
+}
+
+.hlayoutUser {
+	width: 100%;
+	height: 50%;
+	background: transparent;
+	margin-top: 5px;
+	z-index: 16;
+}
+
+.logoUser {
+	width: 100%;
+	float: right;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	z-index: 17;
+}
+
+.logoPass {
+	width: 100%;
+	float: right;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	z-index: 17;
+}
+
+.txtUser, .txtPass {
+	width: 100%;
+	z-index: 17;
+	font-family: arial, sans-serif;
+	fon-size: 16px;
+}
+
+.hlayoutPass {
+	width: 100%;
+	background: transparent;
+	margin-bottom: 5px;
+	z-index: 15;
+}
+
+.imgLogin {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	/*background-image: url('images/loginPanel_bgr.png');*/
+	background-color: #019733;
+	background-size: contain;
+	opacity: 0.1;
+	z-index: 13;
+}
+
+.btnLogin {
+	height: auto;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+	background-color: #009632;
+	position: absolute !important;
+	-webkit-box-shadow: 4px 4px 1px rgba(50, 50, 50, 0.2);
+	-moz-box-shadow: 4px 4px 1px rgba(50, 50, 50, 0.2);
+	box-shadow: 4px 4px 1px rgba(50, 50, 50, 0.2);
+	border-radius: 10px;
+	z-index: 14;
+}
+
+.bt_menu {
+	background: transparent;
+	padding: 0px;
+}
+
+.z-notification .z-notification-content {
+	background: none repeat scroll 0 center transparent;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0 !important;
+	overflow: hidden;
+	color: white;
+	width: 300px;
+	min-height: 53px;
+	background-color: #47A447;
+}
+/**
+.z-notification .z-notification-content { 
+	background-color: #ED1A24; 
+}
+*/
+.z-listbox-autopaging .z-listcell-content {
+	height: 30px;
+	overflow: hidden;
+}
+
+.z-listbox-autopaging .z-listitem {
+	height: 30px !important;
+	overflow: hidden;
+}
+
+.btn-taxiorder-dd {
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	font-color: white;
+	color: white;
+	margin: 1px 1px 1px 1px !important;
+	padding: 2px 3px 2px 3px !important;
+	height: 26px !important;
+	background-color: green;
+}
+
+.btn-info-dd {
+	font-size: 8px;
+	font-weight: normal;
+	text-align: center;
+	font-color: white;
+	color: white;
+	/* margin: 2px 3px 2px 2px !important; */
+	padding: 1px 1px 1px 1px !important;
+	height: 20px !important;
+	width: 50px !important;
+	/* background-color: green; */
+}
+
+.btn-dd-dangkidon-del {
+	font-size: 8px;
+	font-weight: normal;
+	text-align: center;
+	font-color: white;
+	color: white;
+	/* margin: 2px 3px 2px 2px !important; */
+	padding: 1px 1px 1px 1px !important;
+	height: 20px !important;
+	width: 50px !important;
+}
+
+/** Customer detail  */
+.cusdetail_address {
+	width: 24px;
+	height: 24px;
+	padding: 0px;
+}
+
+.cusdetail_address .btn-image {
+	width: 22px;
+}
+
+.pane_add_info .panel-body {
+	padding: 5px;
+}
+
+.img_add_info {
+	width: 24px;
+}
+
+.cb_add_info .z-combobox-input {
+	height: 24px !important;
+	font-size: 12px !important;
+	line-height: 20px !important;
+	width: 100%;
+}
+
+.btn_add_info {
+	background: green;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.btn_add_info:hover, .btn_add_info:focus {
+	background: green;
+	color: yellow;
+}
+
+.cusdetail_cbb_address .z-combobox-input {
+	height: 25px !important;
+	font-size: 14px !important;
+}
+/** Thong ke cuoc goi */
+.sta_order_div {
+	margin: 10px 0px 10px 0px;
+}
+
+.sta_order_title {
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: green;
+}
+
+.hl_sta_order {
+	margin-bottom: 5px;
+}
+
+.hl_sta_order>.z-hlayout-inner {
+	width: 30%;
+}
+
+.comp_sta_order {
+	margin-left: 10px;
+}
+
+.img_statitis_order {
+	width: 64px;
+	height: 64px;
+	text-align: center;
+	background: green;
+	border-radius: 50%;
+}
+
+.img_warning_car {
+	width: 48px;
+	height: 48px;
+	text-align: center;
+	background: green;
+	border-radius: 50%;
+}
+
+.label_statitis_order {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.text_lb_statitis_order {
+	font-size: 14px;
+	font-weight: bold;
+	color: red;
+}
+
+.text_main_lb_statitis_order {
+	font-size: 18px;
+	color: white;
+	line-height: 64px;
+	font-weight: bold;
+}
+
+.btn_update_order {
+	float: right;
+	margin-right: 30px;
+	line-height: 16px;
+	border: none;
+	color: white;
+	background: green;
+}
+
+.btn_update_order:hover, .btn_update_order:focus {
+	background: green;
+	color: yellow;
+}
+
+.div_sta_order_show {
+	position: absolute;
+	right: 5px;
+	height: 85%;
+	top: 65px;
+	width: 25%;
+	background: white;
+	z-index: 11;
+}
+
+.div_sta_order_hide {
+	position: absolute;
+	right: 5px;
+	top: 65px;
+	background: white;
+	z-index: 11;
+}
+
+.div_hide_notifboard {
+	transform: rotate(270deg);
+	width: 223px;
+	position: absolute;
+	height: 27px;
+	right: -94px;
+	margin-top: 100px;
+	cursor: pointer;
+	padding: 5px;
+	background: white;
+}
+
+.btn_action_notifboard {
+	padding: 0px;
+	background: transparent;
+	border: none;
+	position: absolute;
+	right: 5px;
+	top: 4px;
+	z-index: 1;
+}
+
+.dash_notif_title {
+	font-size: 15px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: green;
+	margin-left: 5px;
+}
+
+.inc_notif_board {
+	background: white;
+	z-index: 11111;
+	border: 1px solid green;
+	height: 100%;
+	padding: 5px;
+	overflow-y: auto;
+}
+
+.hl_comp_notifboard {
+	
+}
+
+.img_comp_notifboard {
+	width: 30px;
+}
+
+.img_cus_comp_notifboard {
+	font-weight: bold;
+	color: green;
+}
+
+.date_comp_notifboard {
+	font-style: italic;
+	font-size: 11px;
+}
+
+.east_notifboard {
+	border: 2px solid #cfcfcf !important;
+	border-left: none !important;
+}
+
+.east_notifboard .z-east-header {
+	font-size: 16px;
+	font-weight: bold;
+	color: green;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.north_statistic_order .z-north-header {
+	font-size: 16px;
+	font-weight: bold;
+	color: green;
+	text-transform: uppercase;
+}
+
+.div_center {
+	overflow-y: auto;
+	width: 100%;
+}
+
+.center_home_board .z-center-body {
+	overflow-y: auto;
+}
+
+.panel_child_center {
+	border: 1px solid green;
+}
+
+.panel_child_center .panel-heading {
+	font-weight: bold;
+	color: green;
+	text-transform: uppercase;
+}
+
+/* Thong ke dat xe trong 7 ngày */
+.div_trip_week_title {
+	text-align: center;
+	margin: 10px;
+}
+
+.trip_week_title {
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: bold;
+	color: green;
+}
+/**
+* manhpv grid report 
+*/
+.gridPerform {
+	
+}
+
+.gridPerform .z-grid-body {
+	overflow-y: auto !important;
+}
+
+.gridPerform .z-grid-odd .z-row-inner {
+	background-color: antiquewhite !important;
+}
+
+.gridPerform .z-scrollbar-left, .z-scrollbar-right {
+	background: #FFFFFF;
+	color: #3AA4C3;
+}
+
+.gridPerform .z-scrollbar-left:hover, .z-scrollbar-right:hover {
+	background: #3AA4C3;
+	color: #FFFFFF;
+}
+
+.gridPerform .z-scrollbar-vertical .z-scrollbar-indicator {
+	background: #3AA4C3;
+	border: none;
+	top: 2px;
+}
+
+.gridPerform .z-scrollbar-vertical .z-scrollbar-rail {
+	background: #FFFFFF;
+}
+
+.gridPerform .z-scrollbar-vertical .z-scrollbar-icon {
+	display: none;
+}
+
+.gridPerformTT .z-grid-odd .z-row-inner {
+	background-color: antiquewhite !important;
+}
+
+.gridPerformTT .z-grid-body {
+	overflow-y: auto !important;
+}
+
+.gridShiftUsers .z-grid-body {
+	overflow-y: auto !important;
+}
+
+.gridShiftUsers .z-grid-odd .z-row-inner {
+	background-color: antiquewhite !important;
+}
+
+.gridShiftUsersTT .z-grid-odd .z-row-inner {
+	background-color: antiquewhite !important;
+}
+
+.gridShiftUsersTT .z-grid-body {
+	overflow-y: auto !important;
+}
+
+.gridreportTrip .z-grid-odd .z-row-inner {
+	background-color: antiquewhite !important;
+}
+
+.gridreportTrip .z-grid-body {
+	overflow-y: auto !important;
+}
+
+.gridreportTrip .z-label {
+	font-size: 16px !important;
+	color: #84178A !important;
+	font-weight: bold !important;
+}
+
+.z-tabs-content {
+	width: auto !important;
+}
+
+.tabs_config, .tab_config {
+	width: 200px !important;
+}
+
+.z-tabbox-left>.z-tabpanels {
+	border: none !important;
+}
+
+.z-tabbox-left>.z-tabs .z-tabs-content {
+	border-right: 0px;
+}
+
+.tab_panel_config .z-vlayout {
+	width: 80%;
+	margin-left: 5%;
+}
+
+.left_config_email {
+	width: 120px;
+}
+
+.div_title_list_config {
+	clear: both;
+	padding-bottom: 10px;
+}
+
+.title_list_config {
+	color: red;
+	font-weight: bold;
+	text-shadow: none !important;
+}
+
+.text_email_config {
+	font-weight: bold;
+	text-shadow: none !important;
+}
+
+.right_config_email {
+	width: 600px;
+	padding-left: 20px;
+}
+
+.note_config {
+	font-style: italic;
+}
+
+.listbox_dieudam_row .z-listcell-cnt {
+	max-height: 30px;
+	overflow: hidden;
+}
+
+.listbox_dieudam .z-listcell-content {
+	font-size: 15px;
+	color: #306EFF;
+	font-weight: bold;
+	max-height: 30px !important;
+	overflow: hidden;
+	border-style: solid !important;
+	border-width: 0px 1px 1px 0px !important;
+}
+
+.listbox_dieudam_docdam .z-listcell-content {
+	font-size: 16px;
+	color: #84178A;
+	font-weight: bold;
+}
+
+.header_dieudam .z-listheader-content {
+	border-style: solid !important;
+	border-width: 0px 1px 1px 0px !important;
+}
+
+.z-combobox-open {
+	min-height: 50px !important;
+	min-width: 200px !important;
+}
+
+.combobox_rider_state .z-combobox-input {
+	height: 25px !important;
+	font-size: 12px !important;
+}
+
+.combobox_rider_state .z-combobox-button {
+	height: 25px !important;
+}
+
+.stat_cus_filter panel-body {
+	padding: 5px;
+}
+/* thong tin tai xe/ taxi online */
+.div_title_driver_apps {
+	text-align: center;
+	line-height: 26px;
+}
+
+.west_driver_online_apps .z-west-header {
+	color: green;
+	font-size: 14px;
+}
+
+.title_driver_apps {
+	font-size: 17px;
+	font-weight: bold;
+	color: green;
+	text-transform: uppercase;
+}
+
+.tbx_driver_apps {
+	width: 100%;
+	height: 100% !important;
+}
+
+.cb_control_driver_apps {
+	width: 311px !important;
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+.cb_control_driver_apps .z-combobox-input {
+	width: 92%;
+	height: 30px !important;
+	font-size: 14px !important;
+}
+
+.cb_control_driver_apps .z-combobox-button {
+	height: 30px !important;
+}
+
+.btn_driver_app_tracking {
+	width: 50%;
+	margin-left: 25%;
+	margin-bottom: 10px;
+	background: green;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-shadow: none;
+}
+
+.img_listbox_driver_apps {
+	width: 20px;
+	height: 20px;
+	margin-left: 10px;
+}
+
+.btn_driver_app_tracking:hover, .btn_driver_app_tracking:focus {
+	color: yellow;
+	background: green;
+}
+
+.follow_trip_search {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.follow_trip_text_controls {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.follow_trip_title_info {
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: bold;
+	color: green;
+}
+
+.btn_follow_trip_info {
+	padding: 3px;
+	margin: 10px;
+}
+
+.follow_trip_left_info {
+	width: 105px;
+}
+
+.follow_trip_text_info {
+	font-size: 13px;
+	color: darkblue;
+}
+
+.z-hbox-device {
+	margin-bottom: 4px;
+	line-height: 0px !important;
+}
+
+.z-checkbox-device {
+	float: right;
+	width: 0px !important;
+	margin-right: 80px;
+}
+
+.z-spinner-device {
+	float: right;
+	margin-right: 80px;
+}
+
+.z-spinner-input-Editor
+.z-spinner-device .z-spinner-button {
+	height: 24px !important;
+}
+
+.z-spinner-input-Editor .z-spinner-input {
+	width: 50px !important;
+}
+
+.z-spinner-input-Editor .z-spinner-button {
+	height: 24px ! important;
+}
+
+.z-vbox-device {
+	width: 220px;
+}
+
+.z-list-template {
+	width: 300px;
+	margin-right: 25px !important;
+}
+
+.z-item-Label-list-template {
+	margin-left: 15px;
+}
+
+.z-item-input-list-template {
+	text-align: right ! important;
+	margin-right: 20px ! important;
+}
+
+.z-item-input-list-template input[type="checkbox"] {
+	margin-left: 120px ! important;
+}
+
+.z-item-input-datetime-template {
+	width: 120px ! important;
+	text-align: right ! important;
+	margin-left: 68px;
+}
+
+.z-combobox-search {
+	margin-left: 5px;
+}
+
+.z-combobox-search .z-combobox-open {
+	width: 100px ! important;
+}
+
+.z-combobox-search .z-combobox-input {
+	height: 25px !important;
+	font-size: 14px !important;
+}
+
+.z-combobox-search .z-combobox-button {
+	height: 25px !important;
+}
+
+.z-textbox-search {
+	margin-left: 5px;
+	font-size: 14px;
+	width: 85%;
+	font-style: normal;
+}
+
+.z-history-panel {
+	margin-bottom: 4px !important;
+}
+
+.z-history-panel .panel-body {
+	padding: 6px;
+	border-style: outset;
+	margin-right: 1px;
+}
+
+.z-history-input {
+	margin-top: 2px;
+}
+
+.z-history-input .z-datebox-input {
+	width: 170px;
+}
+
+.z-combobox-history .z-combobox-input {
+	width: 170px;
+	height: 24px ! important;
+	font-size: 14px ! important;
+}
+
+.z-combobox-history {
+	margin-top: 10px;
+}
+
+.z-combobox-history .z-combobox-button {
+	height: 24px !important;
+}
+
+.z-btn-history {
+	height: 30px;
+	width: 100px;
+	margin-right: 5px;
+	padding: 2px 6px ! important;
+	border-radius: 10px;
+	background-color: #1BA339;
+	font-weight: bold;
+	color: white;
+}
+
+.z-toolbar-history {
+	text-align: center;
+}
+
+.z-toolbar-history .z-label {
+	font-size: 16px;
+	font-weight: bold;
+	color: #10822A;
+}
+
+.z-hlayout-history .z-hlayout-inner {
+	/* border-style: ridge; */
+	border-style: outset;
+	height: 100%;
+}
+
+.comboboxtripsearching .z-combobox-input {
+	height: 25px !important;
+	font-size: 12px !important;
+}
+
+.comboboxtripsearching .z-combobox-button {
+	height: 25px !important;
+}
+
+.z-gmap {
+	z-index: 0;
+}
+
+.z-div-right-detail {
+	left: 5px;
+	position: absolute;
+	top: 8px;
+	z-index: 1
+}
+
+.z-panel-layout-history {
+	width: 300px;
+}
+
+.z-panel-layout-history .panel-body {
+	padding: 3px;
+}
+
+.z-panel-layout-history .panel-heading {
+	padding: 5px 15px;
+	background-color: #1BA339;
+	font-weight: bold;
+	color: white;
+}
+
+.z-panel-layout-history .panel-heading>div>div {
+	float: right;
+}
+
+.z-north-layout-history {
+	width: 300px ! important;
+}
+
+.z-div-control-history {
+	border-width: 4px;
+	border: 1px solid #e1e1e1;
+	background: #fffafa;
+	border-radius: 0 15px 15px 0;
+	width: 127px;
+	margin-top: 3px;
+}
+
+.z-borderlayout-detail-history {
+	height: 202px;
+	width: 100%;
+}
+
+.z-west-detail-history {
+	width: 278px;
+}
+
+.z-west-detail-history .z-west-header {
+	height: 30px ! important;
+}
+
+.z-hlayout-west-history {
+	margin-top: 6px;
+	margin-left: 5px;
+}
+
+.z-hlayout-west-history .z-hlayout-inner {
+	border-style: none ! important;
+}
+
+.z-hlayout-center-history {
+	margin-top: 16px;
+	margin-left: 24px;
+}
+
+.z-hlayout-center-history .z-hlayout-inner {
+	border-style: none ! important;
+	width: 100px;
+	right: 20px !important;
+	top: 40px !important;
+	font-size: 20px;
+}
+
+.z--toolbar-content .z-btn-new-parking {
+	height: 30px;
+	width: 100px;
+	margin-right: 5px;
+	padding: 2px 6px ! important;
+	border-radius: 10px;
+	background-color: #1BA339;
+	font-weight: bold;
+	color: white;
+}
+
+.z-window-parking-detail {
+	position: absolute;
+	width: 300px;
+	left: 417px;
+	top: 266px;
+}
+
+.btn_trip_week {
+	margin-left: 10px;
+	padding: 2px;
+	background: green;
+	color: white;
+}
+
+.z-parking {
+	background-color: green;
+	border-radius: 5px;
+	padding: 2px;
+}
+
+.z-cb-parking-search {
+	height: 28px !important;
+	font-size: 14px !important;
+}
+
+.z-label-detail-his {
+	font-size: 13px;
+	color: black;
+	font-weight: bold;
+}
+
+.stat_cus_filter .panel-body {
+	padding: 5px;
+}
+
+.date_none_time .z-datebox-input {
+	width: 200px !important;
+}
+
+.vmaps_search {
+	width: 320px;
+	height: 30px;
+	font-size: 14px;
+	font-family: sans-serif;
+	border: 1px solid green;
+	padding: 3px;
+	margin-top: 10px;
+	border-radius: 3px;
+}
+.sys_group_cell .z-treecell-content, .lstbox_sys_group_func .z-treecell-content{
+	text-align-last: center;
+}
+.sys_group_cell .z-treecell-content .z-treerow-checkbox, .sys_group_cell .z-treecell-content .z-tree-icon {
+	float: left;
+}
+.lstbox_sys_group_user .z-listbox-body, .lstbox_sys_group_rule .z-listbox-body{
+	 overflow-x: hidden;
+}
+.btn_sys_group {
+	width: 100%;
+	background: green;
+	font-weight: bold;
+	color: white;
+}

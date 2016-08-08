@@ -1,0 +1,15 @@
+@CHARSET "ISO-8859-1";
+
+.Position_Center {
+/*   color: #ffffff;
+  background-color: #5cb85c;
+  border-color: #4cae4c; */
+  background-image: url('images/ML_Location_32.pn');
+  position: absolute; top: 50%; left: 50%; margin-top: -32px; margin-left: -16px;
+  
+}
+
+.btn_detail_add{
+	background-image: url('images/Add_16.png');
+	tooltiptext: 'Thêm bản ghi';
+}

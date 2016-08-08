@@ -1,0 +1,924 @@
+@CHARSET "UTF-8";
+
+.taxiOrder2BtAddSearCar {
+	float: left;
+	background-size: contain;
+	border: 0px solid;
+	height: 30px;
+	width: 80px;
+	background: url('../themes/images/free-10-32.png') no-repeat left;
+	/* 	add-70px-32.png */
+	background-size: contain;
+	padding-left: 2px !important;
+	padding-right: 0px !important;
+}
+
+.taxiOrder2btRomveDivCar {
+	background: url('../themes/images/remove-70px-32.png');
+	/* 	close_square_black-16.png */
+	background-size: contain;
+	height: 30px;
+	width: 30px
+}
+
+.taxiOrder2divContain {
+	float: left;
+	border-radius: 3px;
+	padding: 0px;
+	/* 	padding-left: 2px; */
+	background-color: #ebebeb;
+	margin-right: 8px;
+	min-height: 32px;
+}
+
+.z-grid-body table {
+	width: 100%
+}
+
+.z-grid-body {
+	overflow: hidden !important;
+}
+
+.z-grid-odd>.z-row-inner, .z-grid-odd>.z-cell {
+	background-color: white !important;
+}
+
+.z-groupbox-content {
+	border: 0px solid #cfcfcf !important;
+}
+
+.z-row:hover>.z-row-inner, .z-row:hover>.z-cell {
+	/* 	background: linear-gradient(to bottom, #f2f9fe 0%, #d6f0fd 100%); */
+	background: white !important;
+}
+
+.taxiOrder2spNumberCar {
+	width: 50px !important;
+}
+
+.taxiOrder2divEstimate {
+	float: right;
+	width: 100%;
+	color: red;
+	font-size: bold;
+	border: 1px solid;
+	font-weight: bold;
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	height: 30px;
+}
+
+.taxiOrder2divLeft {
+	float: left;
+	width: 100%;
+}
+
+.taxiOrder2btEstimate {
+	float: left;
+	width: 10%;
+	height: inherit !important;
+	background: url('../themes/images/calculator.png') no-repeat center;
+	background-size: contain;
+	border: 0px solid;
+	padding-right: 1px;
+}
+
+.taxiOrder2divShowEstimate {
+	float: right;
+	width: 90%;
+	background-color: black;
+	color: black;
+	height: inherit;
+	line-height: 24px;
+	background-color: #DFF0D8;
+	border-color: #008000;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.taxiOrder2divShowEstimate span {
+	font-size: 16px !important;
+	line-height: 30px;
+}
+
+.taxiorder2CallInbtAccept {
+	float: left;
+	width: 45%;
+	height: 35px !important;
+	background: url('../themes/images/08_phone-32.png') no-repeat center;
+	background-size: contain;
+	border: 1px solid #cfcfcf;
+}
+
+.taxiorder2CallInbtIgnore {
+	float: right;
+	width: 45%;
+	height: 35px !important;
+	background: url('../themes/images/phone-circle-red-2-32.png') no-repeat
+		center;
+	background-size: contain;
+	border: 1px solid #cfcfcf;
+}
+
+.taxiOrder2BtCancel {
+	float: right !important;
+}
+
+.z-caption-image {
+	height: 24px !important;
+}
+
+.z-caption-content, .z-caption .z-label {
+	font-weight: bold !important;
+	font-size: 27px !important;
+}
+
+.taxiorder2CallInDiv .z-row-content {
+	text-align: center !important;
+	font-size: medium !important;
+	font-size: 20px !important;
+}
+
+.taxiorder2CallInlbRepeatTime {
+	float: right;
+	width: 45%;
+	color: red !important;
+	font-size: 30px !important;
+	text-align: center;
+}
+
+.taxiorder2CallInlbLastTimeCall {
+	float: left;
+	width: 45%;
+	color: blue !important;
+	font-size: 30px !important;
+	text-align: center;
+}
+
+.CallInWindowPhoneCommon {
+	height: 172px !important;
+	width: 230px !important;
+	background-color: #47A447 !important;
+	bottom: 0px !important;
+}
+
+.taxiOrder2_CallInWindowPhone0 {
+	left: 0px !important;
+}
+
+.taxiOrder2_CallInWindowPhone1 {
+	left: 250px !important;
+}
+
+.taxiOrder2_CallInWindowPhone2 {
+	left: 500px !important;
+}
+
+.taxiOrder2_CallInWindowPhone3 {
+	left: 750px !important;
+}
+
+.taxiOrder2_CallInWindowPhone4 {
+	left: 1000px !important;
+}
+
+.taxiOrder2_CallInWindowPhone5 {
+	left: 1250px !important;
+}
+
+.taxiOrder2_CallInWindowPhone0 .z-window-header {
+	background: url('../themes/images/whatsapp-32.png') no-repeat left
+		!important;
+	text-align: right !important;
+	color: white !important;
+	height: 33px;
+}
+
+.taxiOrder2_CallInWindowPhone1 .z-window-header {
+	background: url('../themes/images/whatsapp-32.png') no-repeat left
+		!important;
+	text-align: right !important;
+	color: white !important;
+	height: 33px;
+}
+
+.taxiOrder2_CallInWindowPhone2 .z-window-header {
+	background: url('../themes/images/whatsapp-32.png') no-repeat left
+		!important;
+	text-align: right !important;
+	color: white !important;
+	height: 33px;
+}
+
+.taxiOrder2_CallInWindowPhone3 .z-window-header {
+	background: url('../themes/images/whatsapp-32.png') no-repeat left
+		!important;
+	text-align: right !important;
+	color: white !important;
+	height: 33px;
+}
+
+.taxiOrder2_CallInWindowPhone4 .z-window-header {
+	background: url('../themes/images/whatsapp-32.png') no-repeat left
+		!important;
+	text-align: right !important;
+	color: white !important;
+	height: 33px;
+}
+
+.taxiOrder2_CallInWindowPhone5 .z-window-header {
+	background: url('../themes/images/whatsapp-32.png') no-repeat left
+		!important;
+	text-align: right !important;
+	color: white !important;
+	height: 33px;
+}
+
+.taxiOrder2divTbShow {
+	/* 	position: absolute !important; */
+	/* 	top: 2px !important; */
+	/* 	width: 100% !important; */
+	/* 	left: 3px !important; */
+	opacity: 0.8 !important;
+	border: 0px solid;
+	padding: 2px;
+	border-radius: 3px;
+	background-color: black;
+	color: white;
+	background-color: black;
+	/* 	padding-left: 2px; */
+}
+
+.taxiOrder2divBtGmap {
+	position: absolute !important;
+	bottom: 14px !important;
+	/* 	width: 40px !important; */
+	right: 2px !important;
+	opacity: 0.45 !important;
+	border: 0px solid;
+	/* 	padding: 2px; */
+	/* 	border-radius: 3px; */
+	/* 	background-color: black; */
+	/* 	color: white; */
+	/* 	background-color: black; */
+	/* 	padding-left: 40px; */
+}
+
+.taxiOrder2lbVehicleVal {
+	font-weight: bold;
+	color: red;
+	font-size: 22px;
+	/* 	text-decoration: underline; */
+}
+
+.taxiOrder2lbDistanceVal {
+	font-weight: bold;
+	color: cadetblue;
+	font-size: 22px;
+	/* 	text-decoration: underline; */
+}
+
+.taxiOrder2lbDurationVal {
+	font-weight: bold;
+	color: #337AB7;
+	font-size: 22px;
+	/* 	text-decoration: underline; */
+}
+
+.taxiOrder2lbHeader {
+	font-weight: bold;
+	color: white;
+	font-size: 12px;
+	text-decoration: underline;
+}
+
+.taxiorder2btCancelOrder {
+	float: right !important;
+}
+
+.z-center {
+	border: 0px !important;
+}
+
+.z-east {
+	border: 0px !important;
+}
+
+.spanIcon {
+	top: 0px !important;
+}
+
+.z-combobox-button {
+	height: 34px !important;
+}
+
+.z-combobox-input {
+	height: 34px !important;
+	font-size: 18px !important;
+}
+
+.z-combobox-input_normal {
+	height: 24px !important;
+	font-size: 12px !important;
+}
+
+.z-window_Detail .TelephoneTableWindow_Div {
+	padding: 10px;
+}
+
+.z-window_Detail .TelephoneTableWindow_BtOk {
+	float: right !important;
+	margin-top: 5px !important;
+}
+
+.z-window_Detail .form-control {
+	font-size: 18px !important;
+}
+
+.z-window_Detail .form-group {
+	margin-bottom: 7px !important;
+	width: 100%;
+	float: left;
+}
+
+.z-window_Detail .btCollapse {
+	padding: 1px !important;
+	padding-left: 3px !important;
+	padding-right: 3px !important;
+}
+
+.z-window_Detail .headingCollapse {
+	padding: 3px !important;
+}
+
+.z-window_Detail .divShowmap {
+	float: right;
+	margin: 0px;
+}
+
+.z-window_Detail .divShowmap label {
+	font-size: 18px !important;
+}
+
+.z-window_Detail .btNewOrder {
+	margin-right: 2px !important;
+	float: left;
+}
+
+.z-window_Detail .btShowMap {
+	margin-right: 2px !important;
+	float: left;
+}
+
+.z-window_Detail {
+	background: #f3f3f3 !important;
+	border-width: 1px 1px 1px 2px !important;
+	border: 2px solid #029834 !important;
+	border-radius: 0px 4px 0px 4px !important;
+}
+
+.z-window_Detail .page-header_Detail {
+	margin: 0px 0 5px !important;
+	padding-bottom: 0px !important;
+	float: left !important;
+	width: 100% !important;
+	/* 	height: 5px; */
+}
+
+.z-window_Detail .z-window-header {
+	font-size: 20px !important;
+	/* 	font-weight: bold !important; */
+	text-align: right !important;
+	background-color: #468847 !important;
+	height: 42px !important;
+	background: url('../themes/images/logo_ml.png') no-repeat left;
+	color: white;
+	line-height: 42px;
+	text-transform: uppercase;
+}
+
+.z-window_Detail .iconHeader {
+	font-size: 30px !important;
+	float: left !important;
+}
+
+.z-window_Detail .col-sm-common {
+	padding-right: 0px !important;
+}
+
+.z-window_Detail .panel-body {
+	padding: 5px !important;
+	padding-bottom: 0px !important;
+	padding-top: 7px !important;
+	padding-bottom: 0px !important;
+}
+
+.z-window_Detail .container {
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+	margin-right: 0px !important;
+	margin-left: 0px !important;
+	border: 0px solid #D8D8D8 !important;
+}
+
+.z-window_Detail .page-header {
+	margin-left: 0px;
+	margin-bottom: 25px;
+	margin-top: 0px;
+	border-bottom: 0px solid #eee !important;
+	/* 	float:left; */
+}
+
+.z-window_Detail .h4HeaderInforCall {
+	padding-left: 12px !important;
+	float: left !important;
+	margin-top: 11px !important;
+	margin-bottom: 4px !important;
+	font-size: 20px !important;
+	font-weight: bold !important;
+}
+
+.z-window_Detail .h4HeaderInforCall small {
+	font-size: 20px !important;
+}
+
+.z-window_Detail .AdvanceShapeTime {
+	float: left !important;
+	padding-left: 5px;
+}
+
+.z-window_Detail .infor_Customer {
+	font-size: 18px !important;
+	font-weight: bold !important;
+	height: 35px !important;
+	color: #D93043 !important;
+}
+
+.z-window_Detail .infor_Customer[disabled] {
+	font-size: 18px !important;
+	font-weight: bold !important;
+	height: 35px !important;;
+	background-color: white !important;
+	color: #D93043 !important;
+}
+
+.z-window_Detail .infor_CustomerDesCustmer {
+	padding-right: 0px !important;
+}
+
+.z-window_Detail .infor_CustomerPhone {
+	padding-right: 0px !important;
+}
+
+.z-window_Detail .optionCommonPanel label {
+	font-size: 14px !important;
+	font-weight: bold !important;
+	display: inline-block !important;
+	vertical-align: middle !important;
+	margin: 0px !important;
+	margin-left: 2px !important;
+	display: inline-block !important;
+	/* 	font-weight: bold; */
+}
+
+.z-window_Detail .optionCommonPanel input {
+	font-size: 14px !important;
+	display: inline-block !important;
+	vertical-align: middle !important;
+	margin: 0px !important;
+	height: inherit;
+}
+
+.z-window_Detail .optionCommonPanel a {
+	height: inherit;
+}
+
+.z-window_Detail .divContainTyleVehicle input {
+	height: 31px !important;
+	font-size: 15px;
+	/* 	font-weight: bold; */
+}
+
+.z-window_Detail .divContainTyleVehicle a {
+	height: 14px !important;
+}
+
+.z-window_Detail .divContainTyleVehicle i {
+	height: 24px !important;
+}
+
+.z-window_Detail .row {
+	margin-right: 0px !important;
+	margin-bottom: 5px !important;
+}
+
+.z-window_Detail .panel {
+	margin-bottom: 0px !important;
+	border: 0px !important;
+}
+
+.z-window_Detail .panel-heading {
+	border: 0px !important;
+	background-color: #DFF0D8 !important;
+}
+
+.z-window_Detail .modal-content_Detail {
+	position: relative !important;
+	background-color: #fff !important;
+	/* -webkit-background-clip: padding-box; */
+	background-clip: padding-box !important;
+	/* border: 1px solid #999; */
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 6px !important;
+	outline: 0 !important;
+	/* -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5); */
+	box-shadow: 0 3px 9px rgba(0, 0, 0, .5) !important;
+}
+
+.z-window_Detail .divContainTyleVehicle {
+	float: left;
+	padding-left: 0px;
+}
+
+.z-window_Detail .lbF2 {
+	float: right;
+	line-height: 35px;
+	font-size: 14px !important;
+	font-weight: bold !important;
+	width: 4% !important;
+	text-align: right !important;
+}
+
+.z-window_Detail .divCommonComponent {
+	width: 96% !important;
+}
+
+.z-window_Detail .divTypeVehicle {
+	float: left;
+}
+
+.z-window_Detail .z-modal-mask {
+	width: 100% !important;
+}
+
+.z-window_Detail .cbOptionFixedPrice {
+	float: left;
+	width: 80px !important;
+	line-height: 26px;
+}
+
+.z-window_Detail .InforAdvanceLeftDetail {
+	/* 	background-color: aqua;; */
+	
+}
+
+.z-window_Detail .z-comboitem-text {
+	font-size: 18px!imporant;
+}
+
+.childDistanceRegister {
+	padding-left: 29px;
+}
+
+.z-window_Detail .divEastLayout {
+	
+}
+
+.z-window_Detail .gmaps {
+	
+}
+
+.z-window_Detail .divDetailForm {
+	height: 92%;
+}
+
+.z-window_Detail .divCenter {
+	
+}
+
+.z-window_Detail .divCommon {
+	width: 100% !important;
+	height: 100%;
+}
+
+.z-window_Detail .z-center-body {
+	overflow-y: auto !important;
+}
+
+.z-window_Detail .lbHeaderCommon {
+	padding-left: 25px !important;
+	float: left !important;
+	margin-top: 11px !important;
+	margin-bottom: 4px !important;
+	font-size: 16px !important;
+	line-height: unset;
+	color: #029834 !important;
+}
+
+.z-window_Detail .lbHeaderValCommon {
+	padding-left: 12px !important;
+	float: left !important;
+	margin-top: 11px !important;
+	margin-bottom: 4px !important;
+	font-size: 20px !important;
+	font-weight: bold !important;
+	color: red !important;
+	line-height: unset !important;
+}
+
+.z-window_Detail .panel-primary .panel-heading {
+	background-color: green !important;
+	/* 	#468847 */
+	height: 30px !important;
+	padding: 2px !important;
+}
+
+.z-window_Detail .panel-primary .panel-heading span {
+	line-height: 27px !important;
+	padding-left: 6px !important;
+	font-size: 15px !important;
+}
+
+.z-window_Detail .panel-primary {
+	border-color: #468847 !important;
+	border: 0px !important;
+}
+
+.z-window_Detail .lbRepeatTimeVal {
+	
+}
+
+.z-window_Detail .lbTotalCallVal {
+	
+}
+
+.z-window_Detail .lbLastCallVal {
+	
+}
+
+.z-window_Detail .cbSeatCar input[disabled] {
+	color: black !important;
+}
+
+.z-window_Detail .z-timebox-button, .z-spinner-button,
+	.z-doublespinner-button {
+	height: 30px !important;
+}
+
+.z-window_Detail .z-combobox-button {
+	height: 34px !important;
+}
+
+.z-window_Detail .divContainTyleVehicle .cbSeatCar  a {
+	height: 31px !important;
+}
+
+.lbTitleTable {
+	font-size: 24px !important;
+	font-weight: bold !important;
+	color: red !important;
+	float: left;
+}
+
+.lbTitleLst {
+	font-size: 16px !important;
+	font-weight: bold !important;
+	color: #468847 !important;
+	line-height: 27px;
+	width: 100%!importand;
+	float: left;
+}
+
+.z-window_Detail .callOut {
+	font-weight: bold !important;
+	padding: 1px 4px !important;
+	margin-bottom: 0px !important;
+	font-size: 15px !important;
+	/* 	width: 42% !important; */
+	float: right !important;
+}
+
+.z-window_Detail .callOut[disabled] {
+	font-weight: bold !important;
+	padding: 1px 4px !important;
+	margin-bottom: 0px !important;
+	font-size: 15px !important;
+	/* 	width: 42% !important; */
+	float: right !important;
+}
+
+.z-window_Detail .cbExtension {
+	width: 56% !important;
+	float: left !important;
+}
+
+.z-window_Detail .z-east-splitter {
+	background: transparent !important;
+}
+
+.z-window_Detail .noteTaxiOrder {
+	height: 60px !important;
+}
+
+.windowTabsDetailForm {
+	top: 0px !important;
+	left: 0px !important;
+	padding: 0px !important;
+}
+
+.windowTabsDetailForm  .tabDetailForm {
+	height: 35px !important;
+}
+
+.windowTabsDetailForm  .tabDetailForm img {
+	height: 24px !important;
+	/* 	background-position: left top; */
+	/* 	background-attachment: inherit; */
+	/* 	background-color: transparent; */
+	/* 	background-image: url("themes/images/logo_small.png"); */
+	/* 	background-repeat: no-repeat; */
+	/* 	background-clip: border-box; */
+	/* 	background-origin: padding-box; */
+	/* 	background-size: auto auto; */
+}
+
+.background_colorCommon {
+	background-color: #029834 !important;
+}
+
+.windowTabsDetailForm  .tabDetailForm span {
+	color: white !important;
+}
+
+.windowTabsDetailForm  .tabDetailForm span :HOVER {
+	text-decoration: none !important;
+}
+
+.windowTabsDetailForm  .z-tab {
+	background: linear-gradient(to bottom, #9C9C9C 90%, #eeeeee 100%);
+	color: black;
+}
+
+.windowTabsDetailForm  .z-tab-selected {
+	background-color: #029834 !important;
+	background: linear-gradient(to bottom, #029834 100%, #029834 100%);
+	box-shadow: 0 1px 0 #029834 !important;
+	border-radius: 12px 4px 0px 0px !important;
+}
+
+.windowTabsDetailForm  .tabDetailForm .z-tab-text {
+	font-size: 18px !important;
+}
+
+.windowTabsDetailForm  .z-tabpanel {
+	border: 0px solid #cfcfcf !important;
+	border-top: 0 !important;
+	padding: 0px !important;
+}
+
+.windowTabsDetailForm  .divWay {
+	width: 39% !important;
+	float: left;
+}
+
+.windowTabsDetailForm  .divTrack {
+	width: 60% !important;
+	float: right;
+}
+
+.z-apply-loading-icon {
+	/* 	width: 16px; */
+	/* height: 16px; */
+	/* background: transparent no-repeat center; */
+	/* 	background-image: url("themes/images/loading.gif") !important; */
+	background: url('../themes/images/loading.gif') no-repeat center;
+}
+
+.z-apply-loading {
+	border: 1px solid #cfcfcf;
+	padding: 2px !important;
+	background: #029834 !important;
+	position: absolute;
+	cursor: wait;
+	white-space: nowrap;
+	display: none;
+}
+
+.z-errorbox-content {
+	font-size: 17px !important;
+}
+
+.taxiOrdersForm .txtSearchcommon {
+	margin-bottom: 3px;
+}
+
+.taxiOrdersForm .z-listheader {
+	white-space: pre-wrap !important;
+	border-bottom: 0px solid #cfcfcf !important;
+	padding: 0;
+	background: -moz-linear-gradient(top bottom, #fefefe 0%, #eeeeee 100%)
+		!important;
+	background: linear-gradient(to bottom, #fefefe 0%, #DFF0D8 100%)
+		!important;
+}
+
+.taxiOrdersForm .z-listbox {
+	border: 0px !important;
+}
+
+.taxiOrdersForm .divSearchTaxiorder {
+	margin-bottom: 10px;
+}
+
+.taxiOrdersForm .btCleanValueSearch {
+	margin-top: 10px;
+}
+
+.divCommonComponent .z-comboitem span {
+	font-size: 16px !important;
+	font-weight: bold !important;
+	color: red !important;
+}
+
+.z-window_Detail .z-groupbox-3d {
+	padding: 5px !important;
+	padding-bottom: 0px !important;
+	padding-top: 7px !important;
+	padding-bottom: 0px !important;
+	float: left !important;
+}
+
+.z-window_Detail .headerOptionTaxiOrder {
+	font-size: 15px !important;
+	padding-top: 5px !important;
+}
+
+.z-window_Detail .ControlAddress_Common {
+	float: left !important;
+	margin-bottom: 2px;
+	background-color: tan !important;
+	font-size: 17px;
+}
+
+.z-window_Detail .ControlAddress_Select {
+	float: left !important;
+	margin-bottom: 2px;
+	font-size: 17px;
+}
+
+.z-window_Detail .ControlAddress_DVCommon {
+	float: left !important;
+	width: 100%;
+}
+
+.z-window_Detail .form-group .divGroupChildNearAddress {
+	padding: 2px;
+}
+
+<<<<<<<
+HEAD
+
+.permissionUserGroupDivLeft {
+	width: 30%;
+	height: 100%;
+	float: left;
+}
+
+.permissionUserGroupDivRight {
+	width: 69%;
+	height: 100%;
+	float: right;
+}
+
+.permissionUserGroupDivContent {
+	width: 100%;
+	height: 100%;
+	float: left
+}
+
+.permissionUserGroupDivContent .panel-body {
+	width: 100%;
+	height: 100%;
+	float: left
+}
+
+.permissionUserGroupDivContent .divCpnSelect {
+	width: 100%;
+	height: 200px;
+	float: left
+}
+
+.permissionUserGroupDivContent .divCpn {
+	width: 100%;
+	height: 200px;
+	float: left
+}
+
+.form-marginRight-20 {
+	margin-left: 10px;
+}
+.grid_report_total .z-grid-body{
+	overflow-x: hidden  !important;
+    overflow-y: auto  !important;
+}

@@ -1,0 +1,25 @@
+<zk>
+	<style dynamic="true">
+    	.tree-config .panel-body {
+    		padding: 5px;
+    	}    
+    	.tree-config .z-tree-odd .z-row-inner {
+			background-color: antiquewhite !important;	
+		}	
+		.tree-config .z-tree-body {
+			overflow-y: auto !important;
+		}
+		.tree-config .z-tree-body .z-treerow{
+			border: 1px gainsboro dotted;
+		}
+		.tree-config .z-tree-body .z-treerow-disabled{
+			background-color: gainsboro !important;	
+		}		
+		.tree-config .z-treerow .z-label {
+			font-size: 12px !important;
+			font-weight: bold !important;
+		}		
+	</style>
+		
+	<div use="com.vietek.taxioperation.ui.controller.DeviceConfigurations"></div>
+</zk>

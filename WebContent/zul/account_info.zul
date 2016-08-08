@@ -1,0 +1,113 @@
+<div use = "com.vietek.taxioperation.ui.controller.AccountInfo2">
+</div>
+
+<!-- <div apply="com.vietek.taxioperation.ui.controller.AccountInfo">
+	<panel title="THÔNG TIN ĐĂNG NHẬP" sclass="panel-success">
+		<panelchildren>
+			<grid oddRowSclass="none" style="border: none;">
+				<columns>
+					<column width="150px" align="right"></column>
+					<column hflex="true"></column>
+				</columns>
+				<rows>
+					<row>
+						Họ và tên:
+						<cell>
+							<textbox width="300px" id="txt_fullName"
+								value="${$composer.sysUser.getName()}">
+							</textbox>
+						</cell>
+					</row>
+					<row>
+						Tên đăng nhập:
+						<cell>
+							<textbox width="300px" id="txt_accountName"
+								value="${$composer.sysUser.user}">
+							</textbox>
+						</cell>
+					</row>
+					<row>
+						Mật khẩu:
+						<cell>
+							<textbox type="password" id="txt_password">
+							</textbox>
+						</cell>
+					</row>
+					<row>
+						Nhập lại mật khẩu:
+						<cell>
+							<textbox type="password" id="txt_retypePassword">
+							</textbox>
+						</cell>
+					</row>
+
+					<row>
+						Số điện thoại nội bộ:
+						<cell>
+							<textbox id="txt_extNumber"
+								value="${$composer.user.extNumber}">
+							</textbox>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</panelchildren>
+	</panel>
+	<button id="btn_other_info" sclass="btn-default" iconSclass="caret">Thông tin khác</button>
+	<separator></separator>
+	<panel title="THÔNG TIN KHÁC" sclass="panel-success" id="panel_other_info" visible="false">
+		<panelchildren>
+			<grid oddRowSclass="none" style="border: none;">
+				<columns>
+					<column width="150px" align="right"></column>
+					<column hflex="true"></column>
+				</columns>
+				<rows>
+					<row>
+						Email:
+						<cell>
+							<textbox id="txt_email" constraint="/.+@.+\.[a-z]+/: Please enter an e-mail address"
+								value="${$composer.user.email}"
+								width="300px">
+							</textbox>
+						</cell>
+					</row>
+					<row>
+						Số điện thoại:
+						<cell>
+							<textbox id="txt_phoneNumber"
+								value="${$composer.user.phoneNumber}">
+							</textbox>
+						</cell>
+					</row>
+					<row>
+						Địa chỉ:
+						<cell>
+							<textbox width="500px" id="txt_address"
+								value="${$composer.user.address}">
+							</textbox>
+						</cell>
+					</row>
+					<row>
+						Ngày sinh:
+						<cell>
+							<datebox id="db_birthDay" format="dd/mm/yyyy" value="${$composer.user.birthDay}"></datebox>
+						</cell>
+					</row>
+					<row>
+						Ghi chú:
+						<cell>
+							<textbox id="txt_description" width="500px" type="text" rows="2" value="${$composer.sysUser.description}"></textbox>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</panelchildren>
+	</panel>
+					
+	<hlayout>
+		<button sclass="btn-success" id="btn_save">Lưu thông tin</button>
+		<button sclass="btn-warning" id="btn_cancel">Bỏ qua</button>
+	</hlayout>
+</div>
+ -->

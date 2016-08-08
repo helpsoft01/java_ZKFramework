@@ -1,0 +1,372 @@
+@CHARSET "ISO-8859-1";
+/** style="width:20%; height:50%; position: absolute; right: 5px; bottom: 5px; background: transparent; z-index: 28; " */
+/** .divChat {
+	width:20%;
+	height: 300px;
+	position: fixed;
+	float: right;
+	right: 5px;
+	bottom: 0;
+	background: transparent;
+	z-index: 0;
+}
+.chatMain {
+	width: 273px;
+	height: 100%;
+	min-width:191px;
+	min-height:200px;
+	bottom: 5px;
+	background-color: #009632;
+	z-index: 26;
+	float: right;
+}
+.chatMain .z-window-header{
+	font-weight: bold;
+    color: white;
+    
+}
+.chatMain .z-window-content{
+	height: 250px;
+}
+.chatDetail .z-window-header{
+	font-weight: bold;
+    color: white;
+}
+.btnChat{
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	z-index: 28;
+	padding-left: 0px;
+	padding-top: 0px;
+}
+.chatDetail {
+	width:273px;
+	height: 100%;
+	min-width:191px;
+	min-height:200px;
+	position: absolute; 
+	right: 5px;
+	margin-right:5px;
+	bottom: 5px;
+	background-color: #009632;
+	background: transparent;
+	z-index: 26;
+	float: right;
+}
+.hbTiltle {
+	width:100%;
+	height:20%;
+	position: absolute;
+	background: transparent; 
+	z-index: 27;
+}
+
+.btn_hide_chat {
+	float: right;
+	width: 20px;
+    height: 20px;
+    top: 0px;
+    right: 10px;
+    padding-left: 0px;
+    padding-top: 0px;
+    position: absolute; 
+    z-index: 28;
+}
+Tab chua 2 tab con tabUser va tabGroup
+.tabChat {
+	width: 100%;
+	height: 100%;
+}
+.tabPanels {
+	width: 100%;
+	height: 100%;
+}
+.tabUser {
+	
+}
+chua textbox nhap message
+.vbInput {
+	position: absolute;
+    width: 20%;
+    bottom: 5px;
+}
+textbox nhap tin nhan
+.msgInput{
+	width: 270px;
+	height: 80px;
+	margin: 0px;
+    max-width: 262px;
+    max-height: 46px;
+    overflow-y: hidden;
+}
+.z-window-content{
+    background: transparent;
+}
+.divBoard{
+	margin: 2px;
+    background-color: white;
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.msgBoard {
+	overflow: scroll;
+}
+.gridUser, .gridGroup {
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 200px;
+    margin-bottom: 5px;
+}
+Vbox chua tin nhan, username, time
+.messVbox{
+	white-space:normal;
+	width: 100%;
+	border: none;
+}
+Vbox chua tin nhan hien thi tren khung chat 
+.messLabel{
+	word-wrap: break-word;
+}
+.lbTime {
+	font-size: 10px;
+}
+.hbChatUser{
+	margin-left: 10px;
+} */
+
+.divChat{
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	float: right;
+	right: 5px;
+	bottom: 0px;
+	background: transparent;
+	z-index: 20;
+}
+.divChat1{
+	width: 400px;
+	height: 300px;
+}
+.panelChat{
+	width: 395px;
+	height: 300px;
+	min-width:191px;
+	min-height:200px;
+	position: relative;
+	right: 5px;
+	bottom: 5px;
+	background-color: #008000;
+	z-index: 26;
+	float: right;
+}
+.panelChat .panel-heading{
+	padding: 5px;
+}
+.paneChild {
+	width: 100%;
+    height: 100%;
+}
+.panel-minimize{
+	float: right;
+}
+.panelChat .panel-heading{
+	color: white;
+    font-weight: bold;
+}
+.panelChat .panel-body{
+	height: 90%;
+	padding: 5px;
+}
+.btnChat{
+	width: 40px;
+	height: 40px;
+	background-image: url("./images/btnChat_bgr.png");
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	z-index: 28;
+	padding-left: 0px;
+	padding-top: 0px;
+}
+.gridUser {
+	width: 100%;
+	height: 230px;
+    background-color: white;
+    /**overflow-x: hidden;
+    overflow-y: auto;*/
+    overflow: hidden;
+    float: right;
+}
+.gridUser:hover {
+	overflow-y: auto;
+	overflow-x: hidden;
+    padding-right: 1px;
+}
+.gridUser .z-grid-body {
+	overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+.gridUser .z-row {
+	width: 100%;
+	height: auto;
+}
+.gridUser .z-row-inner{
+	width: 123px;
+}
+.hbChat {
+	
+}
+.divBoard {
+	width: 100%;
+    height: 80%;
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.divBoard:hover {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.vbBoard{
+	
+}
+.divInput {
+	
+}
+.divName {
+	width: 95px;
+}
+.tbMessage {
+	width: 98%;
+	height: 18%;
+	max-width: 98%;
+	max-height: 18%;
+    bottom: 1px;
+    overflow-y: hidden;
+    position: absolute;
+}
+.btnSend{
+	width: 40px;
+	height: 40px;
+	right: 5px;
+	bottom:2px;
+	border-radius: 40px;
+	position: absolute;
+	background-image: url("./images/send_msg.png");
+	background-repeat: no-repeat;
+}
+.messVbox {
+	width: 235px;
+}
+.messLabel {
+    font-size: 24px;    
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
+}
+.rightDiv{
+	width: 138px !important;
+}
+/* scroll style in chat */
+
+
+.gridUser::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+.gridUser::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+.gridUser::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+.divBoard::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+.divBoard::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+.divBoard::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+/* hieu ung nhap nhay khi co tin nhan den */
+@-webkit-keyframes glowing {   
+	0% { background-color: #2DB500; -webkit-box-shadow: 0 0 3px #2DB500; }   
+	50% { background-color: #66FF33; -webkit-box-shadow: 0 0 10px #66FF33; }   
+	100% { background-color: #2DB500; -webkit-box-shadow: 0 0 3px #2DB500; } 
+}   
+@-moz-keyframes glowing {   
+	0% { background-color: #2DB500; -moz-box-shadow: 0 0 3px #2DB500; }   
+	50% { background-color: #66FF33; -moz-box-shadow: 0 0 10px #66FF33; }   
+	100% { background-color: #2DB500; -moz-box-shadow: 0 0 3px #2DB500; } 
+}   
+@-o-keyframes glowing {   
+	0% { background-color: #2DB500; box-shadow: 0 0 3px #2DB500; }   
+	50% { background-color: #66FF33; box-shadow: 0 0 10px #66FF33; }   
+	100% { background-color: #2DB500; box-shadow: 0 0 3px #2DB500; } 
+}   
+@keyframes glowing {   
+	0% { background-color: #2DB500; box-shadow: 0 0 3px #2DB500; }   
+	50% { background-color: #66FF33; box-shadow: 0 0 10px #66FF33; }   
+	100% { background-color: #2DB500; box-shadow: 0 0 3px #2DB500; } 
+}
+.newMsg {   
+	-webkit-animation: glowing 1500ms infinite;   
+	-moz-animation: glowing 1500ms infinite;   
+	-o-animation: glowing 1500ms infinite;   
+	animation: glowing 1500ms infinite;
+}
+.hlSearch {
+	width: 100%;
+    background-color: white;
+    border-radius: 5px;
+}
+.tbSearch {
+	width: 95px;
+    border: none;
+}
+.btnSearch {
+	width: 20px;
+    height: 20px;
+    padding-left: 0px;
+    padding-top: 0px;
+    border: none;
+}
+.leftDiv {
+	/*position: fixed;*/
+}
+.vRight {
+	width: 100%;
+    height: 100%;
+}
+.btnDetail {
+	border-radius: 10px;
+    height: 27px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #008000;
+}
+.btn_history_chat {
+	background: transparent;
+    width: 100%;
+    font-style: oblique;
+    font-weight: bold;
+} 

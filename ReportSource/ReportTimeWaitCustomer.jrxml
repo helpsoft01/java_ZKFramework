@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportTimeWaitCustomer" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7b67924a-d7a0-4f89-8777-4d818e4c9a02">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Feb 01 13:31:29 ICT 2016"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="TimeWaitCustomerv1" uuid="a5065650-0404-40a3-a869-e76a6b94861f">
+		<parameter name="dsmaxMinute" class="java.lang.String"/>
+		<parameter name="dstime" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT DATE_FORMAT(txo.beginOrderTime, '%H:%i') AS 'Thời điểm đăng ký',
+case
+when txo.phoneNumber IS NULL THEN ''
+else txo.phoneNumber
+end AS 'Số điện thoại khách',
+  txo.beginOrderAddress AS 'Địa điểm yêu cầu',FORMAT(((TIME_TO_SEC($P{dstime})- TIME_TO_SEC(txo.beginOrderTime))/60),0) AS 'Số phút chờ'
+  ,txo.repeatTime AS 'Số lần gọi nhắc',
+  case
+  when txo.status = 0 then 'Hủy'
+  when txo.status = 1 then 'Mới'
+  when txo.status = 2 then 'Xe đăng ký đón'
+  when txo.status = 3 then 'Đã đọc đàm'
+  when txo.status = 4 then 'Xe đã đón'
+  ELSE 'không xác định'
+  END AS 'Trạng thái'
+  FROM taxi_order txo
+  WHERE (txo.beginOrderTime BETWEEN DATE_SUB( $P{dstime}, INTERVAL $P{dsmaxMinute} MINUTE) AND $P{dstime} );]]>
+		</queryString>
+		<field name="Thời điểm đăng ký" class="java.lang.String"/>
+		<field name="Số điện thoại khách" class="java.lang.String"/>
+		<field name="Địa điểm yêu cầu" class="java.lang.String"/>
+		<field name="Số phút chờ" class="java.lang.String"/>
+		<field name="Số lần gọi nhắc" class="java.lang.Integer"/>
+		<field name="Trạng thái" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="maxMinute" class="java.lang.String"/>
+	<parameter name="time" class="java.sql.Timestamp"/>
+	<parameter name="REPORT_PREFIX_COMPANY" class="java.lang.String"/>
+	<parameter name="REPORT_PREFIX_AGENT" class="java.lang.String"/>
+	<parameter name="REPORT_IMAGE_PATH" class="java.lang.String"/>
+	<parameter name="REPORT_NAME" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 1]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="166" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="137" width="146" height="20" uuid="ea1881f7-25b1-46a0-ac40-bbcb8f87657b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Thời gian chờ tối đa (phút) : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="156" y="137" width="116" height="20" uuid="b008c100-b150-48ee-b7e1-58861ca9c207"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{maxMinute}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="116" width="146" height="20" uuid="18ba1d8f-9e17-4570-91f6-b4e72de22928"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Thời điểm tìm kiếm : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="374" y="116" width="54" height="20" uuid="effa43fe-8dd2-4a1d-8ab6-c387acbb879f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Khu vực  : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="156" y="118" width="116" height="20" uuid="486d4a01-706b-49f4-b7fe-042fc3b36743"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{time}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="428" y="136" width="118" height="20" uuid="c5d04964-a085-44ff-9e4c-da0300862a0e"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH:mm:ss">
+				<reportElement x="428" y="136" width="118" height="20" uuid="42be7b25-2642-487b-9ecd-ca898e21db4d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="374" y="136" width="54" height="20" uuid="ae8e06c5-dc8a-4f2e-a793-b36bd0fb19c3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Ngày : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="10" width="315" height="16" uuid="23fa5257-e22d-415a-be9d-5ce576df3087"/>
+				<textElement>
+					<font fontName="Times New Roman" size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PREFIX_COMPANY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="27" width="313" height="19" uuid="685cfa6c-f6c3-4e0b-9465-797ed81f025a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PREFIX_AGENT}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="3" y="0" width="153" height="77" uuid="d501a62e-3dcf-4542-af33-9a9595582744"/>
+				<imageExpression><![CDATA[$P{REPORT_IMAGE_PATH} + "logo_main_800.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="78" width="554" height="20" forecolor="#00CC33" uuid="42740d00-665f-4263-abe2-3d858e0110ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="144" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="3" y="23" width="551" height="97" uuid="10c02e71-4872-4240-92ea-65cb6d064d3f"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="TimeWaitCustomerv1" uuid="6c22676f-a9ab-40a9-9c22-023d3a74d306">
+						<datasetParameter name="dsmaxMinute">
+							<datasetParameterExpression><![CDATA[$P{maxMinute}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="dstime">
+							<datasetParameterExpression><![CDATA[$P{time}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="23" uuid="4e5d1ed6-5707-4a3a-8a96-d473a1930d16">
+						<jr:tableHeader height="1" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_TD" height="42" rowSpan="1">
+							<staticText>
+								<reportElement x="4" y="14" width="19" height="19" forecolor="#00CC33" uuid="994e1b32-ec59-4cc1-94a4-15c7a2b4639c"/>
+								<textElement>
+									<font fontName="Times New Roman" size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[TT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="8" y="5" width="15" height="15" uuid="2402b8b3-82ba-43fb-af56-1919ceaafaf3"/>
+								<textElement>
+									<font fontName="Times New Roman"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="59" uuid="735244b2-c3ed-4a0c-b699-a7627a5c1bb7">
+						<jr:columnHeader style="table_TD" height="42" rowSpan="1">
+							<staticText>
+								<reportElement x="4" y="0" width="50" height="42" forecolor="#00CC33" uuid="2fb16f0e-1e38-4fd6-af64-488307119f58"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Thời điểm đăng ký]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="12" y="5" width="42" height="15" uuid="ab65d6f3-0a97-4789-9b94-3bc74989c035"/>
+								<textElement>
+									<font fontName="Times New Roman"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Thời điểm đăng ký}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="59" uuid="cdaeb1a2-9523-4eb1-a7a4-b9ba712b16fd">
+						<jr:columnHeader style="table_TD" height="42" rowSpan="1">
+							<staticText>
+								<reportElement x="4" y="11" width="50" height="29" forecolor="#00CC33" uuid="5e36500f-c623-4b40-a2c8-5788287948b9"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Số điện thoại khách]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="2" y="5" width="57" height="15" uuid="f664ec52-c318-4bdf-9021-b5cf6bd3f5a9"/>
+								<textElement>
+									<font fontName="Times New Roman"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Số điện thoại khách}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="270" uuid="5fd0a015-c452-449e-8464-7c8c33bcca6f">
+						<jr:columnHeader style="table_TD" height="42" rowSpan="1">
+							<staticText>
+								<reportElement x="30" y="13" width="165" height="20" forecolor="#00CC33" uuid="10063587-993f-4b07-bb56-072a8e7f01cb"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Địa điểm yêu cầu]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="11" y="5" width="259" height="15" uuid="6bf1b2ad-5d77-4b1e-bedd-17e8365f8377"/>
+								<textElement>
+									<font fontName="Times New Roman"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Địa điểm yêu cầu}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="41" uuid="1df393bd-e7aa-4dd8-a13a-122f66346252">
+						<jr:columnHeader style="table_TD" height="42" rowSpan="1">
+							<staticText>
+								<reportElement x="2" y="12" width="39" height="30" forecolor="#00CC33" uuid="56c895c4-0087-43d7-83dd-a6e74d4f941c"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Số phút chờ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="14" y="5" width="20" height="15" uuid="ccfd4c6b-305d-4522-b8e9-c7720e8fa4fd"/>
+								<textElement>
+									<font fontName="Times New Roman"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Số phút chờ}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="33" uuid="dca0360f-3357-40da-8737-abb79c8d6792">
+						<jr:columnHeader style="table_TD" height="42" rowSpan="1">
+							<staticText>
+								<reportElement x="3" y="12" width="30" height="30" forecolor="#00CC33" uuid="305f3742-c88b-42ef-9006-3a06e80f123f"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Số lần gọi nhắc]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="10" y="5" width="19" height="15" uuid="bc6f1bd6-dff9-4b6c-83af-238a8b5e215d"/>
+								<textElement>
+									<font fontName="Times New Roman"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Số lần gọi nhắc}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="47" uuid="a220ebce-a985-4885-9b18-ac012265ba28">
+						<jr:columnHeader style="table_TD" height="42" rowSpan="1">
+							<staticText>
+								<reportElement x="8" y="11" width="32" height="31" forecolor="#00CC33" uuid="fd4dc8be-4ebb-4025-a42b-db656f2bc4fb"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Trạng thái]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="4" y="5" width="43" height="20" uuid="837c3145-cf5b-40dd-ad8c-16128aed836e"/>
+								<textElement>
+									<font fontName="Times New Roman"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Trạng thái}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="33">
+			<staticText>
+				<reportElement x="0" y="0" width="264" height="20" uuid="1cfde1a1-6657-431d-99d7-9128ee06a6e8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Copyright © 2015 Vietek JSC - http://vietek.com.vn]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="435" y="1" width="80" height="20" uuid="7f216f1c-3dae-42e8-be38-d2837b2b5474"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Trang "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="1" width="40" height="20" uuid="6997d17f-9c87-4619-8649-6bfdb1a34d71"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="25">
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="20" uuid="653cea4f-f1b4-4de5-9892-0decedae5e8a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Người phụ trách]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

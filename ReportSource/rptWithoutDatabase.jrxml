@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptWithoutDatabase" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="52f1791e-4ce5-409c-91a5-0e33c6d058c5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="207ced0b-2ae5-4ba5-bb31-56158d8a80c5"/>
+	<subDataset name="dataset1" uuid="c235f578-ad79-4f7e-aa69-bfef656a6366"/>
+	<parameter name="REPORT_PREFIX_COMPANY" class="java.lang.String"/>
+	<parameter name="REPORT_PREFIX_AGENT" class="java.lang.String"/>
+	<parameter name="REPORT_IMAGE_PATH" class="java.lang.String"/>
+	<parameter name="REPORT_NAME" class="java.lang.String"/>
+	<field name="timeLog" class="java.lang.String"/>
+	<field name="location" class="java.lang.String"/>
+	<field name="addr" class="java.lang.String"/>
+	<field name="note" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<textField>
+				<reportElement x="123" y="12" width="367" height="20" uuid="1de5c7b9-f919-4cfa-aff6-b1776177b120"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PREFIX_COMPANY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="42" width="367" height="20" uuid="88b9c607-0c25-462d-b2d3-121621fa42d1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PREFIX_AGENT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="70" width="555" height="20" uuid="08ce247a-b8f1-4ddf-b923-ca7895bfdf01"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="45">
+			<staticText>
+				<reportElement x="0" y="20" width="59" height="20" uuid="02a7cc00-a583-46fb-ab35-100cd8b8e6ac"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Thứ tự]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="20" width="91" height="20" uuid="df7b3f68-09da-47f8-aa30-a872f620ff00"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Thời điểm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="20" width="98" height="20" uuid="de4dd7b1-1a83-4970-a590-621ec38ba313"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Tọa độ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="20" width="195" height="20" uuid="95f08a77-32fb-4134-9ab3-732b9671f553"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Địa điểm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="443" y="20" width="100" height="20" uuid="839f0518-6780-41bb-8007-0db517c72708"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Ghi chú]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="59" y="12" width="91" height="20" uuid="dbc9ae85-5de1-44d8-b4f7-0bfd45df199b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{timeLog}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="12" width="98" height="20" uuid="b6e3e514-f0dd-44fc-9e71-baf6ec596813"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{location}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="12" width="195" height="20" uuid="e063f849-112e-4a26-abeb-3481792ef39f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{addr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="12" width="100" height="20" uuid="002cd012-df2d-4a19-a3b1-673c117fcdea"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="12" width="59" height="20" uuid="2b683203-5b0e-4552-9336-66018d29ebe3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50"/>
+	</summary>
+</jasperReport>
