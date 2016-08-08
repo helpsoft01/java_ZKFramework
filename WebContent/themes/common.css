@@ -1265,3 +1265,8 @@ ul>li>.z-menu-content, .z-menuitem-content {
 	font-weight: bold;
 	color: white;
 }
+.div_img_warning{
+	position: absolute;
+	top:17px;
+	right: 0px;
+}
