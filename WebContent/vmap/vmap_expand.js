@@ -13,7 +13,7 @@ vietek = {
 				}), 0);
 	},
 	checkWidget : function(widgetId) {
-		if(typeof zk.Widget.$('$' + widgetId + '') !== null){
+		if(""+ zk.Widget.$('$' + widgetId + '') !== 'null'){
 			var widget = zk.Widget.$('$' + widgetId + '').$n();
 			if (""+ widget != 'undefined' && +""+widget != 'null') {
 				zAu.send(new zk.Event(zk.Widget.$('$' + widgetId + ''),
