@@ -1,12 +1,19 @@
 package com.vietek.taxioperation.ui.controller;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
+import org.hibernate.Session;
+import org.hibernate.engine.spi.SessionImplementor;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -36,8 +43,10 @@ import org.zkoss.zul.Vlayout;
 
 import com.vietek.taxioperation.common.MapCommon;
 import com.vietek.taxioperation.common.VehicleApi;
+import com.vietek.taxioperation.model.RptDriverInShift;
 import com.vietek.taxioperation.model.SysCompany;
 import com.vietek.taxioperation.model.Vehicle;
+import com.vietek.taxioperation.util.ControllerUtils;
 import com.vietek.taxioperation.util.Env;
 import com.vietek.trackingOnline.common.AbstractWarning;
 import com.vietek.trackingOnline.common.CutSignalPulseVehicle;
@@ -110,6 +119,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 	private List<TrackingRDS2Json> listTrackingLostGSM;
 	private List<RowWarningReport> listTrackingLostKick;
 	private List<RowWarningReport> listTrackingLostCut;
+	private List<RptDriverInShift> listDriverLostWorkingHours;
 	private List<TrackingRDS2Json> listTrackingOld = new ArrayList<TrackingRDS2Json>();
 	private List<TrackingRDS2Json> lstSearchGrid;
 	private int selectedTab;
@@ -129,21 +139,108 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 			public void onEvent(Event paramT) throws Exception {
 				if (listVehicle == null || listVehicle.size() <= 0) {
 					listVehicle = getListVehicleBySysCompany();
-					if (listVehicle != null && listVehicle.size() > 0) {
+					if (listVehicle != null) {
 						lbAll.setValue(listVehicle.size() + "");
 					}
 				}
-				if (listTracking != null && listTracking.size() > 0) {
+				if (listTracking != null && lstSysCompany.size() > 0) {
 					listTrackingOld.clear();
 					listTrackingOld.addAll(listTracking);
 				}
-				listTracking = TrackingCommon.getListTrackingByListVehicle(listVehicle);
-				resetValueSearch();
-				updateListWarning(listTracking, listVehicle);
-				updateWarningVietek(listVehicle);
+				if (listVehicle != null) {
+					listTracking = TrackingCommon.getListTrackingByListVehicle(listVehicle);
+					resetValueSearch();
+					updateListWarning(listTracking, listVehicle);
+					updateWarningVietek(listVehicle);
+					updateWarningWorkingHours();
+				}
+
 			}
 		});
 		timer.start();
+	}
+
+	private void updateWarningWorkingHours() {
+		String companys = null;
+		if (lstSysCompany != null && lstSysCompany.size() > 0) {
+			companys = "";
+			for (SysCompany company : lstSysCompany) {
+				companys = companys + company.getId() + ",";
+			}
+		}
+		listDriverLostWorkingHours = getDriverWorkingHours(companys);
+		listBoxLostWorking.setModel(new ListModelList<>(listDriverLostWorkingHours));
+		lbLostworking.setValue(listDriverLostWorkingHours.size() + "");
+
+	}
+
+	private List<RptDriverInShift> getDriverWorkingHours(String companys) {
+		Session session = ControllerUtils.getCurrentSession();
+		SessionImplementor sessionImplementor = (SessionImplementor) session;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "CALL txm_tracking.GetDriverWorkingHours(?,?,?,?,?,?)";
+		List<RptDriverInShift> lstResult = new ArrayList<RptDriverInShift>();
+		try {
+			conn = sessionImplementor.connection();
+			if (conn != null && !conn.isClosed()) {
+				ps = conn.prepareStatement(sql);
+				ps.setObject(1, companys);
+				ps.setString(2, "");
+				ps.setString(3, "");
+				ps.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+				ps.setInt(5, 5);
+				ps.setString(6, Env.getUser().getUser());
+				rs = ps.executeQuery();
+				while (rs.next()) {
+					RptDriverInShift msg = new RptDriverInShift();
+					msg.setIssueDate(rs.getTimestamp(3));
+					msg.setDriverName(rs.getString(4));
+					msg.setPhoneNumber(rs.getString(5));
+					msg.setLicensePlate(rs.getString(6));
+					msg.setVehicleNumber(rs.getString(7));
+					msg.setStaffCard(rs.getString(8) == null ? "" : "" + rs.getString(8));
+					msg.setTimeDrivingPerDay(rs.getString(9) == null ? "" : "" + rs.getString(9));
+					msg.setTimeDrivingContinuous(rs.getString(10) == null ? "" : "" + rs.getString(10));
+					msg.setParkingName(rs.getString(11));
+					msg.setGroupName(rs.getString(12));
+					lstResult.add(msg);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			/* Dong result set */
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			/* Dong prepare statement */
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			/* Dong connection */
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			session.close();
+		}
+		return lstResult;
 	}
 
 	protected void updateWarningVietek(List<Vehicle> listVehicle2) {
@@ -175,7 +272,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 	}
 
 	private void updateListWarning(List<TrackingRDS2Json> listTracking, List<Vehicle> lstVehicle) {
-		if (listTracking != null && listTracking.size() > 0 && listVehicle != null && listVehicle.size() > 0) {
+		if (listTracking != null && listVehicle != null) {
 			listTrackingVuotToc = new ArrayList<TrackingRDS2Json>();
 			listTrackingLostGSM = new ArrayList<TrackingRDS2Json>();
 			for (TrackingRDS2Json tracking : listTracking) {
@@ -192,18 +289,14 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 					listTrackingLostGSM.add(tracking);
 				}
 			}
-			if (listTrackingVuotToc != null && listTrackingVuotToc.size() > 0) {
+			if (listTrackingVuotToc != null) {
 				listBoxVuotToc.setModel(new ListModelList<TrackingRDS2Json>(listTrackingVuotToc));
 				lbVuotToc.setValue(listTrackingVuotToc.size() + "");
-			} else {
-				lbVuotToc.setValue("0");
 			}
 
-			if (listTrackingLostGSM != null && listTrackingLostGSM.size() > 0) {
+			if (listTrackingLostGSM != null) {
 				listBoxLostGsm.setModel(new ListModelList<TrackingRDS2Json>(listTrackingLostGSM));
 				lbGSM.setValue(listTrackingLostGSM.size() + "");
-			} else {
-				lbGSM.setValue("0");
 			}
 
 		}
@@ -212,6 +305,8 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 	@SuppressWarnings("unchecked")
 	private List<Vehicle> getListVehicleBySysCompany() {
 		// sysCompany = Env.getCompany();
+		lstSysCompany = new ArrayList<>();
+		listVehicle = new ArrayList<>();
 		lstSysCompany = (List<SysCompany>) Env.getContext(Env.LIST_COMPANY);
 		if (lstSysCompany != null && lstSysCompany.size() > 0) {
 			SysCompany[] arr = lstSysCompany.toArray(new SysCompany[lstSysCompany.size()]);
@@ -219,7 +314,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		}
 		return listVehicle;
 	}
-    
+
 	private void initUI(Component parent) {
 		hlMain = new Hlayout();
 		hlMain.setParent(parent);
@@ -281,8 +376,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		initGridVuotToc(tabs, tabpanels);
 	}
 
-	private void renderGrid(Tabpanel tabpanel, Listbox lstBox, Textbox tb01, Textbox tb02, Textbox tb03, Textbox tb04,
-			ListitemRenderer<?> render) {
+	private void renderGrid(Tabpanel tabpanel, Listbox lstBox, Textbox tb01, Textbox tb02, Textbox tb03, Textbox tb04) {
 		lstBox.setSizedByContent(true);
 		lstBox.setEmptyMessage("Không có dữ liệu");
 		lstBox.setSizedByContent(true);
@@ -369,46 +463,6 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		auxs.appendChild(aux);
 		aux = new Auxheader();
 		auxs.appendChild(aux);
-		if (render == null) {
-			lstBox.setItemRenderer(new ListitemRenderer<TrackingRDS2Json>() {
-				@Override
-				public void render(Listitem items, TrackingRDS2Json data, int index) throws Exception {
-					items.setValue(data);
-					Label lb = new Label();
-					lb.setValue(index + 1 + "");
-					Listcell listcell = new Listcell();
-					listcell.appendChild(lb);
-					listcell.setParent(items);
-					lb = new Label();
-					lb.setValue(data.getVehicleNumber());
-					listcell = new Listcell();
-					listcell.setStyle("text-align: center");
-					listcell.appendChild(lb);
-					listcell.setParent(items);
-					lb = new Label();
-					lb.setValue(data.getLicensePlate());
-					listcell = new Listcell();
-					listcell.setStyle("text-align: center");
-					listcell.appendChild(lb);
-					listcell.setParent(items);
-					lb = new Label();
-					lb.setValue(data.getTimeLog() + "");
-					listcell = new Listcell();
-					listcell.setStyle("text-align: center");
-					listcell.appendChild(lb);
-					listcell.setParent(items);
-					Toolbarbutton btnViewHistory = new Toolbarbutton();
-					btnViewHistory.setImage("./themes/images/searchadd.png");
-					btnViewHistory.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
-						@Override
-						public void onEvent(Event arg0) throws Exception {
-							Clients.showNotification("Xử lý", "error", null, "bottom_center", 3000, true);
-						}
-					});
-				}
-
-			});
-		}
 	}
 
 	private void initGridVuotToc(Tabs tabs, Tabpanels tabpanels) {
@@ -417,8 +471,6 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		Tabpanel tabpanel = new Tabpanel();
 		tabpanel.setVflex("1");
 		tabpanel.setParent(tabpanels);
-		// renderGrid(tabpanel,listBoxVuotToc, tbVehicleNumber, tbLicensePlate,
-		// tbStartTime, tbStopTime);
 		listBoxVuotToc = new Listbox();
 		listBoxVuotToc.setSizedByContent(true);
 		listBoxVuotToc.setEmptyMessage("Không có dữ liệu");
@@ -563,8 +615,9 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 				btnXuly.setImage("./themes/images/searchadd.png");
 				btnXuly.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
 					@Override
-					public void onEvent(Event arg0) throws Exception {
-						Clients.showNotification("Xử lý", "error", null, "bottom_center", 3000, true);
+					public void onEvent(Event event) throws Exception {
+						Clients.showNotification("Liên hệ với kỹ thuật viên để xử lý!", "error", null, "bottom_center",
+								3000, true);
 					}
 				});
 				listcell = new Listcell();
@@ -582,7 +635,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		tabpanel.setVflex("1");
 		tabpanel.setParent(tabpanels);
 		listBoxLostWorking = new Listbox();
-		renderGrid(tabpanel, listBoxLostWorking, tbVehicleNumber, tbLicensePlate, tbStartTime, tbStopTime, null);
+		renderGrid(tabpanel, listBoxLostWorking, tbVehicleNumber, tbLicensePlate, tbStartTime, tbStopTime);
 	}
 
 	private void initGridKickSignal(Tabs tabs, Tabpanels tabpanels) {
@@ -628,8 +681,8 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 				btnXuly.setImage("./themes/images/searchadd.png");
 				btnXuly.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
 					@Override
-					public void onEvent(Event arg0) throws Exception {
-						Clients.showNotification("Xử lý", "error", null, "bottom_center", 3000, true);
+					public void onEvent(Event event) throws Exception {
+						openProcessWindow(data, 10);
 					}
 				});
 				listcell = new Listcell();
@@ -639,7 +692,28 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 			}
 		};
 		listBoxKickSignal = new Listbox();
-		renderGrid(tabpanel, listBoxKickSignal, tbVehicleNumber, tbLicensePlate, tbStartTime, tbStopTime, render);
+		renderGrid(tabpanel, listBoxKickSignal, tbVehicleNumber, tbLicensePlate, tbStartTime, tbStopTime);
+		listBoxKickSignal.setItemRenderer(render);
+	}
+
+	private void openProcessWindow(RowWarningReport model, int type) {
+		ProcessWarningWindow window = new ProcessWarningWindow(model, type);
+		window.setParent(this);
+		String waringname = "";
+		switch (type) {
+		case 9:
+			waringname = "Cắt Xung";
+			break;
+		case 10:
+			waringname = "Kích xung";
+			break;
+		default:
+			break;
+		}
+		String title = "Thông tin xử lý cảnh báo " + waringname + " xe " + model.getLicensePlate();
+		window.setTitle(title);
+		window.setClosable(true);
+		window.doModal();
 	}
 
 	private void initGridCutSignal(Tabs tabs, Tabpanels tabpanels) {
@@ -686,8 +760,8 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 				btnXuly.setImage("./themes/images/searchadd.png");
 				btnXuly.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
 					@Override
-					public void onEvent(Event arg0) throws Exception {
-						Clients.showNotification("Xử lý", "error", null, "bottom_center", 3000, true);
+					public void onEvent(Event event) throws Exception {
+						openProcessWindow(data, 9);
 					}
 				});
 				listcell = new Listcell();
@@ -697,7 +771,8 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 			}
 		};
 		listBoxCutSignal = new Listbox();
-		renderGrid(tabpanel, listBoxCutSignal, tbVehicleNumber, tbLicensePlate, tbStartTime, tbStopTime, render);
+		renderGrid(tabpanel, listBoxCutSignal, tbVehicleNumber, tbLicensePlate, tbStartTime, tbStopTime);
+		listBoxCutSignal.setItemRenderer(render);
 	}
 
 	private void initGridSOS(Tabs tabs, Tabpanels tabpanels) {
@@ -707,7 +782,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		tabpanel.setVflex("1");
 		tabpanel.setParent(tabpanels);
 		listBoxSOS = new Listbox();
-		renderGrid(tabpanel, listBoxSOS, tbVehicleNumber, tbLicensePlate, tbStartTime, tbStopTime, null);
+		renderGrid(tabpanel, listBoxSOS, tbVehicleNumber, tbLicensePlate, tbStartTime, tbStopTime);
 	}
 
 	private void initGridLostGSM(Tabs tabs, Tabpanels tabpanels) {
@@ -844,7 +919,8 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 				btnXuly.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
 					@Override
 					public void onEvent(Event arg0) throws Exception {
-						Clients.showNotification("Xử lý", "error", null, "bottom_center", 3000, true);
+						Clients.showNotification("Liên hệ với kỹ thuật viên để xử lý!", "error", null, "bottom_center",
+								3000, true);
 					}
 				});
 				listcell = new Listcell();
