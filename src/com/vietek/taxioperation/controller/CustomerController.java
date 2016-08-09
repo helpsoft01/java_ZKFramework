@@ -22,9 +22,8 @@ public class CustomerController extends BasicController<Customer> implements Ser
 	 * 
 	 */
 	private static final long serialVersionUID = -3094065625310859128L;
-	static private AbstractCache cacheMapByID = new Memcached("CUSTOMER_BY_ID", 0);
+	static private AbstractCache cacheMapByID = Memcached.getModelCaches().get("customer");
 	static private AbstractCache cacheMapByPhone = new Memcached("CUSTOMER_BY_PHONE", 0);
-	public static List<Customer> LIST_ALL_CUSTOMER = new ArrayList<Customer>();
 
 	/**
 	 * reload customer, by remove it from cache

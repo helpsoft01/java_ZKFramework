@@ -53,8 +53,6 @@ public class RunCommonTimer extends Thread {
 			timer.scheduleAtFixedRate(InitWarningUpdate, 0, 15, TimeUnit.MINUTES);
 			WarningTimerTask cutsignalTask = new WarningTimerTask();
 			timer.scheduleAtFixedRate(cutsignalTask, 0, 10, TimeUnit.SECONDS);
-			LoadAllCustomerWorker loadAllCustomerWorker = new LoadAllCustomerWorker();
-			loadAllCustomerWorker.start();
 			UserNotificationListener userNotificationListener = new UserNotificationListener();
 			userNotificationListener.StartListener();
 			Thread.sleep(Long.MAX_VALUE);
