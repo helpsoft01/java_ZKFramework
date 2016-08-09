@@ -149,8 +149,9 @@ public class RequestBaggageFindingsDetail extends BasicDetailWindow {
 		lb.setStyle("margin-right:10px;font-size: 14px;color: green;font-weight: bold;");
 		cell.appendChild(lb);
 		editor = this.getMapEditor().get("Money");
-		// ((Textbox)editor.getComponent()).setWidth("130px");
+//		 ((Textbox)editor.getComponent()).setPlaceholder("");
 		cell.appendChild(editor.getComponent());
+		cell.appendChild(new Label(".000 VND"));
 
 		row = new Row();
 		row.setParent(rows);

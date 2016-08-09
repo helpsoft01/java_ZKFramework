@@ -83,6 +83,9 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 
 	private Div divWarningLostGSM;
 	private Div divWarningVuottoc;
+	private Div divWarningLostKich;
+	private Div divWarningLostCut;
+	private Div divWarningLostWorking;
 
 	private Listbox listBoxAll;
 	private Listbox listBoxLostGsm;
@@ -270,8 +273,18 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		}
 		listBoxCutSignal.setModel(new ListModelList<>(listTrackingLostCut));
 		lbCutSignal.setValue(listTrackingLostCut.size() + "");
+		if (listTrackingLostCut.size() > 0) {
+			divWarningLostCut.setParent(divECutSignal);
+		}else {
+			divWarningLostCut.setParent(null);
+		}
 		listBoxKickSignal.setModel(new ListModelList<>(listTrackingLostKick));
 		lbKickSignal.setValue(listTrackingLostKick.size() + "");
+		if (listTrackingLostKick.size() > 0) {
+			divWarningLostKich.setParent(divEKickSignal);
+		}else {
+			divWarningLostKich.setParent(null);
+		}
 
 	}
 
@@ -296,7 +309,9 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 			if (listTrackingVuotToc != null) {
 				listBoxVuotToc.setModel(new ListModelList<TrackingRDS2Json>(listTrackingVuotToc));
 				lbVuotToc.setValue(listTrackingVuotToc.size() + "");
-				divWarningVuottoc.setParent(divEVuottoc);
+				if (listTrackingVuotToc.size() > 0) {
+					divWarningVuottoc.setParent(divEVuottoc);
+				}
 			} else {
 				divWarningVuottoc.setParent(null);
 			}
@@ -304,7 +319,9 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 			if (listTrackingLostGSM != null) {
 				listBoxLostGsm.setModel(new ListModelList<TrackingRDS2Json>(listTrackingLostGSM));
 				lbGSM.setValue(listTrackingLostGSM.size() + "");
-				divWarningLostGSM.setParent(divELostGsm);
+				if (listTrackingLostGSM.size() > 0) {
+					divWarningLostGSM.setParent(divELostGsm);
+				}
 			} else {
 				divWarningLostGSM.setParent(null);
 			}
@@ -375,7 +392,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		Div divLostworking = new Div();
 		divLostworking.setStyle("margin-left:50px");
 		divLostworking.setParent(hlMain);
-		initUILostConnect(divLostworking);
+		initUILostWorking(divLostworking);
 		initGridLostWorking(tabs, tabpanels);
 
 		// UI vuot toc
@@ -998,7 +1015,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		imgWarningLostGSM.setParent(divWarningVuottoc);
 	}
 
-	private void initUILostConnect(Component parent) {
+	private void initUILostWorking(Component parent) {
 		Vlayout vlout = new Vlayout();
 		vlout.setParent(parent);
 		divELostworking = new Div();
@@ -1012,6 +1029,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		lb.setParent(vlout);
 		lb.setStyle("margin-left:15px");
 		lb.setStyle("font-size: 14px;font-weight: bold;");
+		divWarningLostWorking = creatDivWarning();
 	}
 
 	private void initUIKickSignal(Component parent) {
@@ -1028,6 +1046,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		lb.setParent(vlout);
 		lb.setStyle("margin-left:15px");
 		lb.setStyle("font-size: 14px;font-weight: bold;");
+		divWarningLostKich = creatDivWarning();
 	}
 
 	private void initUICutSignal(Component parent) {
@@ -1044,6 +1063,7 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		lb.setParent(vlout);
 		lb.setStyle("margin-left:15px");
 		lb.setStyle("font-size: 14px;font-weight: bold;");
+		divWarningLostCut = creatDivWarning();
 	}
 
 	private void initUISOS(Component parent) {
@@ -1080,7 +1100,14 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		divWarningLostGSM.setSclass("div_img_warning");
 		imgWarningLostGSM.setParent(divWarningLostGSM);
 	}
-
+     private Div creatDivWarning(){
+    	 Div div = new Div();
+ 		Image imgWarningLostGSM = new Image("./themes/images/alert.gif");
+ 		div.setSclass("div_img_warning");
+ 		imgWarningLostGSM.setParent(div);
+ 		return div;
+ 		
+     }
 	@Override
 	public void onEvent(Event event) throws Exception {
 		if (event.getName().equals(Events.ON_CLICK)) {
