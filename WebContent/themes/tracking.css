@@ -287,3 +287,6 @@ td.markerOnline_right {
 .gm-style-iw {
 	height: auto !important;
 }
+.listbox_vehicle_tracking .z-listbox-body{
+	    overflow-x: hidden;
+}
