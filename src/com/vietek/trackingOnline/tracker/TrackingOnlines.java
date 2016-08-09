@@ -788,6 +788,7 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 			marker = new VMarker(json.getLatitude(), json.getLongitude());
 			marker.setId("vehicle_" + deviceId);
 			marker.setLabel(model.getTaxiNumber());
+			marker.setLabelClass("vmarker_label");
 			marker.setIconImage(model.getImage().getSrc());
 			marker.setParent(vMaps);
 			if(json.getLatitude()== 0 && json.getLongitude()==0){
