@@ -1613,7 +1613,7 @@ public class ListObjectDatabase {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = "CALL vt_tms.rptTimeWaitOfCustomers(?,?)";
+		String sql = "CALL txm_tracking.rptTimeWaitOfCustomers(?,?)";
 		List<ReportQcTimeWaitOfCustomer> lstResult = new ArrayList<ReportQcTimeWaitOfCustomer>();
 		try {
 			conn = sessionImplementor.connection();

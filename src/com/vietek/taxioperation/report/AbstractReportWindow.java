@@ -185,11 +185,11 @@ public abstract class AbstractReportWindow extends Window implements EventListen
 		cols.setParent(gridFilter);
 		Column col = new Column();
 		col.setParent(cols);
-		col.setWidth("25%");
+		col.setWidth("35%");
 
 		col = new Column();
 		col.setParent(cols);
-		col.setWidth("75%");
+		col.setWidth("65%");
 
 		Rows rows = new Rows();
 		rows.setParent(gridFilter);
@@ -734,7 +734,7 @@ public abstract class AbstractReportWindow extends Window implements EventListen
 				if (dateTo.getValue().getTime() < dateFrom.getValue().getTime()) {
 					Env.getHomePage().showNotification("Hãy chọn lại thời gian cho báo cáo!",
 							Clients.NOTIFICATION_TYPE_ERROR);
-				} else if (strGroupId == null) {
+				} else if (chosenGroup.isVisible() && strGroupId == null) {
 					Env.getHomePage().showNotification("Phải chọn ít nhất một đội xe cho báo cáo!",
 							Clients.NOTIFICATION_TYPE_ERROR);
 				} else {
