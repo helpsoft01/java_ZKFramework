@@ -23,6 +23,7 @@ import org.zkoss.zul.Auxhead;
 import org.zkoss.zul.Auxheader;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Hlayout;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
@@ -79,6 +80,9 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 	private Div divEKickSignal;
 	private Div divELostworking;
 	private Div divEVuottoc;
+
+	private Div divWarningLostGSM;
+	private Div divWarningVuottoc;
 
 	private Listbox listBoxAll;
 	private Listbox listBoxLostGsm;
@@ -292,11 +296,17 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 			if (listTrackingVuotToc != null) {
 				listBoxVuotToc.setModel(new ListModelList<TrackingRDS2Json>(listTrackingVuotToc));
 				lbVuotToc.setValue(listTrackingVuotToc.size() + "");
+				divWarningVuottoc.setParent(divEVuottoc);
+			} else {
+				divWarningVuottoc.setParent(null);
 			}
 
 			if (listTrackingLostGSM != null) {
 				listBoxLostGsm.setModel(new ListModelList<TrackingRDS2Json>(listTrackingLostGSM));
 				lbGSM.setValue(listTrackingLostGSM.size() + "");
+				divWarningLostGSM.setParent(divELostGsm);
+			} else {
+				divWarningLostGSM.setParent(null);
 			}
 
 		}
@@ -982,6 +992,10 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		lb.setParent(vlout);
 		lb.setStyle("margin-left:15px");
 		lb.setStyle("font-size: 14px;font-weight: bold;");
+		divWarningVuottoc = new Div();
+		Image imgWarningLostGSM = new Image("./themes/images/alert.gif");
+		divWarningVuottoc.setSclass("div_img_warning");
+		imgWarningLostGSM.setParent(divWarningVuottoc);
 	}
 
 	private void initUILostConnect(Component parent) {
@@ -1061,6 +1075,10 @@ public class ListTotalWarning extends Div implements Serializable, EventListener
 		Label lb = new Label("Mất GSM");
 		lb.setParent(vlout);
 		lb.setStyle("font-size: 14px;font-weight: bold;");
+		divWarningLostGSM = new Div();
+		Image imgWarningLostGSM = new Image("./themes/images/alert.gif");
+		divWarningLostGSM.setSclass("div_img_warning");
+		imgWarningLostGSM.setParent(divWarningLostGSM);
 	}
 
 	@Override
