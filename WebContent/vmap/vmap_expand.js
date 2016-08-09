@@ -13,12 +13,14 @@ vietek = {
 				}), 0);
 	},
 	checkWidget : function(widgetId) {
-		var widget = zk.Widget.$('$' + widgetId + '').$n();
-		if (""+ widget != 'undefined' && +""+widget != 'null') {
-			zAu.send(new zk.Event(zk.Widget.$('$' + widgetId + ''),
-					'onFinishJSCall', "didCreateObject", {
-						toServer : true
-					}), 0);
+		if(""+ zk.Widget.$('$' + widgetId + '') !== 'null'){
+			var widget = zk.Widget.$('$' + widgetId + '').$n();
+			if (""+ widget != 'undefined' && +""+widget != 'null') {
+				zAu.send(new zk.Event(zk.Widget.$('$' + widgetId + ''),
+						'onFinishJSCall', "didCreateObject", {
+							toServer : true
+						}), 0);
+			}
 		}
 	},
 	isGoogleMapLibraryLoaded : false,
@@ -283,20 +285,14 @@ vietek = {
 		},
 		this.setContent = function(strContent){
 			this.content = strContent;
-			if(""+ this.map !== 'undefined' && ""+ this.map !== 'null'){
-//				if(""+ this.map.infoWindow !== 'null' && ""+ this.map.infoWindow !== 'undefined'){
-//					this.map.infoWindow.close();
-//					this.map.infoWindow = null;
-//				}
-				var gmap = this.map.map;
+			if(""+ this.mapObj !== 'undefined' && ""+ this.mapObj !== 'null'){
+				var gmap = this.mapObj.map;
 				if(this.infowindow == null){
 					this.infowindow = new google.maps.InfoWindow({
 					    content: strContent
 					});
-				} else {
-					this.infowindow.setOptions({content: strContent});
-				}
-				this.infowindow.setOptions({disableAutoPan : false});
+				} 
+				this.infowindow.setContent(strContent);
 				this.marker.addListener('click', function() {
 					self.infowindow.open(gmap, this);
 				});
