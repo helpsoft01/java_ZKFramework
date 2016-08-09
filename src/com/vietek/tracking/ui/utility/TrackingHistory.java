@@ -522,7 +522,8 @@ public class TrackingHistory extends Div implements EventListener<Event> {
 					Env.getHomePage().showValidateForm(msgerror, Clients.NOTIFICATION_TYPE_WARNING);
 				} else {
 					Clients.showBusy(divcenter, "Processing...!");
-					if (genaralTab.getMapGenaral().size() > 1 || listHistoryTab.getMapTabList().size() > 1) {
+					if (xemcungbando.isChecked()
+							&& (genaralTab.getMapGenaral().size() > 1 || listHistoryTab.getMapTabList().size() > 1)) {
 						Env.getHomePage().showNotification("Chỉ được phép xem cùng lúc 2 xe!",
 								Clients.NOTIFICATION_TYPE_INFO);
 					} else {
