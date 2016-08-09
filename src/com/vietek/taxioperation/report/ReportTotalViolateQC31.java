@@ -157,7 +157,7 @@ public class ReportTotalViolateQC31 extends AbstractReportWindow implements Even
 	// Render with Grid
 	@Override
 	public void renderExtraReport() {
-//		gridData.setWidth("1080px");
+		// gridData.setWidth("1080px");
 		gridData.setRowRenderer(new RowRenderer<RptTotalViolateQc31>() {
 
 			@Override
@@ -345,6 +345,15 @@ public class ReportTotalViolateQC31 extends AbstractReportWindow implements Even
 	}
 
 	@Override
+	public void setStyleForGridData() {
+		getGridData().setVflex("true");
+		getGridData().setMold("paging");
+		gridData.setAutopaging(true);
+		// getGridData().setPageSize(20);
+		getGridData().setSclass("grid_report_total");
+	}
+
+	@Override
 	public void renderReportWithListBox() {
 		setRenderReportWithListBox(false);
 
@@ -493,7 +502,8 @@ public class ReportTotalViolateQC31 extends AbstractReportWindow implements Even
 
 		}
 		ListObjectDatabase lstObj = new ListObjectDatabase();
-		List<RptQcTruckStdOverSpeed> lstValue = lstObj.getDetailQcTruckStdSpeed(user, timefrom, timeto, strgroupId,strdriverId);
+		List<RptQcTruckStdOverSpeed> lstValue = lstObj.getDetailQcTruckStdSpeed(user, timefrom, timeto, strgroupId,
+				strdriverId);
 		if (lstValue == null || lstValue.isEmpty()) {
 			griddetail.setEmptyMessage("Không có dữ liệu");
 		} else {
@@ -769,11 +779,10 @@ public class ReportTotalViolateQC31 extends AbstractReportWindow implements Even
 			super.onEvent(event);
 		}
 	}
-	
-	private void showHistoryStdOverSpeed(RptQcTruckStdOverSpeed data){
-		TrackingHistory history = new TrackingHistory(new java.sql.Date(data.getTimeStart()
-				.getTime()), new java.sql.Date(data.getTimeStop().getTime()),
-				data.getVehicleId());
+
+	private void showHistoryStdOverSpeed(RptQcTruckStdOverSpeed data) {
+		TrackingHistory history = new TrackingHistory(new java.sql.Date(data.getTimeStart().getTime()),
+				new java.sql.Date(data.getTimeStop().getTime()), data.getVehicleId());
 		Window window = new Window();
 		window.setWidth("100%");
 		window.setHeight("100%");
@@ -783,11 +792,10 @@ public class ReportTotalViolateQC31 extends AbstractReportWindow implements Even
 		window.appendChild(history);
 		window.doModal();
 	}
-	
-	private void showHistoryStdDrivingOver4Hour(RptQcTrunkStdDriving data){
-		TrackingHistory history = new TrackingHistory(new java.sql.Date(data.getBeginTime()
-				.getTime()), new java.sql.Date(data.getEndTime().getTime()),
-				data.getVehicleId());
+
+	private void showHistoryStdDrivingOver4Hour(RptQcTrunkStdDriving data) {
+		TrackingHistory history = new TrackingHistory(new java.sql.Date(data.getBeginTime().getTime()),
+				new java.sql.Date(data.getEndTime().getTime()), data.getVehicleId());
 		Window window = new Window();
 		window.setWidth("100%");
 		window.setHeight("100%");

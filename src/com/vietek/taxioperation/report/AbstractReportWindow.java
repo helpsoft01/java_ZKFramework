@@ -185,11 +185,11 @@ public abstract class AbstractReportWindow extends Window implements EventListen
 		cols.setParent(gridFilter);
 		Column col = new Column();
 		col.setParent(cols);
-		col.setWidth("25%");
+		col.setWidth("35%");
 
 		col = new Column();
 		col.setParent(cols);
-		col.setWidth("75%");
+		col.setWidth("65%");
 
 		Rows rows = new Rows();
 		rows.setParent(gridFilter);
@@ -350,11 +350,12 @@ public abstract class AbstractReportWindow extends Window implements EventListen
 			gridData = new Grid();
 			gridData.setParent(hlayout);
 			gridData.setHflex("8");
+			this.setStyleForGridData();
 			// gridData.setMold("paging");
 			// gridData.setAutopaging(true);
 			// gridData.setPageSize(20);
-			gridData.setVflex("true");
-			gridData.setSclass("grid_report_total");
+			// gridData.setVflex("true");
+			// gridData.setSclass("grid_report_total");
 			Frozen frozen = new Frozen();
 			frozen.setParent(gridData);
 			frozen.setColumns(2);
@@ -604,6 +605,10 @@ public abstract class AbstractReportWindow extends Window implements EventListen
 
 	}
 
+	public void setStyleForGridData() {
+
+	}
+
 	public void removeComponent(Component comp, boolean isRemove) {
 		if (isRemove == true) {
 			Row row = (Row) comp.getParent();
@@ -729,7 +734,7 @@ public abstract class AbstractReportWindow extends Window implements EventListen
 				if (dateTo.getValue().getTime() < dateFrom.getValue().getTime()) {
 					Env.getHomePage().showNotification("Hãy chọn lại thời gian cho báo cáo!",
 							Clients.NOTIFICATION_TYPE_ERROR);
-				} else if (strGroupId == null) {
+				} else if (chosenGroup.isVisible() && strGroupId == null) {
 					Env.getHomePage().showNotification("Phải chọn ít nhất một đội xe cho báo cáo!",
 							Clients.NOTIFICATION_TYPE_ERROR);
 				} else {
