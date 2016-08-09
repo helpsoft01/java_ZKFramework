@@ -72,25 +72,25 @@ public class VehicleMarker extends VMarker {
 
 	public String creatNormalContain(GpsTrackingMsg data) {
 		String divconten = "<table>"
-	            + "<tr><td class=markerOnline_left>" + "Vị trí:" + "</td>"
-				+ "<td class=markerOnline_right>" + "Chua cap nhat" + "</td></tr>" + "<tr><td class=markerOnline_left>"
+	            + "<tr><td class=markerHistory_left>" + "Vị trí:" + "</td>"
+				+ "<td class=markerOnline_right>" + "Chua cap nhat" + "</td></tr>" + "<tr><td class=markerHistory_left>"
 				+ "Thời điểm:" + "</td>" + "<td class=markerOnline_right>"
 				+ StringUtils.valueOfTimestamp(new Timestamp(data.getTimeLog().getTime())) + "</td></tr>"
-				+ "<tr><td class=markerOnline_left>" + "Vận tốc:" + "</td>" + "<td class=markerOnline_right>"
-				+ String.valueOf(data.getGpsSepeed()[9]) + " km/h</td></tr>" + "<tr><td class=markerOnline_left>"
+				+ "<tr><td class=markerHistory_left>" + "Vận tốc:" + "</td>" + "<td class=markerOnline_right>"
+				+ String.valueOf(data.getGpsSepeed()[9]) + " km/h</td></tr>" + "<tr><td class=markerHistory_left>"
 				+ "Trạng thái khách:" + "</td>" + "<td class=markerOnline_right>" + data.getInTripStatus() + "</td></tr>"
-				+ "<tr><td class=markerOnline_left>"
+				+ "<tr><td class=markerHistory_left>"
 				+ "Km Trong cuốc:" + "</td>" + "<td class=markerOnline_right>" + StringUtils.doubleFormat(data.getPathTrip())
-				+ " km</td></tr>" + "<tr><td class=markerOnline_left>" + "Tiền trong cuốc:" + "</td>"
+				+ " km</td></tr>" + "<tr><td class=markerHistory_left>" + "Tiền trong cuốc:" + "</td>"
 				+ "<td class=markerOnline_right>" + StringUtils.priceWithoutDecimal(data.getMoneyTrip()) + " VND</td></tr>"
 
-				+ "<tr><td class=markerOnline_left>" + "Tiền ca:" + "</td>" + "<td class=markerOnline_right>"
-				+ StringUtils.priceWithoutDecimal(data.getTotalMoneyShift()) + " VND</td></tr>" + "<tr><td class=markerOnline_left>"
+				+ "<tr><td class=markerHistory_left>" + "Tiền ca:" + "</td>" + "<td class=markerOnline_right>"
+				+ StringUtils.priceWithoutDecimal(data.getTotalMoneyShift()) + " VND</td></tr>" + "<tr><td class=markerHistory_left>"
 				+ "Cuốc trong ca:" + "</td>" + "<td class=markerOnline_right>" + String.valueOf(data.getTotalTrip())
-				+ " Cuốc</td></tr>" + "<tr><td class=markerOnline_left>" + "Tổng km khách:" + "</td>"
+				+ " Cuốc</td></tr>" + "<tr><td class=markerHistory_left>" + "Tổng km khách:" + "</td>"
 				+ "<td class=markerOnline_right>" + StringUtils.priceWithoutDecimal(data.getTripPath()) + " Km</td></tr>"
-				+ "<tr><td class=markerOnline_left>" + "Tổng km rỗng:" + "</td>" + "<td class=markerOnline_right>"
-				+ String.valueOf(data.getEmptyPath()) + " Km</td></tr>" + "<tr><td class=markerOnline_left>"
+				+ "<tr><td class=markerHistory_left>" + "Tổng km rỗng:" + "</td>" + "<td class=markerOnline_right>"
+				+ String.valueOf(data.getEmptyPath()) + " Km</td></tr>" + "<tr><td class=markerHistory_left>"
 				+ "Tổng tiền đồng hô:" + "</td>" + "<td class=markerOnline_right>" + StringUtils.priceWithoutDecimal(data.getTotalMoney())
 				+ " VND</td></tr>" + "<tr><td colspan=2 align=center></td></tr></table>";
 		return divconten;
@@ -105,13 +105,13 @@ public class VehicleMarker extends VMarker {
 	}
 
 	private String creatGenaralConten(GpsTrackingMsg data) {
-		String divconten = "<table>" + "<tr><td class=markerOnline_left>" + "Tọa độ:" + "</td>" + "<td class=markerOnline_right>"
-				+ data.getLatitude() + "-" + data.getLongitude() + "</td></tr>" + "<tr><td class=markerOnline_left>"
+		String divconten = "<table>" + "<tr><td class=markerHistory_left>" + "Tọa độ:" + "</td>" + "<td class=markerOnline_right>"
+				+ data.getLatitude() + "-" + data.getLongitude() + "</td></tr>" + "<tr><td class=markerHistory_left>"
 				+ "Vị trí:" + "</td>" + "<td class=markerOnline_right>" + data.getAddress() + "</td></tr>"
-				+ "<tr><td class=markerOnline_left>" + "Thời điểm:" + "</td>" + "<td class=markerOnline_right>"
+				+ "<tr><td class=markerHistory_left>" + "Thời điểm:" + "</td>" + "<td class=markerOnline_right>"
 				+ StringUtils.valueOfTimestamp(new Timestamp(data.getTimeLog().getTime())) + "</td></tr>"
-				+ "<tr><td class=markerOnline_left>" + "Lần dừng đỗ:" + "</td>" + "<td class=markerOnline_right>"
-				+ data.getCountStop() + "Lần" + "</td></tr>" + "<tr><td class=markerOnline_left>" + "Tổng T/g dừng đỗ:"
+				+ "<tr><td class=markerHistory_left>" + "Lần dừng đỗ:" + "</td>" + "<td class=markerOnline_right>"
+				+ data.getCountStop() + "Lần" + "</td></tr>" + "<tr><td class=markerHistory_left>" + "Tổng T/g dừng đỗ:"
 				+ "</td>" + "<td class=markerOnline_right>" + StringUtils.MilisToHours(data.getTimestop()) + "</td></tr>"
 				+ "<tr><td colspan=2 align=center></td></tr></table>";
 		return divconten;
