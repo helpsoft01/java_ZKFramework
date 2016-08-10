@@ -61,6 +61,7 @@ import com.vietek.taxioperation.ui.util.ComponentsReport;
 import com.vietek.taxioperation.ui.util.GridColumn;
 import com.vietek.taxioperation.ui.util.GridRow;
 import com.vietek.taxioperation.ui.util.ItemRenderReport;
+import com.vietek.taxioperation.ui.util.VChosenbox;
 import com.vietek.taxioperation.ui.util.VTReportViewer;
 import com.vietek.taxioperation.util.CommonUtils;
 import com.vietek.taxioperation.util.Env;
@@ -506,7 +507,8 @@ public abstract class AbstractReportWindow extends Window implements EventListen
 
 				if (chosenVehicle.isVisible()) {
 					List<Vehicle> lstVehicle = VehicleApi.getVehicle(arrTaxiGroup);
-					chosenVehicle.setModel(new ListModelList<>(lstVehicle));
+//					chosenVehicle.setModel(new ListModelList<>(lstVehicle));
+					((VChosenbox)chosenVehicle).setLstAllModel(lstVehicle);
 				}
 				if (chosenDriver.isVisible()) {
 					List<Driver> lstDriver = VehicleApi.getDriver(arrTaxiGroup);
