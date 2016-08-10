@@ -258,6 +258,9 @@ vietek = {
 		var imgSrc = "";
 		var content = "";
 		var infowindow = null;
+		this.setLabelClass = function(Sclass){
+			this.marker.set('labelClass', Sclass);
+		},
 		this.setLabelAnchor = function(x, y){
 			var anchor = new google.maps.Point(x, y);
 			this.marker.set('labelAnchor', anchor);
@@ -276,7 +279,6 @@ vietek = {
 		},
 		this.setLabel = function(lable){
 			this.marker.set('labelContent', lable);
-			this.marker.set('labelClass', "vmarker_label");
 			this.setRotate(this.rotate);
 		},
 		this.setContent = function(strContent){
@@ -291,6 +293,8 @@ vietek = {
 					this.infowindow = new google.maps.InfoWindow({
 					    content: strContent
 					});
+				} else {
+					this.infowindow.setOptions({content: strContent});
 				}
 				this.infowindow.setOptions({disableAutoPan : false});
 				this.marker.addListener('click', function() {
@@ -624,6 +628,10 @@ vietek = {
 		setLabelAnchor : function(markerId, x, y){
 			var vmarker = vietek.mapController.markers[markerId];
 			vmarker.setLabelAnchor(x, y);
+		},
+		setLabelClass : function(markerId, sclass){
+			var vmarker = vietek.mapController.markers[markerId];
+			vmarker.setLabelClass(sclass);
 		},
 		setIcon : function(markerId, imgSrc){
 			var vmarker = vietek.mapController.markers[markerId];

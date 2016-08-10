@@ -99,6 +99,11 @@ public class VMarker extends VComponent{
 		super.setId(arg0);
 	}
 	
+	public void setLabelClass(String sclass){
+		String script = "vietek.mapController.setLabelClass('"+ this.getId() + "','" + sclass + "')";
+		this.addJSScriptSynch(script);
+	}
+	
 	public void setContent(String content) {
 		if(!this.content.equals(content)){
 			this.content = content;

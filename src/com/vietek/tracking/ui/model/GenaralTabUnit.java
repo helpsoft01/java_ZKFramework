@@ -183,7 +183,6 @@ public class GenaralTabUnit extends Borderlayout{
 		vl.setParent(hl);
 		lblvmax = new Label();
 		lblvmax.setSclass("z-label-detail-his");
-		;
 		vl.appendChild(lblvmax);
 
 		hl = new Hlayout();

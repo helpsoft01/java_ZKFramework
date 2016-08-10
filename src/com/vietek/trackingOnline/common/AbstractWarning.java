@@ -160,8 +160,10 @@ public abstract class AbstractWarning {
 				if (Math.abs(System.currentTimeMillis() - pingtimemeter.getTime()) < TimeUnit.MINUTES.toMillis(30)) {
 					result = true;
 				} else {
-//					AppLogger.logVWarning.info("TimepingMeter: " + vehicleid + "|"
-//							+ new Timestamp(System.currentTimeMillis()) + "|" + new Timestamp(pingtimemeter.getTime()));
+					// AppLogger.logVWarning.info("TimepingMeter: " + vehicleid
+					// + "|"
+					// + new Timestamp(System.currentTimeMillis()) + "|" + new
+					// Timestamp(pingtimemeter.getTime()));
 				}
 
 			}
