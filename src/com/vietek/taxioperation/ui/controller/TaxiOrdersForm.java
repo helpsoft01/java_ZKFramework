@@ -442,8 +442,8 @@ public class TaxiOrdersForm extends AbstractWindowPanel implements Serializable,
 		if (reVal == null) {
 			if (orderExist != null) {
 				reVal = TaxiOrderUtil.getTaxiOrder(phone);
-				reVal.getCustomer().setLastTimeCall(orderExist.getCustomer().getLastTimeCall());
-				reVal.getCustomer().setTotalSuccessOrder(orderExist.getCustomer().getTotalSuccessOrder());
+//				reVal.getCustomer().setLastTimeCall(orderExist.getCustomer().getLastTimeCall());
+//				reVal.getCustomer().setTotalSuccessOrder(orderExist.getCustomer().getTotalSuccessOrder());
 			}
 
 		}
