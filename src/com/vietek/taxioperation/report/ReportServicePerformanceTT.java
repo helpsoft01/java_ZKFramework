@@ -306,153 +306,6 @@ public class ReportServicePerformanceTT extends Window implements
 		labelsum.setParent(hbox);
 	}
 
-//	private void createColsFilter(Grid grid) {
-//		Columns cols = new Columns();
-//		cols.setParent(grid);
-//
-//		Column col = new Column();
-//		col.setParent(cols);
-//		col.setHflex("10%");
-//
-//		col = new Column();
-//		col.setParent(cols);
-//		col.setHflex("40%");
-//
-//		col = new Column();
-//		col.setParent(cols);
-//		col.setHflex("50%");
-//	}
-
-//	private void createRowsFilter(Grid grid) {
-//		Rows rows = new Rows();
-//		rows.setParent(grid);
-//
-//		Row row = new Row();
-//		row.setParent(rows);
-//		Cell cell = new Cell();
-//		cell.setParent(row);
-//		cell.setColspan(4);
-//		Label label = new Label("BÁO CÁO TỔNG HỢP HIỆU SUẤT TỔNG ĐÀI ĐIỀU HÀNH");
-//		label.setStyle("color : black;font-weight : bold; font-size : 16px");
-//		label.setParent(cell);
-//
-//		row = new Row();
-//		row.setParent(rows);
-//		label = new Label("Từ ngày");
-//		label.setStyle("font-weight : bold ");
-//		label.setParent(row);
-//
-//		datefrom = new Datebox();
-//		datefrom.setParent(row);
-//		datefrom.setValue(addHour(new Date(), 00, 00));
-//		datefrom.setWidth("40%");
-//		datefrom.setFormat("dd/MM/yyyy  HH:mm");
-//		datefrom.setConstraint("no empty : Không được để trống");
-//
-//		Hlayout hlayout = new Hlayout();
-//		hlayout.setParent(row);
-//		Div div = new Div();
-//		div.setParent(hlayout);
-//		div.setWidth("40%");
-//		btnsearch = new Button();
-//		btnsearch.setParent(div);
-//		btnsearch.setLabel("Tìm kiếm");
-//		btnsearch.setStyle("color : black; font-weight : bold");
-//		btnsearch.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
-//
-//			@Override
-//			public void onEvent(Event arg0) throws Exception {
-//				// TODO Auto-generated method stub
-//
-//			}
-//		});
-//		// Bắt sự kiện tại đây hoặc cho vào hàm onevent
-//		btnsearch.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
-//			@Override
-//			public void onEvent(Event arg0) throws Exception {
-//				long timedateto = dateto.getValue().getTime();
-//				long timedatefrom = datefrom.getValue().getTime();
-//				if (timedateto < timedatefrom) {
-//					Env.getHomePage().showNotification(
-//							"Hãy chọn lại thời gian cho báo cáo!",
-//							Clients.NOTIFICATION_TYPE_ERROR);
-//					List<ReportQcServicePerformanceTT> lstData = new ArrayList<ReportQcServicePerformanceTT>();
-//					griddata.setEmptyMessage("Không có dữ liệu !");
-//					griddata.setModel(new ListModelList<ReportQcServicePerformanceTT>(
-//							lstData));
-//					labelsum.setValue("Tổng số bản ghi báo cáo : " + 0);
-//				} else {
-//					List<ReportQcServicePerformanceTT> lstData = displayrptShiftProductivity();
-//					if (lstData == null || lstData.size() <= 0) {
-//						griddata.setEmptyMessage("Không có dữ liệu !");
-//					} else {
-//						griddata.setModel(new ListModelList<ReportQcServicePerformanceTT>(
-//								lstData));
-//						labelsum.setValue("Tổng số bản ghi báo cáo : "
-//								+ lstData.size());
-////						Clients.evalJavaScript("hGridPerformTT()");
-//					}
-//				}
-//			}
-//		});
-//
-//		div = new Div();
-//		div.setParent(hlayout);
-//		div.setWidth("30%");
-//		btnreport = new Button("Báo cáo");
-//		btnreport.setParent(div);
-//		btnreport.setStyle("color : black; font-weight : bold");
-//		btnreport.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
-//
-//			@Override
-//			public void onEvent(Event event) throws Exception {
-//				exportToReportPerformTTViewer(event);
-//
-//			}
-//		});
-//
-//		div = new Div();
-//		div.setParent(hlayout);
-//		div.setWidth("30%");
-//		btnExcel = new Button("Xuất Excel");
-//		btnExcel.setParent(div);
-//		btnExcel.setStyle("color : black; font-weight : bold");
-//		btnExcel.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
-//
-//			@Override
-//			public void onEvent(Event arg0) throws Exception {
-//				CommonUtils.exportListboxToExcel(griddata,
-//						"bao_cao_tong_hop_hieu_suat_phuc_vu.xlsx");
-//
-//			}
-//		});
-//
-//		row = new Row();
-//		row.setParent(rows);
-//		label = new Label("Đến ngày");
-//		label.setStyle("font-weight : bold");
-//		label.setParent(row);
-//
-//		dateto = new Datebox();
-//		dateto.setParent(row);
-//		dateto.setValue(addHour(new Date(), 23, 59));
-//		dateto.setWidth("40%");
-//		dateto.setFormat("dd/MM/yyyy  HH:mm");
-//		dateto.setConstraint("no empty : Không được để trống");
-//
-//		row = new Row();
-//		row.setParent(rows);
-//		label = new Label("Ca làm việc");
-//		label.setStyle("font-weight : bold");
-//		label.setParent(row);
-//
-//		this.createchosenboxShift(row);
-//
-//		labelsum = new Label("Tổng số bản ghi báo cáo : " + 0);
-//		labelsum.setStyle("color : black ;font-weight : bold");
-//		labelsum.setParent(row);
-//	}
-
 	private Date addHour(Date date, int h, int m) {
 		if (date == null) {
 			throw new IllegalArgumentException("The date must not be null");
@@ -463,17 +316,6 @@ public class ReportServicePerformanceTT extends Window implements
 		c.set(Calendar.MINUTE, m);
 		return c.getTime();
 	}
-
-//	private void createchosenboxShift(Row row) {
-//		chosenbox = new Chosenbox();
-//		chosenbox.setParent(row);
-//		chosenbox.setWidth("40%");
-//
-//		ListObjectDatabase serviceperformance = new ListObjectDatabase();
-//		List<ShiftworkTms> lstValue = serviceperformance.getShift();
-//		chosenbox.setModel(new ListModelList<>(lstValue));
-//
-//	}
 	
 	private void createchosenboxShift(Hbox hbox) {
 		chosenbox = new Chosenbox();
@@ -573,11 +415,6 @@ public class ReportServicePerformanceTT extends Window implements
 		col.setParent(cols);
 		col.setHflex("10%");
 		col.setLabel("Tỷ lệ đón thành công");
-		
-//		col = new Column();
-//		col.setParent(cols);
-//		col.setHflex("1%");
-//		col.setLabel(" ");
 	}
 
 	public List<ReportQcServicePerformanceTT> displayrptShiftProductivity() {

@@ -1,23 +1,34 @@
 package com.vietek.taxioperation.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
-public class ReportQcServicePerformance {
-	private Date shiftday;
+import com.vietek.taxioperation.common.Searchable;
+
+public class ReportQcServicePerformance extends ReportModel {
+	@Searchable
+	private Timestamp shiftday;
+	@Searchable
 	private String shiftname;
+	@Searchable
 	private int customer;
+	@Searchable
 	private int requestnumber;
+	@Searchable
 	private int repeattime;
+	@Searchable
 	private int totalcall;
+	@Searchable
 	private int acceptcall;
+	@Searchable
 	private int declinecall;
+	@Searchable
 	private float percent;
 
-	public Date getShiftday() {
+	public Timestamp getShiftday() {
 		return shiftday;
 	}
 
-	public void setShiftday(Date shiftday) {
+	public void setShiftday(Timestamp shiftday) {
 		this.shiftday = shiftday;
 	}
 

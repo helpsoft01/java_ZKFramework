@@ -1281,7 +1281,7 @@ public class ListObjectDatabase {
 				rs = ps.executeQuery();
 				while (rs.next()) {
 					ReportQcServicePerformance msg = new ReportQcServicePerformance();
-					msg.setShiftday(rs.getDate(1));
+					msg.setShiftday(rs.getTimestamp(1));
 					msg.setShiftname(rs.getString(2));
 					msg.setCustomer(rs.getInt(3));
 					msg.setRequestnumber(rs.getInt(4));

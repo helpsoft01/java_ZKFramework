@@ -1,14 +1,25 @@
 package com.vietek.taxioperation.model;
 
-public class ReportQcServicePerformanceTT {
+import com.vietek.taxioperation.common.Searchable;
+
+public class ReportQcServicePerformanceTT extends ReportModel {
+	@Searchable
 	private String shiftname;
+	@Searchable
 	private int customer;
+	@Searchable
 	private int requestnumber;
+	@Searchable
 	private int repeattime;
+	@Searchable
 	private int totalcall;
+	@Searchable
 	private int acceptcall;
+	@Searchable
 	private int declinecall;
+	@Searchable
 	private float percent;
+	
 	public String getShiftname() {
 		return shiftname;
 	}
