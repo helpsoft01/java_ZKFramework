@@ -180,6 +180,13 @@ public class ListboxTab extends Tabbox implements TabboxInterface {
 
 	}
 
+	public void setContenMarkerRun(boolean contenboolean) {
+		for (Tab tab : mapTabList.values()) {
+			VehicleMarker mkrun = ((ListBoxTabUnit) tab.getValue()).getMarkerrun();
+			mkrun.setOpen(contenboolean);
+		}
+	}
+
 	public List<LatLng> getBoundsRunIcon() {
 		List<LatLng> bounds = new ArrayList<>();
 		for (Tab tab : mapTabList.values()) {

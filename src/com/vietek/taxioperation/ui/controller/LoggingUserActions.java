@@ -2,11 +2,24 @@ package com.vietek.taxioperation.ui.controller;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Div;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Hlayout;
+import org.zkoss.zul.Label;
+import org.zkoss.zul.Panel;
+import org.zkoss.zul.Panelchildren;
+import org.zkoss.zul.Vlayout;
 
 import com.vietek.taxioperation.model.LoggingUserAction;
 import com.vietek.taxioperation.ui.util.AbstractWindowPanel;
+import com.vietek.taxioperation.ui.util.BasicDetailWindow;
 import com.vietek.taxioperation.ui.util.GridColumn;
+import com.vietek.taxioperation.util.DateUtils;
 
 public class LoggingUserActions extends AbstractWindowPanel{
 
@@ -14,15 +27,47 @@ public class LoggingUserActions extends AbstractWindowPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private LoggingUserActionDetail loggingUserActionDetail;
+	private Datebox datefrom;
+	private Datebox dateto;
+	private Combobox cbxClassNames;
+	private Combobox cbxZulfiles;
+	
+	
 	public LoggingUserActions() {
 		// TODO Auto-generated constructor stub
 		super(true);
+		this.setDisplayLeftPanel(true);
 	}
 
 	@Override
 	public void initLeftPanel() {
 		// TODO Auto-generated method stub
+		Panel panel = new Panel();
+		panel.setParent(getLeftPane());
+		panel.setTitle("ĐIỀU KIỆN TÌM KIẾM");
+		panel.setStyle("color : black; font-size : 14px; font-weight : bold; overflow : auto");	
+		panel.setVisible(true);
+		panel.setVflex("1");
+		panel.setWidth("100%");
+		
+		Panelchildren panchild = new Panelchildren();
+		panchild.setParent(panel);
+
+		Div div = new Div();
+		div.setParent(panchild);
+		Label label = new Label("Từ này");
+		label.setParent(div);
+		label.setStyle("font-weight : bold; font-size : 14px; color : black");
+		div = new Div();
+		div.setParent(panchild);
+		div.setStyle("margin-top : 10px; margin-left : 9px");
+		datefrom = new Datebox();
+		datefrom.setParent(div);
+		datefrom.setWidth("170px");
+		datefrom.setValue(DateUtils.addHour(new Date(), 00, 00));
+		datefrom.setFormat("dd/MM/yyyy HH:mm");
+		
 		
 	}
 
@@ -48,4 +93,12 @@ public class LoggingUserActions extends AbstractWindowPanel{
 		this.setModelClass(LoggingUserAction.class);
 	}
 
+	@Override
+	public BasicDetailWindow modifyDetailWindow() {
+		if (loggingUserActionDetail == null) {
+			loggingUserActionDetail = new LoggingUserActionDetail(getCurrentModel(), this);
+		}
+		return loggingUserActionDetail;
+	}
+	
 }

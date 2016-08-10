@@ -187,7 +187,7 @@ public class BaggageFinding extends Window {
 		diemtra.setValue(model.getFinishAddr());
 		diemqua1.setValue(model.getAddress1());
 		diemqua2.setValue(model.getAddress2());
-		tiencuoc.setValue(StringUtils.priceWithoutDecimal(model.getMoney()) + " VND");
+		tiencuoc.setValue(StringUtils.priceWithoutDecimal(model.getMoney() * 1000) + " VND");
 		listresult.setModel(new ListModelList<>());
 		txtConten.setValue(model.getRequestContent());
 		cmbStatusProcess.setValue(model.getRequesttype());

@@ -208,8 +208,8 @@ public class MongoAction {
 			}
 			MongoCollection<Document> coll = mdb.getCollection("device" + deviceid);
 			DBObject condition = new BasicDBObject(2);
-			condition.put("$gt", fromdate);
-			condition.put("$lt", todate);
+			condition.put("$gt", fromdate - TimeUnit.MINUTES.toSeconds(5));
+			condition.put("$lt", todate + TimeUnit.MINUTES.toSeconds(5));
 			FindIterable<Document> iterable = coll.find(new BasicDBObject("DateLogInSecond", condition))
 					.sort(new Document("DateLogInSecond", 1));
 

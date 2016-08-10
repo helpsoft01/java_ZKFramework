@@ -6,6 +6,7 @@ import com.vietek.taxioperation.util.MapUtils;
 
 public class RowWarningReport {
 	private int id;
+	private int vehicleID;
 	private String vehiclenumber;
 	private String LicensePlate;
 	private String vehicleGroup;
@@ -87,6 +88,14 @@ public class RowWarningReport {
 
 	public Double getBeginLongi() {
 		return BeginLongi;
+	}
+
+	public int getVehicleID() {
+		return vehicleID;
+	}
+
+	public void setVehicleID(int vehicleID) {
+		this.vehicleID = vehicleID;
 	}
 
 	public void setBeginLongi(Double beginLongi) {

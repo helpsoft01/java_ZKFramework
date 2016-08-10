@@ -48,6 +48,7 @@ public class GenaralTab extends Tabbox implements TabboxInterface {
 			tab.setParent(this.getTabs());
 			tab.addEventListener(Events.ON_CLOSE, LISTENER_TAB_ON_CLOSE);
 			tab.setLabel(vehicle.getTaxiNumber());
+			tab.setDisabled(false);
 			tab.setValue(genaralunit);
 			Tabpanel tabpanel = new Tabpanel();
 			tabpanel.setParent(this.getTabpanels());

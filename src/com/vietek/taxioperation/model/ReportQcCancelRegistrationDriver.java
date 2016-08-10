@@ -2,18 +2,30 @@ package com.vietek.taxioperation.model;
 
 import java.sql.Timestamp;
 
-public class ReportQcCancelRegistrationDriver {
+import com.vietek.taxioperation.common.Searchable;
+
+public class ReportQcCancelRegistrationDriver extends ReportModel {
+	@Searchable
 	private String phoneCustomer;
+	@Searchable
 	private Timestamp timeorder;
+	@Searchable
 	private String placeorder;
+	@Searchable
 	private String nameDriver;
+	@Searchable
 	private int vehicleNumber;
+	@Searchable
 	private String licensePlate;
 //	private Timestamp timeRegister;
 //	private Timestamp timeCancel;
+	@Searchable
 	private String timeRegister;
+	@Searchable
 	private String timeCancel;
+	@Searchable
 	private String reasonCancel;
+	
 	public String getPhoneCustomer() {
 		return this.phoneCustomer;
 	}

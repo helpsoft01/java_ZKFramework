@@ -13,12 +13,14 @@ vietek = {
 				}), 0);
 	},
 	checkWidget : function(widgetId) {
-		var widget = zk.Widget.$('$' + widgetId + '').$n();
-		if (""+ widget != 'undefined' && +""+widget != 'null') {
-			zAu.send(new zk.Event(zk.Widget.$('$' + widgetId + ''),
-					'onFinishJSCall', "didCreateObject", {
-						toServer : true
-					}), 0);
+		if(""+ zk.Widget.$('$' + widgetId + '') !== 'null'){
+			var widget = zk.Widget.$('$' + widgetId + '').$n();
+			if (""+ widget != 'undefined' && +""+widget != 'null') {
+				zAu.send(new zk.Event(zk.Widget.$('$' + widgetId + ''),
+						'onFinishJSCall', "didCreateObject", {
+							toServer : true
+						}), 0);
+			}
 		}
 	},
 	isGoogleMapLibraryLoaded : false,
@@ -258,6 +260,9 @@ vietek = {
 		var imgSrc = "";
 		var content = "";
 		var infowindow = null;
+		this.setLabelClass = function(Sclass){
+			this.marker.set('labelClass', Sclass);
+		},
 		this.setLabelAnchor = function(x, y){
 			var anchor = new google.maps.Point(x, y);
 			this.marker.set('labelAnchor', anchor);
@@ -276,23 +281,18 @@ vietek = {
 		},
 		this.setLabel = function(lable){
 			this.marker.set('labelContent', lable);
-			this.marker.set('labelClass', "vmarker_label");
 			this.setRotate(this.rotate);
 		},
 		this.setContent = function(strContent){
 			this.content = strContent;
-			if(""+ this.map !== 'undefined' && ""+ this.map !== 'null'){
-//				if(""+ this.map.infoWindow !== 'null' && ""+ this.map.infoWindow !== 'undefined'){
-//					this.map.infoWindow.close();
-//					this.map.infoWindow = null;
-//				}
-				var gmap = this.map.map;
+			if(""+ this.mapObj !== 'undefined' && ""+ this.mapObj !== 'null'){
+				var gmap = this.mapObj.map;
 				if(this.infowindow == null){
 					this.infowindow = new google.maps.InfoWindow({
 					    content: strContent
 					});
-				}
-				this.infowindow.setOptions({disableAutoPan : false});
+				} 
+				this.infowindow.setContent(strContent);
 				this.marker.addListener('click', function() {
 					self.infowindow.open(gmap, this);
 				});
@@ -624,6 +624,10 @@ vietek = {
 		setLabelAnchor : function(markerId, x, y){
 			var vmarker = vietek.mapController.markers[markerId];
 			vmarker.setLabelAnchor(x, y);
+		},
+		setLabelClass : function(markerId, sclass){
+			var vmarker = vietek.mapController.markers[markerId];
+			vmarker.setLabelClass(sclass);
 		},
 		setIcon : function(markerId, imgSrc){
 			var vmarker = vietek.mapController.markers[markerId];

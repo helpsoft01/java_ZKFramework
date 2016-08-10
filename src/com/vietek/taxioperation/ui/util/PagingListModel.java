@@ -2,6 +2,7 @@ package com.vietek.taxioperation.ui.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -11,9 +12,11 @@ import org.zkoss.zul.AbstractListModel;
 import com.vietek.taxioperation.controller.BasicController;
 import com.vietek.taxioperation.util.ControllerUtils;
 import com.vietek.taxioperation.util.Env;
+import com.vietek.taxioperation.util.cache.AbstractCache;
+import com.vietek.taxioperation.util.cache.Memcached;
 
 public class PagingListModel<T> extends AbstractListModel<T> {
-
+	
 	/**
 	 * 
 	 */
@@ -28,7 +31,6 @@ public class PagingListModel<T> extends AbstractListModel<T> {
 	private List<Object> lstParam = new ArrayList<>();
 	private String[] paramNames;
 
-	// int totalSize = -1;
 	public PagingListModel(String model) {
 		super();
 		this.model = model;
@@ -61,6 +63,8 @@ public class PagingListModel<T> extends AbstractListModel<T> {
 		try {
 			if (!session.isOpen() || !session.isConnected())
 				return;
+			
+			Memcached cacheByModel = (Memcached) Memcached.getModelCaches().get(model);
 
 			startIndex = (index / pageSize) * pageSize;
 			Query query;
@@ -71,6 +75,9 @@ public class PagingListModel<T> extends AbstractListModel<T> {
 			} else {
 				qString = createQueryPermission(queryStr, model);
 				query = session.createQuery(qString);
+			}
+			if (cacheByModel != null) {
+				qString = "select id " + qString;
 			}
 			qString = createQueryPermission(qString, model);
 			query = session.createQuery(qString);
@@ -90,7 +97,28 @@ public class PagingListModel<T> extends AbstractListModel<T> {
 			query.setMaxResults(pageSize);
 			query.setCacheable(true);
 
-			cache = query.list();
+			
+			if (cacheByModel == null) {
+				cache = query.list();
+			}
+			else {
+				List<Object> retList = query.list();
+				cache = new ArrayList<>();
+				for (Object obj : retList) {
+					int id = (int)obj;
+					T item = (T) cacheByModel.get(id + "");
+					if (item == null) {
+						String hql = "from " + model + " where id = " + id;
+						query = session.createQuery(hql);
+						List<Object> tmp = query.list();
+						if (tmp.size() > 0) {
+							item = (T) tmp.get(0);
+						}
+						cacheByModel.put(id + "", item);
+					}
+					cache.add(item);
+				}
+			}
 
 		} catch (Exception ex) {
 
