@@ -1148,7 +1148,7 @@ public class ListObjectDatabase {
 				while (rs.next()) {
 					ReportQcShiftUsers msg = new ReportQcShiftUsers();
 					msg.setUserid(rs.getInt(1));
-					msg.setOrdertime(rs.getDate(2));
+					msg.setOrdertime(rs.getTimestamp(2));
 					msg.setUsername(rs.getString(3));
 					msg.setShiftname(rs.getString(4));
 					msg.setCallnumber(rs.getString(5));

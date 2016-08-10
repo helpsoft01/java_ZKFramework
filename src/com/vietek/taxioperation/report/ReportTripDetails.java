@@ -182,7 +182,7 @@ public class ReportTripDetails extends AbstractReportWindow {
 
 		reportFile = "rptTripDetailFromOperation";
 		reportTitle = "TỔNG ĐÀI ĐIỀU HÀNH - BÁO CÁO CHI TIẾT CUỐC KHÁCH QUA TỔNG ĐÀI";
-		exportFileName = "bao_cao_chi_tiet_cuoc_khach_tong_dai";
+		exportFileName = "bao_cao_chi_tiet_cuoc_khach_qua_tong_dai";
 		reportName = "BÁO CÁO CHI TIẾT CUỐC KHÁCH QUA TỔNG ĐÀI";
 
 	}
