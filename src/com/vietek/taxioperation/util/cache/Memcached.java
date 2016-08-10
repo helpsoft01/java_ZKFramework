@@ -47,6 +47,10 @@ public class Memcached extends AbstractCache implements ConnectionObserver {
 	protected void putToCache(String key, Object object) {
 		key = key.replaceAll("\\s","");
 		key = getCacheName() + "|" + key;
+		Object tmp = getMcc().get(key);
+		if (tmp != null) {
+			getMcc().delete(key);
+		}
 		getMcc().add(key, getTimeout(), object);
 	}
 
