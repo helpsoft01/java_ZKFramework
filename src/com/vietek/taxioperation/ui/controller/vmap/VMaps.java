@@ -13,6 +13,7 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Messagebox;
 
 import com.google.maps.model.LatLng;
+import com.vietek.taxioperation.util.MapUtils;
 
 
 public class VMaps extends VComponent {
@@ -27,6 +28,7 @@ public class VMaps extends VComponent {
 	private int tilt = 0;
 	private int zoom = 15;
 	private LatLng mousePosition;
+	private String mouseAddress;
 	protected Map<String, VMarker> markers;
 	private VMaps self;
 	private boolean isMapLoaded = false;
@@ -256,6 +258,15 @@ public class VMaps extends VComponent {
 //		Events.postEvent(new Event("runJSScript", this, "vietek.mapController.hideAllMarker('" + getId() + "')"));
 		return flag;
 	}
+	
+	public String getMouseAddress() {
+		if(mousePosition != null){
+			mouseAddress = MapUtils.convertLatLongToAddrest(mousePosition.lat, mousePosition.lng);
+		}
+		return mouseAddress;
+	}
+
+
 
 	private void listenMethod() {
 		this.addEventListener("onDidLoadMap", new EventListener<Event>() {
@@ -271,6 +282,12 @@ public class VMaps extends VComponent {
 		this.addEventListener("onClickVMap", new EventListener<Event>() {
 			@Override
 			public void onEvent(Event arg0) throws Exception {
+				JSONObject jsonObject =(JSONObject)arg0.getData();
+				JSONObject object = (JSONObject)jsonObject.get("data");
+				Double lat = Double.valueOf(object.get("latitude")+"");
+				Double lng = Double.valueOf(object.get("longtitude")+"");
+				mouseAddress = object.get("address")+"";
+				mousePosition = new LatLng(lat, lng);
 				VMapEvent mapEvent = new VMapEvent(VMapEvents.ON_VMAP_CLICK);
 				mapEvent.maps = self;
 				mapEvent.component = self;
@@ -416,8 +433,12 @@ public class VMaps extends VComponent {
 		this.addEventListener("onVMarkerClick", new EventListener<Event>() {
 			@Override
 			public void onEvent(Event arg0) throws Exception {
-				String markerId = (String)arg0.getData();
+				JSONObject jsonObject = (JSONObject) arg0.getData();
+				JSONObject object = (JSONObject) jsonObject.get("data");
+				String markerId = object.get("markerId")+"";
+				String address = object.get("address")+"";
 				VMarker marker = markers.get(markerId);
+				marker.setAddress(address);
 				VMapEvent mapEvents = new VMapEvent(VMapEvents.ON_VMARKER_CLICK);
 				mapEvents.component = marker;
 				mapEvents.maps = self;

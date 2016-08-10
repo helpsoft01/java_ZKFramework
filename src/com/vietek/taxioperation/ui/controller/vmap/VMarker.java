@@ -5,6 +5,7 @@ import org.zkoss.zk.ui.Component;
 import com.google.maps.model.LatLng;
 import com.vietek.taxioperation.common.AppLogger;
 import com.vietek.taxioperation.util.IDGenerator;
+import com.vietek.taxioperation.util.MapUtils;
 
 public class VMarker extends VComponent{
 
@@ -23,6 +24,7 @@ public class VMarker extends VComponent{
 	private boolean clickable;
 	private boolean draggable;
 	private boolean isOpen;
+	private String address;
 //	private int opacity = 1;
 	private boolean visible = true;
 //	private String animation = "DROP";
@@ -252,12 +254,20 @@ public class VMarker extends VComponent{
 	public LatLng getPosition() {
 		return position;
 	}
+	
+	protected void setAddress(String address) {
+		this.address = address;
+	}
+	public String getAddress() {
+		return address;
+	}
 
 	/**
 	 * @param position the position to set
 	 */
 	public void setPosition(LatLng position) {
 		this.position = position;
+		this.address = MapUtils.convertLatLongToAddrest(position.lat, position.lng);
 		String script = "vietek.mapController.setPosition('" + getId() + "', " + position.lat + ", " + position.lng + ")";
 		this.addJSScriptSynch(script);
 	}
