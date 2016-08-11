@@ -415,14 +415,14 @@ public class TaxiOrdersForm extends AbstractWindowPanel implements Serializable,
 		TaxiOrder reVal = null;
 
 		TaxiOrder order = null;
-		TaxiOrder orderExist = null;
+		// TaxiOrder orderExist = null;
 		// boolean inList = false;
 		for (Listitem item : getListbox().getItems()) {
 			order = (TaxiOrder) item.getValue();
 
 			if (order != null && order.getPhoneNumber().equals(phone)) {
 
-				orderExist = order;
+				// orderExist = order;
 				// inList = true;
 				/*
 				 * check 45 minutes
@@ -441,10 +441,10 @@ public class TaxiOrdersForm extends AbstractWindowPanel implements Serializable,
 		}
 		if (reVal == null) {
 			reVal = TaxiOrderUtil.getTaxiOrder(phone);
-			if (orderExist != null) {
-				reVal.getCustomer().setLastTimeCall(orderExist.getCustomer().getLastTimeCall());
-				reVal.getCustomer().setTotalSuccessOrder(orderExist.getCustomer().getTotalSuccessOrder());
-			}
+			// if (orderExist != null) {
+			// reVal.getCustomer().setLastTimeCall(orderExist.getCustomer().getLastTimeCall());
+			// reVal.getCustomer().setTotalSuccessOrder(orderExist.getCustomer().getTotalSuccessOrder());
+			// }
 
 		}
 		return reVal;
