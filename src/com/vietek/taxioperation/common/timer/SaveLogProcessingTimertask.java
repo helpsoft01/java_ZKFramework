@@ -49,7 +49,7 @@ public class SaveLogProcessingTimertask extends TimerTask{
 		// TODO Auto-generated method stub
 		List<LoggingUserAction> logs = new ArrayList<LoggingUserAction>();
 		synchronized (lock) {		
-			int count = 0;
+			int count = 0;			
 			while (count < 200) {					
 				if (!queueLoggingUserAction.isEmpty()) {
 					LoggingUserAction log = deQueue();

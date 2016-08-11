@@ -2,7 +2,6 @@ package com.vietek.taxioperation.ui.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -12,7 +11,6 @@ import org.zkoss.zul.AbstractListModel;
 import com.vietek.taxioperation.controller.BasicController;
 import com.vietek.taxioperation.util.ControllerUtils;
 import com.vietek.taxioperation.util.Env;
-import com.vietek.taxioperation.util.cache.AbstractCache;
 import com.vietek.taxioperation.util.cache.Memcached;
 
 public class PagingListModel<T> extends AbstractListModel<T> {

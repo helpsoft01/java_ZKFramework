@@ -22,7 +22,7 @@ public class Memcached extends AbstractCache implements ConnectionObserver {
 	public static HashMap<String, AbstractCache> getModelCaches() {
 		if (modelCaches == null) {
 			modelCaches = new HashMap<>();
-			modelCaches.put("customer", new Memcached("MODEL_CUSTOMER", 0));
+			modelCaches.put("com.vietek.taxioperation.model.Customer", new Memcached("MODEL_CUSTOMER", 0));
 		}
 		return modelCaches;
 	}

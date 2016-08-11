@@ -51,11 +51,11 @@ public class VehicleStatusDD implements Serializable {
 				vDd.setVehicleId(vehicleId);
 				vDd.setLastRegisted(System.currentTimeMillis());
 				vDd.setFree(false);
-				MapCommon.MAP_VEHICLE_STATUS_ID.put(vehicleId + "", vDd);
 			} else {
 				vDd.setFree(false);
 				vDd.setLastRegisted(System.currentTimeMillis());
 			}
+			MapCommon.MAP_VEHICLE_STATUS_ID.put(vehicleId + "", vDd);
 		} catch (Exception e) {
 			AppLogger.logDebug.error("TaxiOrderDD|UpdateRegistedStatus", e);
 		}
@@ -68,10 +68,10 @@ public class VehicleStatusDD implements Serializable {
 				vDd = new VehicleStatusDD();
 				vDd.setVehicleId(vehicleId);
 				vDd.setFree(true);
-				MapCommon.MAP_VEHICLE_STATUS_ID.put(vehicleId + "", vDd);
 			} else {
 				vDd.setFree(true);
 			}
+			MapCommon.MAP_VEHICLE_STATUS_ID.put(vehicleId + "", vDd);
 		} catch (Exception e) {
 			AppLogger.logDebug.error("TaxiOrderDD|UpdatePickupTaxiStatus", e);
 		}
@@ -88,10 +88,11 @@ public class VehicleStatusDD implements Serializable {
 					vDd = new VehicleStatusDD();
 					vDd.setVehicleId(vehicle.getId());
 					vDd.setFree(true);
-					MapCommon.MAP_VEHICLE_STATUS_ID.put(vehicle.getId() + "", vDd);
+//					MapCommon.MAP_VEHICLE_STATUS_ID.put(vehicle.getId() + "", vDd);
 				} else {
 					vDd.setFree(true);
 				}
+				MapCommon.MAP_VEHICLE_STATUS_ID.put(vehicle.getId() + "", vDd);
 			}
 		} catch (Exception e) {
 			AppLogger.logDebug.error("TaxiOrderDD|UpdatePickupTaxiStatus", e);

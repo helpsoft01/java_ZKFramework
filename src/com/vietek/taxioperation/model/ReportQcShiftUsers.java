@@ -1,18 +1,31 @@
 package com.vietek.taxioperation.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
-public class ReportQcShiftUsers {
+import com.vietek.taxioperation.common.Searchable;
+
+public class ReportQcShiftUsers extends ReportModel {
 	private int userid;
-	private Date ordertime;
+	@Searchable
+	private Timestamp ordertime;
+	@Searchable
 	private String username;
+	@Searchable
 	private String shiftname;
+	@Searchable
 	private String callnumber;
+	@Searchable
 	private Date logintime;
+	@Searchable
 	private Date logouttime;
+	@Searchable
 	private int totalcall;
+	@Searchable
 	private int acceptcall;
+	@Searchable
 	private int declinecall;
+	@Searchable
 	private float percent;
 
 	public int getUserid() {
@@ -22,12 +35,11 @@ public class ReportQcShiftUsers {
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
-
-	public Date getOrdertime() {
+	public Timestamp getOrdertime() {
 		return ordertime;
 	}
 
-	public void setOrdertime(Date ordertime) {
+	public void setOrdertime(Timestamp ordertime) {
 		this.ordertime = ordertime;
 	}
 

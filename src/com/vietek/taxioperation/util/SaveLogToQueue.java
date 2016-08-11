@@ -2,6 +2,7 @@ package com.vietek.taxioperation.util;
 
 import java.lang.reflect.Field;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,20 +17,50 @@ import com.vietek.taxioperation.model.SysFunction;
 public class SaveLogToQueue extends Thread{
 
 	private AbstractModel model;
+	private List<AbstractModel> lstmodel;
 	private EnumUserAction action;	
 	private String form;
 	private int userId;
 	
 	@Override
 	public void run(){
-		this.ParseModelDataToLog();
+		if (this.model != null) {
+			this.ParseModelDataToLog(this.model, this.action, this.form, this.userId);
+		}else {
+			if (this.lstmodel != null) {
+				this.ParseLstModelDataToLog(this.lstmodel, this.action, this.form, this.userId);
+			}			
+		}
 	}
 	
-	public SaveLogToQueue(Object model,  EnumUserAction action, SysFunction form, int userId) {
+	public SaveLogToQueue(Object model, EnumUserAction action, SysFunction form, int userId) {
 		// TODO Auto-generated constructor stub
 		this.model = (AbstractModel) model;
 		this.action = action;
 		this.userId = userId;
+		this.lstmodel = null;
+		
+		if (form == null) {
+			this.form = "/zul/index.zul";
+		}else {
+			if (!StringUtils.isEmpty(form.getClazz())) {
+				this.form = form.getClazz();
+			}else{
+				this.form = form.getZulFile();
+			}	
+		}		
+	}
+	
+	public SaveLogToQueue(List<?> lstmodel, EnumUserAction action, SysFunction form, int userId) {
+		// TODO Auto-generated constructor stub
+		this.model = null;
+		this.action = action;
+		this.userId = userId;
+		this.lstmodel = new ArrayList<AbstractModel>();
+		for (Object object : lstmodel) {
+			this.lstmodel.add((AbstractModel) object);
+		}	
+		
 		if (form == null) {
 			this.form = "/zul/index.zul";
 		}else {
@@ -42,11 +73,11 @@ public class SaveLogToQueue extends Thread{
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public void ParseModelDataToLog(){		
+	public void ParseModelDataToLog(AbstractModel model, EnumUserAction action, String form, int userId){		
 		try {
 			LoggingUserAction loggingUserAction = new LoggingUserAction();
 			
-			if (this.model != null) {
+			if (model != null) {
 				Class modelClazz = model.getClass();
 				List<Field> fields = AbstractModel.getAllFields(modelClazz);
 				StringBuilder names = new StringBuilder();
@@ -80,7 +111,7 @@ public class SaveLogToQueue extends Thread{
 				}					
 				
 				loggingUserAction.setModelname(model.getClass().getName());
-				loggingUserAction.setFormname(this.form);
+				loggingUserAction.setFormname(form);
 				loggingUserAction.setAction(action.getValue());
 				loggingUserAction.setFieldsdetail(names.toString());
 				loggingUserAction.setValuesdetail(values.toString());
@@ -89,12 +120,12 @@ public class SaveLogToQueue extends Thread{
 				
 			}else {
 				loggingUserAction.setModelname("");
-				loggingUserAction.setFormname(this.form);
+				loggingUserAction.setFormname(form);
 				loggingUserAction.setAction(action.getValue());
 				loggingUserAction.setFieldsdetail("");
 				loggingUserAction.setValuesdetail("");
 				loggingUserAction.setTimelog(new Timestamp(new Date().getTime()));
-				loggingUserAction.setUserid(this.userId);
+				loggingUserAction.setUserid(userId);
 			}
 			
 			QueCommon.queueLoggingUserAction.offer(loggingUserAction);		
@@ -102,6 +133,12 @@ public class SaveLogToQueue extends Thread{
 		} catch (Exception e) {
 			// TODO: handle exception
 			AppLogger.logDebug.error("dungnd:" + e.getMessage());
+		}
+	}
+	
+	public void ParseLstModelDataToLog(List<AbstractModel> lstmodel, EnumUserAction action, String form, int userId){
+		for (AbstractModel model : lstmodel) {
+			ParseModelDataToLog(model, action, form, userId);
 		}
 	}
 }

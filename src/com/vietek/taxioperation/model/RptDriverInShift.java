@@ -2,23 +2,39 @@ package com.vietek.taxioperation.model;
 
 import java.sql.Timestamp;
 
-public class RptDriverInShift {
+import com.vietek.taxioperation.common.Searchable;
+
+public class RptDriverInShift extends ReportModel {
 	private Timestamp issueDate;
+	@Searchable
 	private String licensePlate;
+	@Searchable
 	private String vehicleNumber;
+	@Searchable
 	private String staffCard;
+	@Searchable
 	private String driverName;
+	@Searchable
 	private String phoneNumber;
+	@Searchable
 	private String driverState;
+	@Searchable
 	private String timeDrivingContinuous;
+	@Searchable
 	private String timeDrivingPerDay;
+	@Searchable
 	private String parkingName;
+	@Searchable
 	private String groupName;
+	@Searchable
 	private String typeName;
+	@Searchable
 	private Timestamp timeLog;
+	
 	private int inworkshop;
 	private int inaccident;
 	private int inparking;
+	@Searchable
 	private String note;
 	
 	

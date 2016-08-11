@@ -1,12 +1,20 @@
 package com.vietek.taxioperation.model;
 
-public class ReportQcShiftUsersTT {
+import com.vietek.taxioperation.common.Searchable;
+
+public class ReportQcShiftUsersTT extends ReportModel {
 	private int userid;
+	@Searchable
 	private String username;
+	@Searchable
 	private int totalcall;
+	@Searchable
 	private int acceptcall;
+	@Searchable
 	private int declinecall;
+	@Searchable
 	private float percent;
+	
 	public int getUserid() {
 		return userid;
 	}

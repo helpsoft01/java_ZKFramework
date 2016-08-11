@@ -48,11 +48,32 @@ vietek = {
 			self.id = mapId;
 			google.maps.event.trigger(map, 'resize');
 			//TODO
-			google.maps.event.addListener(this.map, 'click', function() {
+			google.maps.event.addListener(this.map, 'click', function(e) {
+				var lat = e.latLng.lat();
+				var lng = e.latLng.lng();
+				var geocoder  = new google.maps.Geocoder();
+				var location  = new google.maps.LatLng(lat, lng);   
 				zAu.send(new zk.Event(zk.Widget.$('$' + mapId + ''), 'onClickVMap',
-						mapId, {
+						latLng, {
 							toServer : true
 						}), 0);
+//				geocoder.geocode({'latLng': location}, function (results, status) {
+//					if(status == google.maps.GeocoderStatus.OK) {
+//						var add=results[0].formatted_address;
+//						var latLng = {
+//								'data' : {
+//									'latitude' : lat,
+//									'longtitude' : lng,
+//									'address' : add
+//								}
+//							}
+//						zAu.send(new zk.Event(zk.Widget.$('$' + mapId + ''), 'onClickVMap',
+//								latLng, {
+//									toServer : true
+//								}), 0);
+//					}
+//				});
+				
 			});
 			// Event mousemove of map, send latlng of cursor to server
 			google.maps.event.addListener(this.map, 'mousemove', function(e) {
@@ -336,11 +357,30 @@ vietek = {
 			this.marker.setMap(map);
 			this.setRotate(this.rotate);
 			if(vmap !== null){
-				this.marker.addListener('click', function() {
-					zAu.send(new zk.Event(zk.Widget.$('$' + vmap.id + ''),
-							'onVMarkerClick', self.id, {
-								toServer : true
-							}), 0);
+				this.marker.addListener('click', function(e) {
+					var lat = e.latLng.lat();
+					var lng = e.latLng.lng();
+					var geocoder  = new google.maps.Geocoder();
+					var location  = new google.maps.LatLng(lat, lng);     
+					geocoder.geocode({'latLng': location}, function (results, status) {
+						if(status == google.maps.GeocoderStatus.OK) {
+							var add=results[0].formatted_address;
+							console.log(self.id);
+							var latLng = {
+									'data' : {
+										'markerId' : self.id,
+										'latitude' : lat,
+										'longtitude' : lng,
+										'address' : add
+									}
+								};
+							zAu.send(new zk.Event(zk.Widget.$('$' + vmap.id + ''),
+									'onVMarkerClick', latLng, {
+										toServer : true
+									}), 0);
+						}
+					});
+					
 				});
 				this.marker.addListener('drag', function(e) {
 					var lat = e.latLng.lat();

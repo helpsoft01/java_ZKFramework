@@ -1148,7 +1148,7 @@ public class ListObjectDatabase {
 				while (rs.next()) {
 					ReportQcShiftUsers msg = new ReportQcShiftUsers();
 					msg.setUserid(rs.getInt(1));
-					msg.setOrdertime(rs.getDate(2));
+					msg.setOrdertime(rs.getTimestamp(2));
 					msg.setUsername(rs.getString(3));
 					msg.setShiftname(rs.getString(4));
 					msg.setCallnumber(rs.getString(5));
@@ -1281,7 +1281,7 @@ public class ListObjectDatabase {
 				rs = ps.executeQuery();
 				while (rs.next()) {
 					ReportQcServicePerformance msg = new ReportQcServicePerformance();
-					msg.setShiftday(rs.getDate(1));
+					msg.setShiftday(rs.getTimestamp(1));
 					msg.setShiftname(rs.getString(2));
 					msg.setCustomer(rs.getInt(3));
 					msg.setRequestnumber(rs.getInt(4));

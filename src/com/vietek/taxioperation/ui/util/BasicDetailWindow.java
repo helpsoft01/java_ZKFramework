@@ -436,24 +436,21 @@ public class BasicDetailWindow extends Window implements Serializable, EventList
 	 *
 	 * @author VuD
 	 */
-	public void handleSaveEvent() {
+	public void handleSaveEvent() {	
 		int lastid = model.getId();
 		EnumUserAction action = EnumUserAction.UPDATE;
 		if (lastid == 0) {
 			action = EnumUserAction.INSERT;
-		}
-
+		}	
+		
 		model.save();
-
 		this.setVisible(false);
 		if (listWindow != null) {
 			listWindow.refresh();
 		}
-
 		Env.getHomePage().showNotification("Đã cập nhật thông tin!", Clients.NOTIFICATION_TYPE_INFO);
 
-		SaveLogToQueue savelog = new SaveLogToQueue(this.getModel(), action, Env.getHomePage().getCurrentFunction(),
-				Env.getUserID());
+		SaveLogToQueue savelog = new SaveLogToQueue(getModel(), action, Env.getHomePage().getCurrentFunction(), Env.getUserID());
 		savelog.start();
 	}
 

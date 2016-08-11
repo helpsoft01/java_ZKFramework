@@ -503,7 +503,7 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 	private void getGroupVehicles(TaxiGroup group) {
 		clearListitem();
 		List<Vehicle> vehicles = VehicleApi.getVehicle(group);
-		if (vehicles.size() > 0) {
+		if (vehicles != null && vehicles.size() > 0) {
 			int totalVehicles = 0;
 			for (int i = 0; i < vehicles.size(); i++) {
 				Vehicle vehicle = vehicles.get(i);
@@ -682,7 +682,9 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					comp.setVisible(true);
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
+					TrackingVehicleInfo info = (TrackingVehicleInfo)comp.getAttribute("info");
 					markers.get(deviceId).setVisible(true);
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					i++;
 				}
 			}
@@ -694,6 +696,8 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
 					int engine = Integer.parseInt(comp.getAttribute("engine")+"");
+					TrackingVehicleInfo info = (TrackingVehicleInfo)comp.getAttribute("info");
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					if(engine ==1){
 						comp.setVisible(true);
 						markers.get(deviceId).setVisible(true);
@@ -712,6 +716,8 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
 					int engine = Integer.parseInt(comp.getAttribute("engine") + "");
+					TrackingVehicleInfo info = (TrackingVehicleInfo)comp.getAttribute("info");
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					if (engine == 0) {
 						comp.setVisible(true);
 						markers.get(deviceId).setVisible(true);
@@ -730,6 +736,8 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
 					int speed = Integer.parseInt(comp.getAttribute("speed") + "");
+					TrackingVehicleInfo info = (TrackingVehicleInfo)comp.getAttribute("info");
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					if (speed >= 5) {
 						comp.setVisible(true);
 						markers.get(deviceId).setVisible(true);
@@ -748,6 +756,8 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
 					int speed = Integer.parseInt(comp.getAttribute("speed") + "");
+					TrackingVehicleInfo info = (TrackingVehicleInfo)comp.getAttribute("info");
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					if (speed < 5) {
 						comp.setVisible(true);
 						markers.get(deviceId).setVisible(true);
@@ -766,6 +776,7 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
 					TrackingVehicleInfo info = (TrackingVehicleInfo) comp.getAttribute("info");
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					if (info.isLostDigital()) {
 						comp.setVisible(true);
 						markers.get(deviceId).setVisible(true);

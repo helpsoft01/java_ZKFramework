@@ -33,7 +33,7 @@ public class RunCommonTimer extends Thread {
 			timer.scheduleAtFixedRate(loadDriverInfoTimerTask, 0, 900, TimeUnit.SECONDS);
 			SaveLogProcessingTimertask saveLogProcessingTimertack = new SaveLogProcessingTimertask(
 					QueCommon.queueLoggingUserAction);
-			timer.scheduleAtFixedRate(saveLogProcessingTimertack, 0, 120, TimeUnit.SECONDS);
+			timer.scheduleAtFixedRate(saveLogProcessingTimertack, 0, 60, TimeUnit.SECONDS);
 
 			LocalTime curTime = LocalTime.now();
 			int hour = curTime.getHour();

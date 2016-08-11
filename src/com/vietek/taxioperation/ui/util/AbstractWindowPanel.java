@@ -595,9 +595,10 @@ public abstract class AbstractWindowPanel extends Div implements Serializable, E
 	}
 
 	public boolean handleEventDelete() {
-		try {
+		try {			
 			SaveLogToQueue savelog = new SaveLogToQueue(currentModel, EnumUserAction.DELETE, Env.getHomePage().getCurrentFunction(), Env.getUserID());
 			savelog.start();
+			
 			currentModel.delete();
 			refresh();
 			Env.getHomePage().showNotification("Đã xoá bản ghi !", Clients.NOTIFICATION_TYPE_INFO);

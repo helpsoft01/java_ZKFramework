@@ -375,7 +375,7 @@ public class TaxiUtils {
 		String respond = WebserviceUtils.doGet(url, mapParam);
 		try {
 			JSONParser jsonParser = new JSONParser();
-			// JSONObject jsonObject = (JSONObject)
+//			 JSONObject jsonObject = (JSONObject)
 			// jsonParser.parse(respond);
 			JSONArray jsonarray = (JSONArray) jsonParser.parse(respond);
 			@SuppressWarnings("rawtypes")

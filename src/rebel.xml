@@ -2,17 +2,22 @@
 <application generated-by="eclipse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com" xsi:schemaLocation="http://www.zeroturnaround.com http://update.zeroturnaround.com/jrebel/rebel-2_1.xsd">
 
 	<classpath>
-		<dir name="C:/Users/VuD/Working/Workspace/TMS/target/classes">
+		<dir name="D:/MLGProj/TMS/target/classes">
 		</dir>
 	</classpath>
 
 	<web>
 		<link target="/">
-			<dir name="C:/Users/VuD/Working/Workspace/TMS/WebContent">
+			<dir name="D:/MLGProj/TMS/target/m2e-wtp/web-resources">
+				<exclude name="/"/>
+			</dir>
+		</link>
+		<link target="/">
+			<dir name="D:/MLGProj/TMS/WebContent">
 			</dir>
 		</link>
 		<link target="/ReportSource">
-			<dir name="C:/Users/VuD/Working/Workspace/TMS/ReportSource">
+			<dir name="D:/MLGProj/TMS/ReportSource">
 			</dir>
 		</link>
 	</web>

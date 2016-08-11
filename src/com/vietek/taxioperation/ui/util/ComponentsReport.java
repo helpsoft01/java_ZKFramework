@@ -29,7 +29,7 @@ public class ComponentsReport {
 	private String image;
 	private String title;
 	private int value;
-	
+
 	public String getImage() {
 		return image;
 	}
@@ -53,17 +53,16 @@ public class ComponentsReport {
 	public void setValue(int value) {
 		this.value = value;
 	}
-	
+
 	public static Component reloadChosenboxGroup(Component component, String lstAgentId) {
 		ListObjectDatabase lstObj = new ListObjectDatabase();
 		List<TaxiGroup> lstvalue = lstObj.getVehicleGroup(lstAgentId);
 		if (component instanceof Chosenbox) {
-			Chosenbox output = (Chosenbox)component;
+			Chosenbox output = (Chosenbox) component;
 			output.setModel(new ListModelList<>(lstvalue));
 			return output;
-		}
-		else if (component instanceof Combobox){
-			Combobox output = (Combobox)component;
+		} else if (component instanceof Combobox) {
+			Combobox output = (Combobox) component;
 			output.setModel(new ListModelList<>(lstvalue));
 			return output;
 		}
@@ -85,34 +84,32 @@ public class ComponentsReport {
 		ListObjectDatabase lstObj = new ListObjectDatabase();
 		List<Driver> lstvalue = lstObj.getDriver(lstGroupVehId);
 		if (component instanceof Chosenbox) {
-			Chosenbox output = (Chosenbox)component;
+			Chosenbox output = (Chosenbox) component;
 			output.setModel(new ListModelList<>(lstvalue));
 			return output;
-		}
-		else if (component instanceof Combobox){
-			Combobox output = (Combobox)component;
+		} else if (component instanceof Combobox) {
+			Combobox output = (Combobox) component;
 			output.setModel(new ListModelList<>(lstvalue));
 			return output;
 		}
 		return component;
-	}	
+	}
 
 	public static Component reloadChosenboxParking(Component component, String lstGroupVehId) {
 		ListObjectDatabase lstObj = new ListObjectDatabase();
 		List<ParkingArea> lstvalue = lstObj.getParking(lstGroupVehId);
 		if (component instanceof Chosenbox) {
-			Chosenbox output = (Chosenbox)component;
+			Chosenbox output = (Chosenbox) component;
 			output.setModel(new ListModelList<>(lstvalue));
 			return output;
-		}
-		else if (component instanceof Combobox){
-			Combobox output = (Combobox)component;
+		} else if (component instanceof Combobox) {
+			Combobox output = (Combobox) component;
 			output.setModel(new ListModelList<>(lstvalue));
 			return output;
 		}
 		return component;
-	}	
-	
+	}
+
 	// Phone, Wait Minutes, Zone, VehicleNumber, LicensePlate, ..
 	public Textbox textboxInput() {
 		Textbox txt = new Textbox();
@@ -249,7 +246,7 @@ public class ComponentsReport {
 		c.set(Calendar.SECOND, s);
 		return c.getTime();
 	}
-	
+
 	// Author: dungnd
 	// lay ra cac input co ban: Don vi/doi xe/loai xe/bai giao ca/thiet bi/xe...
 	public static Chosenbox ChosenboxReportInput(Class<?> clazz) {
@@ -259,14 +256,14 @@ public class ComponentsReport {
 			chosenboxOutput.setStyle("overflow-x : auto");
 			ComboboxThread comboboxThread = new ComboboxThread(clazz, "", 10);
 			List<?> outputList = comboboxThread.getDataList();
-			chosenboxOutput.setModel(new ListModelList<>(outputList));	
+			chosenboxOutput.setModel(new ListModelList<>(outputList));
 			return chosenboxOutput;
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new Chosenbox();
 		}
 	}
-	
+
 	public static Combobox ComboboxReportInput(Class<?> clazz) {
 		try {
 			Combobox comboboxOutput = new Combobox();
@@ -274,22 +271,23 @@ public class ComponentsReport {
 			comboboxOutput.setStyle("overflow-x : auto");
 			ComboboxThread comboboxThread = new ComboboxThread(clazz, "", 10);
 			List<?> outputList = comboboxThread.getDataList();
-			comboboxOutput.setModel(new ListModelList<>(outputList));	
+			comboboxOutput.setModel(new ListModelList<>(outputList));
 			return comboboxOutput;
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new Combobox();
 		}
 	}
-	
+
 	public static Chosenbox ChosenboxReportInputDefault(Class<?> clazz) {
 		try {
-			Chosenbox chosenboxOutput = new Chosenbox();
+			VChosenbox chosenboxOutput = new VChosenbox();
 			chosenboxOutput.setWidth("160px");
 			chosenboxOutput.setStyle("overflow-x : auto");
 			ComboboxThread comboboxThread = new ComboboxThread(clazz);
 			List<?> outputList = comboboxThread.getDataList();
-			chosenboxOutput.setModel(new ListModelList<>(outputList));	
+//			chosenboxOutput.setModel(new ListModelList<>(outputList));
+			chosenboxOutput.setLstAllModel(outputList);
 			return chosenboxOutput;
 		} catch (Exception e) {
 			// TODO: handle exception
