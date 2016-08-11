@@ -442,8 +442,8 @@ public class TaxiOrdersForm extends AbstractWindowPanel implements Serializable,
 		if (reVal == null) {
 			reVal = TaxiOrderUtil.getTaxiOrder(phone);
 			if (orderExist != null) {
-				// reVal.getCustomer().setLastTimeCall(orderExist.getCustomer().getLastTimeCall());
-				// reVal.getCustomer().setTotalSuccessOrder(orderExist.getCustomer().getTotalSuccessOrder());
+				reVal.getCustomer().setLastTimeCall(orderExist.getCustomer().getLastTimeCall());
+				reVal.getCustomer().setTotalSuccessOrder(orderExist.getCustomer().getTotalSuccessOrder());
 			}
 
 		}
@@ -510,8 +510,6 @@ public class TaxiOrdersForm extends AbstractWindowPanel implements Serializable,
 		if (event.getName().equals(TaxiOrderMQ.TAXI_ORDER_UPDATED_EVENT)
 				|| event.getName().equals(TaxiOrderMQ.TAXI_ORDER_NEW_SAVED_EVENT)) {
 			TaxiOrder order = (TaxiOrder) event.getData();
-			if (order.getStatus() == EnumStatus.XE_DA_DON.getValue())
-				order.getCustomer().setTotalSuccessOrder(order.getCustomer().getTotalSuccessOrder() + 1);
 			refeshEnable(order);
 		} else if (event.getName().equals(TaxiOrderMQ.SERVER_PUSH_EVENT_QUEUE_DIAL.toString())) {
 			// count++;
