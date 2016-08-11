@@ -41,6 +41,34 @@ import com.vietek.taxioperation.util.MapUtils;
 // @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class TaxiOrder extends AbstractModel implements Serializable {
 
+	public String getLoaddata() {
+		return loaddata;
+	}
+
+	public void setLoaddata(String loaddata) {
+		this.loaddata = loaddata;
+	}
+
+	public String getPriceorderKm() {
+		return priceorderKm;
+	}
+
+	public void setPriceorderKm(String priceorderKm) {
+		this.priceorderKm = priceorderKm;
+	}
+
+	public BigDecimal getTimeadd() {
+		return timeadd;
+	}
+
+	public void setTimeadd(BigDecimal timeadd) {
+		this.timeadd = timeadd;
+	}
+
+	public BigDecimal getPriceKmadd() {
+		return priceKmadd;
+	}
+
 	/**
 	 * 
 	 */

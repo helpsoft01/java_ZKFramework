@@ -56,9 +56,10 @@ public class LoggingUserActions extends AbstractWindowPanel{
 
 		Div div = new Div();
 		div.setParent(panchild);
-		Label label = new Label("Từ này");
+		Label label = new Label("Từ ngày");
 		label.setParent(div);
 		label.setStyle("font-weight : bold; font-size : 14px; color : black");
+		
 		div = new Div();
 		div.setParent(panchild);
 		div.setStyle("margin-top : 10px; margin-left : 9px");
@@ -68,7 +69,30 @@ public class LoggingUserActions extends AbstractWindowPanel{
 		datefrom.setValue(DateUtils.addHour(new Date(), 00, 00));
 		datefrom.setFormat("dd/MM/yyyy HH:mm");
 		
+		div = new Div();
+		div.setParent(panchild);
+		label = new Label("Đến ngày");
+		label.setParent(div);
+		label.setStyle("font-weight : bold; font-size : 14px; color : black");
 		
+		div = new Div();
+		div.setParent(panchild);
+		div.setStyle("margin-top : 10px; margin-left : 9px");
+		dateto = new Datebox();
+		dateto.setParent(div);
+		dateto.setWidth("170px");
+		dateto.setValue(DateUtils.addHour(new Date(), 00, 00));
+		dateto.setFormat("dd/MM/yyyy HH:mm");
+		
+		div = new Div();
+		div.setParent(panchild);
+		cbxClassNames = new Combobox();
+		cbxClassNames.setWidth("170px");
+		
+		div = new Div();
+		div.setParent(panchild);
+		cbxZulfiles = new Combobox();
+		cbxZulfiles.setWidth("170px");
 	}
 
 	@Override

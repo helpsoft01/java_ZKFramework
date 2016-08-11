@@ -50,6 +50,7 @@ import com.vietek.taxioperation.common.EnumCancelReason;
 import com.vietek.taxioperation.common.EnumCarTypeCommon;
 import com.vietek.taxioperation.common.EnumOrderType;
 import com.vietek.taxioperation.common.EnumStatus;
+import com.vietek.taxioperation.common.EnumUserAction;
 import com.vietek.taxioperation.common.StringUtils;
 import com.vietek.taxioperation.controller.CustomerController;
 import com.vietek.taxioperation.controller.TablePriceController;
@@ -93,6 +94,7 @@ import com.vietek.taxioperation.util.ConfigUtil;
 import com.vietek.taxioperation.util.ControllerUtils;
 import com.vietek.taxioperation.util.Env;
 import com.vietek.taxioperation.util.ExtensionOnlineUtil;
+import com.vietek.taxioperation.util.SaveLogToQueue;
 import com.vietek.taxioperation.util.StandandPhoneNumber;
 import com.vietek.taxioperation.util.TaxiOrderDetailHandler;
 import com.vietek.taxioperation.util.TaxiUtils;
@@ -2030,14 +2032,24 @@ public class TaxiOrdersDetailForm extends BasicDetailWindow implements FindAddre
 
 					lstOrder.add(getTaxiOrder());
 				}
-
+				
+				List<TaxiOrder> temp = lstOrder;
+				
 				AppLogger.logTaxiorder
 						.info("TaxiOrderSave|1. Order Save: Thread Start, phone:+ " + getTaxiOrder().getPhoneNumber());
+				
 				TaxiOrderSaveWorker tSave = new TaxiOrderSaveWorker(lstOrder, cust, newTrip);
-
 				Thread th = new Thread(tSave);
 				th.setPriority(Thread.MAX_PRIORITY);
 				th.start();
+				
+				if (newTrip) {
+					SaveLogToQueue savelog = new SaveLogToQueue(temp, EnumUserAction.INSERT, Env.getHomePage().getCurrentFunction(), Env.getUserID());
+					savelog.start();
+				}else {
+					SaveLogToQueue savelog = new SaveLogToQueue(temp, EnumUserAction.UPDATE, Env.getHomePage().getCurrentFunction(), Env.getUserID());
+					savelog.start();
+				}
 			}
 		} catch (Exception ex) {
 			AppLogger.logDebug.info(ex.getMessage());

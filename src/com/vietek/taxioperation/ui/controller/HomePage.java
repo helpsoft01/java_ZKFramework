@@ -379,8 +379,8 @@ public class HomePage extends SelectorComposer<Component> implements EventListen
 			}
 		}
 
-//		AppLogger.logUserAction.info("User:" + sysUser.getUserName() + "|Function:" + function.getName());
-		SaveLogToQueue savelog = new SaveLogToQueue(null, EnumUserAction.VIEWING, Env.getHomePage().getCurrentFunction(), Env.getUserID());
+		SaveLogToQueue savelog = new SaveLogToQueue(Env.getHomePage().getCurrentFunction(), EnumUserAction.VIEWING, 
+				Env.getHomePage().getCurrentFunction(), Env.getUserID());
 		savelog.start();
 		
 		if (isNew) {

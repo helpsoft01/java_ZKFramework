@@ -542,7 +542,7 @@ public abstract class AbstractReportWindow extends Window implements EventListen
 				for (Vehicle reportVehicle : lstObjchosen) {
 					deviceId = reportVehicle.getDeviceID();
 					break;
-				}
+				}				
 			}
 		});
 
