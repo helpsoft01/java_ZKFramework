@@ -44,6 +44,12 @@ public class ComboboxSearch extends Combobox implements EventListener<Event> {
 		cache = (List<AbstractModel>) lstmodel;
 	}
 
+	public ComboboxSearch(Class<?> modelClazz) {
+		super();
+		initCombobox();
+		this.modelclazz = modelClazz;
+	}
+
 	private void initCombobox() {
 		this.setButtonVisible(false);
 		this.addEventListener(Events.ON_CHANGING, EVENT_ON_CHANGING);
@@ -194,13 +200,15 @@ public class ComboboxSearch extends Combobox implements EventListener<Event> {
 			e.printStackTrace();
 		}
 	}
-   public void setValue(AbstractModel value){
+
+	public void setValue(AbstractModel value) {
 		Comboitem item = new Comboitem();
 		item.setLabel(value.toString());
 		item.setValue(value);
 		this.appendChild(item);
 		this.setSelectedItem(item);
-   }
+	}
+
 	public Integer getCountmax() {
 		return countmax;
 	}

@@ -1,7 +1,1 @@
-
-<zk>
-	<style>
-        .z-grid-body { overflow: auto !important; }        
-    </style>
-    <div use = "com.vietek.tracking.ui.statistic.StatisticDriverInShift"></div>
-</zk>
+<div use = "com.vietek.tracking.ui.statistic.StatisticDriverInShifts"></div>

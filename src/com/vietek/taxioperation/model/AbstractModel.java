@@ -39,11 +39,11 @@ public class AbstractModel {
 		return controller;
 	}
 
-	public void save() {
-		getControler().saveOrUpdate(this);
+	public void save() {						
+		getControler().saveOrUpdate(this);		
 	}
 
-	public void delete() {
+	public void delete() {		
 		getControler().delete(this);
 	}
 

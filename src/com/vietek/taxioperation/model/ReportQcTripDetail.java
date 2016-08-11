@@ -2,18 +2,31 @@ package com.vietek.taxioperation.model;
 
 import java.sql.Timestamp;
 
-public class ReportQcTripDetail {
+import com.vietek.taxioperation.common.Searchable;
+
+public class ReportQcTripDetail extends ReportModel {
 	private int id;
+	@Searchable
 	private String beginOrderAddress;
+	@Searchable
 	private Timestamp beginOrderTime;
+	@Searchable
 	private String phoneNumber;
+	@Searchable
 	private Timestamp startRegisterTime;
+	@Searchable
 	private String listRegisterVeh;
+	@Searchable
 	private Timestamp timeIsUpdated;
+	@Searchable
 	private int taxi_id;
+	@Searchable
 	private String selectedVeh;
+	@Searchable
 	private String orderCarType;
+	@Searchable
 	private String cancelReason;
+	@Searchable
 	private String OrderStatus;
 	
 	
