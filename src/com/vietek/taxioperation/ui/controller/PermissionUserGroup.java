@@ -3,6 +3,7 @@ package com.vietek.taxioperation.ui.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
@@ -27,6 +28,7 @@ import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.West;
 
+import com.vietek.taxioperation.common.MapCommon;
 import com.vietek.taxioperation.controller.MapSysGroupCompanyController;
 import com.vietek.taxioperation.controller.MapSysGroupVehicleController;
 import com.vietek.taxioperation.controller.SysCompanyController;
@@ -67,6 +69,7 @@ public class PermissionUserGroup extends AbstractWindowPanel implements Serializ
 	private List<Vehicle> lstVehicleModel_source;
 	private List<Vehicle> lstVehicleModel;
 	private List<Vehicle> lstVehicleModelSelect;
+	private String oldValue = "";
 
 	Button btUp_cpn;
 	Button btDown_cpn;
@@ -240,6 +243,9 @@ public class PermissionUserGroup extends AbstractWindowPanel implements Serializ
 			 * load data for list Vehicle
 			 */
 
+			if (lstVehicleModel_source == null || lstVehicleModel_source.size() == 0)
+				loadDataVehicle();
+
 			lstSysGroupVehicleModel.clear();
 			MapSysGroupVehicleController controllerMapSysGroupVehicle = (MapSysGroupVehicleController) ControllerUtils
 					.getController(MapSysGroupVehicleController.class);
@@ -276,21 +282,32 @@ public class PermissionUserGroup extends AbstractWindowPanel implements Serializ
 			lstVehicleModel_source = new ArrayList<>();
 		else
 			lstVehicleModel_source.clear();
-		VehicleController controller = (VehicleController) ControllerUtils.getController(VehicleController.class);
+		// VehicleController controller = (VehicleController)
+		// ControllerUtils.getController(VehicleController.class);
 
-		StringBuffer query = new StringBuffer();
-		query.append("from Vehicle");
-		if (tbName_vhc != null)
-			if (!tbName_vhc.getValue().trim().isEmpty()) {
-				query.append(" where value like '%" + tbName_vhc.getValue().trim() + "%'");
-			}
+		// StringBuffer query = new StringBuffer();
+		// query.append("from Vehicle");
+		// if (tbName_vhc != null)
+		// if (!tbName_vhc.getValue().trim().isEmpty()) {
+		// query.append(" where value like '%" + tbName_vhc.getValue().trim() +
+		// "%'");
+		// }
 
-		lstVehicleModel_source = controller.find(query.toString()); // select
+		// lstVehicleModel_source = controller.find(query.toString()); // select
 
 		lstVehicleModel.clear();
-		for (Vehicle vehicle : lstVehicleModel_source) {
-			lstVehicleModel.add(vehicle);
+		String filter = tbName_vhc.getValue().trim();
+		for (Map.Entry<Integer, Vehicle> entry : MapCommon.MAP_VEHICLE_ID.entrySet()) {
+			// System.out.println(entry.getKey() + "/" + entry.getValue());
+			if (entry.getValue().getValue().contains(filter)) {
+				lstVehicleModel_source.add(entry.getValue());
+				lstVehicleModel.add(entry.getValue());
+			}
 		}
+
+		// for (Vehicle vehicle : lstVehicleModel_source) {
+		// lstVehicleModel.add(vehicle);
+		// }
 	}
 
 	public void loadDataCompany() {
@@ -363,7 +380,7 @@ public class PermissionUserGroup extends AbstractWindowPanel implements Serializ
 			lstVehicleModelSelect.clear();
 
 		loadDataCompany();
-		loadDataVehicle();
+		// loadDataVehicle();
 	}
 
 	/**
