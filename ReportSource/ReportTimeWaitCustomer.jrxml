@@ -105,7 +105,7 @@
 				<text><![CDATA[Ngày : ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="159" y="10" width="315" height="16" uuid="23fa5257-e22d-415a-be9d-5ce576df3087"/>
+				<reportElement x="176" y="11" width="315" height="16" uuid="23fa5257-e22d-415a-be9d-5ce576df3087"/>
 				<textElement>
 					<font fontName="Times New Roman" size="13" isBold="true"/>
 				</textElement>
@@ -118,10 +118,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{REPORT_PREFIX_AGENT}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="3" y="0" width="153" height="77" uuid="d501a62e-3dcf-4542-af33-9a9595582744"/>
-				<imageExpression><![CDATA[$P{REPORT_IMAGE_PATH} + "logo_main_800.jpg"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="0" y="78" width="554" height="20" forecolor="#00CC33" uuid="42740d00-665f-4263-abe2-3d858e0110ec"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
