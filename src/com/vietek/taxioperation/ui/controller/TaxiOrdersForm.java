@@ -415,12 +415,14 @@ public class TaxiOrdersForm extends AbstractWindowPanel implements Serializable,
 		TaxiOrder reVal = null;
 
 		TaxiOrder order = null;
+		TaxiOrder orderExist = null;
 		// boolean inList = false;
 		for (Listitem item : getListbox().getItems()) {
 			order = (TaxiOrder) item.getValue();
 
 			if (order != null && order.getPhoneNumber().equals(phone)) {
 
+				orderExist = order;
 				// inList = true;
 				/*
 				 * check 45 minutes
@@ -439,6 +441,10 @@ public class TaxiOrdersForm extends AbstractWindowPanel implements Serializable,
 		}
 		if (reVal == null) {
 			reVal = TaxiOrderUtil.getTaxiOrder(phone);
+			if (orderExist != null) {
+				// reVal.getCustomer().setLastTimeCall(orderExist.getCustomer().getLastTimeCall());
+				// reVal.getCustomer().setTotalSuccessOrder(orderExist.getCustomer().getTotalSuccessOrder());
+			}
 
 		}
 		return reVal;
@@ -504,6 +510,8 @@ public class TaxiOrdersForm extends AbstractWindowPanel implements Serializable,
 		if (event.getName().equals(TaxiOrderMQ.TAXI_ORDER_UPDATED_EVENT)
 				|| event.getName().equals(TaxiOrderMQ.TAXI_ORDER_NEW_SAVED_EVENT)) {
 			TaxiOrder order = (TaxiOrder) event.getData();
+			if (order.getStatus() == EnumStatus.XE_DA_DON.getValue())
+				order.getCustomer().setTotalSuccessOrder(order.getCustomer().getTotalSuccessOrder() + 1);
 			refeshEnable(order);
 		} else if (event.getName().equals(TaxiOrderMQ.SERVER_PUSH_EVENT_QUEUE_DIAL.toString())) {
 			// count++;

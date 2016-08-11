@@ -1884,6 +1884,7 @@ public class TaxiOrdersDD extends AbstractWindowPanel implements Serializable {
 			} else {
 				vDd.setLastRegisted(System.currentTimeMillis());
 				vDd.setFree(false);
+				MapCommon.MAP_VEHICLE_STATUS_ID.put(vehicle.getId() + "", vDd);
 			}
 		} catch (Exception e) {
 			AppLogger.logDebug.error("TaxiOrderDD|UpdateRegistedStatus", e);
@@ -1903,6 +1904,7 @@ public class TaxiOrdersDD extends AbstractWindowPanel implements Serializable {
 				MapCommon.MAP_VEHICLE_STATUS_ID.put(vehicle.getId() + "", vDd);
 			} else {
 				vDd.setFree(true);
+				MapCommon.MAP_VEHICLE_STATUS_ID.put(vehicle.getId() + "", vDd);
 			}
 		} catch (Exception e) {
 			AppLogger.logDebug.error("TaxiOrderDD|UpdatePickupTaxiStatus", e);
@@ -2172,7 +2174,8 @@ public class TaxiOrdersDD extends AbstractWindowPanel implements Serializable {
 								currentModel.setStatus(EnumStatus.XE_DA_DON.getValue());
 								btnSave.setFocus(true);
 							} else {
-								List<VehicleDD> lstVehicleDD = (List<VehicleDD>) MapCommon.MAP_LIST_VEHICLE_INFO.get(value);
+								List<VehicleDD> lstVehicleDD = (List<VehicleDD>) MapCommon.MAP_LIST_VEHICLE_INFO
+										.get(value);
 								if (lstVehicleDD != null) {
 									txtInfo.setValue("");
 									Popup pop = new Popup();
@@ -2371,7 +2374,7 @@ public class TaxiOrdersDD extends AbstractWindowPanel implements Serializable {
 
 			@Override
 			public void render(final Row row, final VehicleInfoJson data, int arg2) throws Exception {
-				VehicleDD vehicledata = (VehicleDD) MapCommon.MAP_VEHICLEDD_ID.get(data.getVehicleId()+"");
+				VehicleDD vehicledata = (VehicleDD) MapCommon.MAP_VEHICLEDD_ID.get(data.getVehicleId() + "");
 				row.appendChild(new Label(vehicledata.toString()));
 				row.appendChild(new Label(data.getLicensePlace()));
 				if (data.getCarType() == 1) {
@@ -2397,7 +2400,8 @@ public class TaxiOrdersDD extends AbstractWindowPanel implements Serializable {
 								Env.getHomePage().showNotification("Xe đã được đăng ký. Bạn cần chọn xe khác",
 										Clients.NOTIFICATION_TYPE_WARNING);
 							} else {
-								VehicleDD newVehicleDD = (VehicleDD) MapCommon.MAP_VEHICLEDD_ID.get(data.getVehicleId() + "");
+								VehicleDD newVehicleDD = (VehicleDD) MapCommon.MAP_VEHICLEDD_ID
+										.get(data.getVehicleId() + "");
 								if (newVehicleDD != null) {
 									try {
 										setVehicle.add(newVehicleDD.getVehicle());
@@ -2593,7 +2597,8 @@ public class TaxiOrdersDD extends AbstractWindowPanel implements Serializable {
 									Env.getHomePage().showNotification("Xe đã được đăng ký. Bạn cần chọn xe khác",
 											Clients.NOTIFICATION_TYPE_WARNING);
 								} else {
-									VehicleDD newVehicleDD = (VehicleDD) MapCommon.MAP_VEHICLEDD_ID.get(data.getVehicleId() + "");
+									VehicleDD newVehicleDD = (VehicleDD) MapCommon.MAP_VEHICLEDD_ID
+											.get(data.getVehicleId() + "");
 									if (newVehicleDD != null) {
 										try {
 											setVehicle.add(newVehicleDD.getVehicle());

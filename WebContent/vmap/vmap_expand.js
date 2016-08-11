@@ -13,12 +13,14 @@ vietek = {
 				}), 0);
 	},
 	checkWidget : function(widgetId) {
-		var widget = zk.Widget.$('$' + widgetId + '').$n();
-		if (""+ widget != 'undefined' && +""+widget != 'null') {
-			zAu.send(new zk.Event(zk.Widget.$('$' + widgetId + ''),
-					'onFinishJSCall', "didCreateObject", {
-						toServer : true
-					}), 0);
+		if(""+ zk.Widget.$('$' + widgetId + '') !== 'null'){
+			var widget = zk.Widget.$('$' + widgetId + '').$n();
+			if (""+ widget != 'undefined' && +""+widget != 'null') {
+				zAu.send(new zk.Event(zk.Widget.$('$' + widgetId + ''),
+						'onFinishJSCall', "didCreateObject", {
+							toServer : true
+						}), 0);
+			}
 		}
 	},
 	isGoogleMapLibraryLoaded : false,
@@ -46,11 +48,32 @@ vietek = {
 			self.id = mapId;
 			google.maps.event.trigger(map, 'resize');
 			//TODO
-			google.maps.event.addListener(this.map, 'click', function() {
+			google.maps.event.addListener(this.map, 'click', function(e) {
+				var lat = e.latLng.lat();
+				var lng = e.latLng.lng();
+				var geocoder  = new google.maps.Geocoder();
+				var location  = new google.maps.LatLng(lat, lng);   
 				zAu.send(new zk.Event(zk.Widget.$('$' + mapId + ''), 'onClickVMap',
-						mapId, {
+						latLng, {
 							toServer : true
 						}), 0);
+//				geocoder.geocode({'latLng': location}, function (results, status) {
+//					if(status == google.maps.GeocoderStatus.OK) {
+//						var add=results[0].formatted_address;
+//						var latLng = {
+//								'data' : {
+//									'latitude' : lat,
+//									'longtitude' : lng,
+//									'address' : add
+//								}
+//							}
+//						zAu.send(new zk.Event(zk.Widget.$('$' + mapId + ''), 'onClickVMap',
+//								latLng, {
+//									toServer : true
+//								}), 0);
+//					}
+//				});
+				
 			});
 			// Event mousemove of map, send latlng of cursor to server
 			google.maps.event.addListener(this.map, 'mousemove', function(e) {
@@ -258,6 +281,9 @@ vietek = {
 		var imgSrc = "";
 		var content = "";
 		var infowindow = null;
+		this.setLabelClass = function(Sclass){
+			this.marker.set('labelClass', Sclass);
+		},
 		this.setLabelAnchor = function(x, y){
 			var anchor = new google.maps.Point(x, y);
 			this.marker.set('labelAnchor', anchor);
@@ -276,23 +302,18 @@ vietek = {
 		},
 		this.setLabel = function(lable){
 			this.marker.set('labelContent', lable);
-			this.marker.set('labelClass', "vmarker_label");
 			this.setRotate(this.rotate);
 		},
 		this.setContent = function(strContent){
 			this.content = strContent;
-			if(""+ this.map !== 'undefined' && ""+ this.map !== 'null'){
-//				if(""+ this.map.infoWindow !== 'null' && ""+ this.map.infoWindow !== 'undefined'){
-//					this.map.infoWindow.close();
-//					this.map.infoWindow = null;
-//				}
-				var gmap = this.map.map;
+			if(""+ this.mapObj !== 'undefined' && ""+ this.mapObj !== 'null'){
+				var gmap = this.mapObj.map;
 				if(this.infowindow == null){
 					this.infowindow = new google.maps.InfoWindow({
 					    content: strContent
 					});
-				}
-				this.infowindow.setOptions({disableAutoPan : false});
+				} 
+				this.infowindow.setContent(strContent);
 				this.marker.addListener('click', function() {
 					self.infowindow.open(gmap, this);
 				});
@@ -336,11 +357,30 @@ vietek = {
 			this.marker.setMap(map);
 			this.setRotate(this.rotate);
 			if(vmap !== null){
-				this.marker.addListener('click', function() {
-					zAu.send(new zk.Event(zk.Widget.$('$' + vmap.id + ''),
-							'onVMarkerClick', self.id, {
-								toServer : true
-							}), 0);
+				this.marker.addListener('click', function(e) {
+					var lat = e.latLng.lat();
+					var lng = e.latLng.lng();
+					var geocoder  = new google.maps.Geocoder();
+					var location  = new google.maps.LatLng(lat, lng);     
+					geocoder.geocode({'latLng': location}, function (results, status) {
+						if(status == google.maps.GeocoderStatus.OK) {
+							var add=results[0].formatted_address;
+							console.log(self.id);
+							var latLng = {
+									'data' : {
+										'markerId' : self.id,
+										'latitude' : lat,
+										'longtitude' : lng,
+										'address' : add
+									}
+								};
+							zAu.send(new zk.Event(zk.Widget.$('$' + vmap.id + ''),
+									'onVMarkerClick', latLng, {
+										toServer : true
+									}), 0);
+						}
+					});
+					
 				});
 				this.marker.addListener('drag', function(e) {
 					var lat = e.latLng.lat();
@@ -624,6 +664,10 @@ vietek = {
 		setLabelAnchor : function(markerId, x, y){
 			var vmarker = vietek.mapController.markers[markerId];
 			vmarker.setLabelAnchor(x, y);
+		},
+		setLabelClass : function(markerId, sclass){
+			var vmarker = vietek.mapController.markers[markerId];
+			vmarker.setLabelClass(sclass);
 		},
 		setIcon : function(markerId, imgSrc){
 			var vmarker = vietek.mapController.markers[markerId];

@@ -10,6 +10,7 @@ package com.vietek.taxioperation.util.cache;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.util.HashMap;
 
 import com.vietek.taxioperation.util.ConfigUtil;
 
@@ -17,6 +18,14 @@ import net.spy.memcached.ConnectionObserver;
 import net.spy.memcached.MemcachedClient;
 
 public class Memcached extends AbstractCache implements ConnectionObserver {
+	public static HashMap<String, AbstractCache> modelCaches;
+	public static HashMap<String, AbstractCache> getModelCaches() {
+		if (modelCaches == null) {
+			modelCaches = new HashMap<>();
+			modelCaches.put("customer", new Memcached("MODEL_CUSTOMER", 0));
+		}
+		return modelCaches;
+	}
 	public MemcachedClient mcc;
 	public MemcachedClient getMcc() {
 		if (mcc == null) {
@@ -38,6 +47,10 @@ public class Memcached extends AbstractCache implements ConnectionObserver {
 	protected void putToCache(String key, Object object) {
 		key = key.replaceAll("\\s","");
 		key = getCacheName() + "|" + key;
+		Object tmp = getMcc().get(key);
+		if (tmp != null) {
+			getMcc().delete(key);
+		}
 		getMcc().add(key, getTimeout(), object);
 	}
 

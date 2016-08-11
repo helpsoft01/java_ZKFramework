@@ -1171,6 +1171,7 @@ ul>li>.z-menu-content, .z-menuitem-content {
 .z-hlayout-west-history {
 	margin-top: 6px;
 	margin-left: 5px;
+	overflow: visible ! important;
 }
 
 .z-hlayout-west-history .z-hlayout-inner {
@@ -1179,14 +1180,14 @@ ul>li>.z-menu-content, .z-menuitem-content {
 
 .z-hlayout-center-history {
 	margin-top: 16px;
-	margin-left: 24px;
+	margin-left: 40px;
+	overflow: visible ! important;
 }
 
 .z-hlayout-center-history .z-hlayout-inner {
 	border-style: none ! important;
 	width: 100px;
 	right: 20px !important;
-	top: 40px !important;
 	font-size: 20px;
 }
 

@@ -28,23 +28,7 @@
 		<parameter name="dsmaxMinute" class="java.lang.String"/>
 		<parameter name="dstime" class="java.lang.String"/>
 		<queryString>
-			<![CDATA[SELECT DATE_FORMAT(txo.beginOrderTime, '%H:%i') AS 'Thời điểm đăng ký',
-case
-when txo.phoneNumber IS NULL THEN ''
-else txo.phoneNumber
-end AS 'Số điện thoại khách',
-  txo.beginOrderAddress AS 'Địa điểm yêu cầu',FORMAT(((TIME_TO_SEC($P{dstime})- TIME_TO_SEC(txo.beginOrderTime))/60),0) AS 'Số phút chờ'
-  ,txo.repeatTime AS 'Số lần gọi nhắc',
-  case
-  when txo.status = 0 then 'Hủy'
-  when txo.status = 1 then 'Mới'
-  when txo.status = 2 then 'Xe đăng ký đón'
-  when txo.status = 3 then 'Đã đọc đàm'
-  when txo.status = 4 then 'Xe đã đón'
-  ELSE 'không xác định'
-  END AS 'Trạng thái'
-  FROM taxi_order txo
-  WHERE (txo.beginOrderTime BETWEEN DATE_SUB( $P{dstime}, INTERVAL $P{dsmaxMinute} MINUTE) AND $P{dstime} );]]>
+			<![CDATA[{Call txm_tracking.rptTimeWaitOfCustomers($P{dstime},$P{dsmaxMinute})}]]>
 		</queryString>
 		<field name="Thời điểm đăng ký" class="java.lang.String"/>
 		<field name="Số điện thoại khách" class="java.lang.String"/>
@@ -152,12 +136,12 @@ end AS 'Số điện thoại khách',
 			<componentElement>
 				<reportElement key="table" style="table" x="3" y="23" width="551" height="97" uuid="10c02e71-4872-4240-92ea-65cb6d064d3f"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="TimeWaitCustomerv1" uuid="6c22676f-a9ab-40a9-9c22-023d3a74d306">
-						<datasetParameter name="dsmaxMinute">
-							<datasetParameterExpression><![CDATA[$P{maxMinute}]]></datasetParameterExpression>
-						</datasetParameter>
+					<datasetRun subDataset="TimeWaitCustomerv1" uuid="40f443a0-0b9a-4829-8709-41ce63fea66e">
 						<datasetParameter name="dstime">
 							<datasetParameterExpression><![CDATA[$P{time}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="dsmaxMinute">
+							<datasetParameterExpression><![CDATA[$P{maxMinute}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>

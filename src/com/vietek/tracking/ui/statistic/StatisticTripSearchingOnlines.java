@@ -14,9 +14,8 @@ import org.zkoss.zul.Button;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Label;
-import org.zkoss.zul.Listcell;
-import org.zkoss.zul.Listitem;
-import org.zkoss.zul.ListitemRenderer;
+import org.zkoss.zul.Row;
+import org.zkoss.zul.RowRenderer;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
@@ -102,60 +101,49 @@ public class StatisticTripSearchingOnlines extends AbstractReportWindow implemen
 
 	@Override
 	public void renderExtraReport() {
-		getListbox().setItemRenderer(new ListitemRenderer<RptTripSearchingOnline>() {
+		getGridData().setRowRenderer(new RowRenderer<RptTripSearchingOnline>() {
 
 			@Override
-			public void render(Listitem item, RptTripSearchingOnline data, int index) throws Exception {
+			public void render(Row row, RptTripSearchingOnline data, int index) throws Exception {
 				SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-				item.appendChild(new Listcell("" + ++index));
-				// item.appendChild(new Label("" + ++index));
-				item.appendChild(new Listcell("" + data.getGroupName()));
-				item.appendChild(new Listcell("" + data.getVehicleNumber()));
-				item.appendChild(new Listcell("" + data.getLicensePlate()));
-				item.appendChild(new Listcell("" + data.getVehicleType()));
-				item.appendChild(new Listcell("" + dateformat.format(data.getTimeStart())));
-				item.appendChild(new Listcell("" + dateformat.format(data.getTimeFinish())));
-				item.appendChild(new Listcell("" + data.getPlaceStart()));
-				item.appendChild(new Listcell("" + data.getPlaceFinish()));
-				item.appendChild(new Listcell("" + IntFormat.formatTypeInt("###,###", data.getClock())));
-				Textbox txtInputReduce = new Textbox();
-				txtInputReduce.setInplace(true);
+				row.appendChild(new Label("" + ++index));
+				row.appendChild(new Label("" + data.getGroupName()));
+				row.appendChild(new Label("" + data.getVehicleNumber()));
+				row.appendChild(new Label("" + data.getLicensePlate()));
+				row.appendChild(new Label("" + data.getVehicleType()));
+				row.appendChild(new Label("" + dateformat.format(data.getTimeStart())));
+				row.appendChild(new Label("" + dateformat.format(data.getTimeFinish())));
+				row.appendChild(new Label("" + data.getPlaceStart()));
+				row.appendChild(new Label("" + data.getPlaceFinish()));
+				row.appendChild(new Label("" + IntFormat.formatTypeInt("###,###", data.getClock())));
+				Textbox txtInputReduce = new Textbox("" + data.getReduce());
 				txtInputReduce.setWidth("90%");
-				txtInputReduce.setValue("" + data.getReduce());
-
-				Listcell listcellInputReduce = new Listcell();
-				txtInputReduce.setParent(listcellInputReduce);
-
-				item.appendChild(listcellInputReduce);
-
+				row.appendChild(txtInputReduce);
 				Label lbPrice = new Label("" + IntFormat.formatTypeInt("###,###", data.getPriceTrip()));
-				Listcell lb = new Listcell();
-				lbPrice.setParent(lb);
-				item.appendChild(lb);
-				Combobox cboInputReason = createCboInputReason(item, data);
+				row.appendChild(lbPrice);
+				Combobox cboInputReason = createCboInputReason(row, data);
 				cboInputReason.addEventListener(Events.ON_SELECT, new EventListener<Event>() {
 
 					@Override
 					public void onEvent(Event event) throws Exception {
-
 						Comboitem item = cboInputReason.getSelectedItem();
 						data.setReason(item.getValue());
 						updateTripSearchingOnline(data.getShiftId(), data.getTripId(), data.getPriceTrip(),
-								data.getReason(), "admin");
+								data.getReason(), getUser());
 					}
 				});
-				item.appendChild(new Listcell("" + MathForRound.round(data.getKm(), 1)));
-				item.appendChild(new Listcell(
-						"" + (data.getDriver().trim().toLowerCase() == null ? "" : "" + data.getDriver())));
-				item.appendChild(new Listcell("" + data.getTripDetail()));
+				row.appendChild(new Label("" + MathForRound.round(data.getKm(), 1)));
+				row.appendChild(
+						new Label("" + (data.getDriver().trim().toLowerCase() == null ? "" : "" + data.getDriver())));
+				row.appendChild(new Label("" + data.getTripDetail()));
 				txtInputReduce.addEventListener(Events.ON_OK, new EventListener<Event>() {
 
 					@Override
 					public void onEvent(Event event) throws Exception {
 						data.setPriceTrip(data.getClock() - Integer.parseInt(txtInputReduce.getValue()));
-						lbPrice.setValue("" + data.getPriceTrip());
+						lbPrice.setValue("" + IntFormat.formatTypeInt("###,###", data.getPriceTrip()));
 						updateTripSearchingOnline(data.getShiftId(), data.getTripId(), data.getPriceTrip(),
-								data.getReason(), "admin");
+								data.getReason(), getUser());
 					}
 				});
 				txtInputReduce.addForward(Events.ON_CHANGE, txtInputReduce, Events.ON_OK);
@@ -163,17 +151,14 @@ public class StatisticTripSearchingOnlines extends AbstractReportWindow implemen
 				Button btnHistory = new Button("Lịch sử");
 				btnHistory.setStyle("color : black;font-size : 12px");
 				btnHistory.setHeight("25px");
-				Listcell listcell = new Listcell();
-				btnHistory.setParent(listcell);
-				item.appendChild(listcell);
-				 btnHistory.addEventListener(Events.ON_CLICK, new
-				 EventListener<Event>() {
-				
-				 @Override
-				 public void onEvent(Event arg0) throws Exception {
-				 showHistory(data);
-				 }
-				 });
+				row.appendChild(btnHistory);
+				btnHistory.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
+
+					@Override
+					public void onEvent(Event arg0) throws Exception {
+						showHistory(data);
+					}
+				});
 			}
 		});
 	}
@@ -199,7 +184,7 @@ public class StatisticTripSearchingOnlines extends AbstractReportWindow implemen
 	}
 
 	// Tao CboReason mới
-	private Combobox createCboInputReason(Listitem item, RptTripSearchingOnline data) {
+	private Combobox createCboInputReason(Row row, RptTripSearchingOnline data) {
 
 		List<CommonValue> lstcommonvalue = getCommonValue("REDUCEMONEY");
 		HashMap<String, String> mapValue = new HashMap<String, String>();
@@ -210,10 +195,10 @@ public class StatisticTripSearchingOnlines extends AbstractReportWindow implemen
 		ComboboxRender renderCbo = new ComboboxRender();
 		cboinput = renderCbo.ComboboxRendering(mapValue, "", "", 120, 8, data.getReason(), false);
 
-		Listcell listcell = new Listcell();
-		cboinput.setParent(listcell);
+		// Listcell listcell = new Listcell();
+		// cboinput.setParent(listcell);
 
-		item.appendChild(listcell);
+		row.appendChild(cboinput);
 		cboinput.setInplace(true);
 		cboinput.setSclass("comboboxtripsearching");
 		return cboinput;
@@ -237,7 +222,7 @@ public class StatisticTripSearchingOnlines extends AbstractReportWindow implemen
 		return;
 
 	}
-	
+
 	private void showHistory(RptTripSearchingOnline data) {
 		TrackingHistory history = new TrackingHistory(new java.sql.Date(data.getTimeStart().getTime()),
 				new java.sql.Date(data.getTimeFinish().getTime()), data.getVehicleId());
@@ -256,6 +241,15 @@ public class StatisticTripSearchingOnlines extends AbstractReportWindow implemen
 	public void renderReportWithListBox() {
 		setRenderReportWithListBox(false);
 
+	}
+
+	@Override
+	public void setStyleForGridData() {
+		getGridData().setVflex("true");
+		getGridData().setMold("paging");
+		gridData.setAutopaging(true);
+		// getGridData().setPageSize(20);
+		getGridData().setSclass("grid_report_total");
 	}
 
 }

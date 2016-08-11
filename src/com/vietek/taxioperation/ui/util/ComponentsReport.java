@@ -170,7 +170,7 @@ public class ComponentsReport {
 		return comb;
 	}
 
-	public Combobox ComboboxRendering(String[] titles, int[] values, String styles, String bonusClass, int width,
+	public static Combobox ComboboxRendering(String[] titles, int[] values, String styles, String bonusClass, int width,
 			int height, boolean hasGetAll) {
 		Combobox comb = new Combobox();
 		if (titles.length != values.length) {

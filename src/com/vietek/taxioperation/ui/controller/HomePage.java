@@ -258,20 +258,31 @@ public class HomePage extends SelectorComposer<Component> implements EventListen
 	}
 
 	private void sortMenu(List<SysMenu> lstModel) {
+//		for (SysMenu sysMenu : lstModel) {
+//			System.out.println(sysMenu.getName() + "|" + sysMenu.getSequence());
+//		}
+//		System.out.println("finish");
 		Collections.sort(lstModel, new Comparator<SysMenu>() {
 			@Override
 			public int compare(SysMenu o1, SysMenu o2) {
-				if (o1.getSequence() > o2.getSequence()) {
-					return 1;
-				} else if (o1.getSequence() == o2.getSequence()) {
-					if (o1.getName().compareTo(o2.getName()) == 1) {
-						return 1;
+				int result = 0;
+				try {
+					if (o1.getSequence() > o2.getSequence()) {
+						result = 1;
+					} else if (o1.getSequence() < o2.getSequence()) {
+						result = -1;
 					} else {
-						return -1;
+						result = o1.getName().compareTo(o2.getName());
+//						if (o1.getName().compareTo(o2.getName()) == 1) {
+//							result = 1;
+//						} else {
+//							result = -1;
+//						}
 					}
-				} else {
-					return -1;
+				} catch (Exception e) {
+					result = -1;
 				}
+				return result;
 			}
 		});
 
@@ -379,10 +390,12 @@ public class HomePage extends SelectorComposer<Component> implements EventListen
 			}
 		}
 
-//		AppLogger.logUserAction.info("User:" + sysUser.getUserName() + "|Function:" + function.getName());
-		SaveLogToQueue savelog = new SaveLogToQueue(null, EnumUserAction.VIEWING, Env.getHomePage().getCurrentFunction(), Env.getUserID());
+		// AppLogger.logUserAction.info("User:" + sysUser.getUserName() +
+		// "|Function:" + function.getName());
+		SaveLogToQueue savelog = new SaveLogToQueue(null, EnumUserAction.VIEWING,
+				Env.getHomePage().getCurrentFunction(), Env.getUserID());
 		savelog.start();
-		
+
 		if (isNew) {
 			Tab tab = new Tab();
 			tab.setAttribute("function", function);

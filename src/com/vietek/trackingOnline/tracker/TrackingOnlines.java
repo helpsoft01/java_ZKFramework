@@ -503,7 +503,7 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 	private void getGroupVehicles(TaxiGroup group) {
 		clearListitem();
 		List<Vehicle> vehicles = VehicleApi.getVehicle(group);
-		if (vehicles.size() > 0) {
+		if (vehicles != null && vehicles.size() > 0) {
 			int totalVehicles = 0;
 			for (int i = 0; i < vehicles.size(); i++) {
 				Vehicle vehicle = vehicles.get(i);
@@ -682,7 +682,9 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					comp.setVisible(true);
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
+					TrackingVehicleInfo info = (TrackingVehicleInfo)comp.getAttribute("info");
 					markers.get(deviceId).setVisible(true);
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					i++;
 				}
 			}
@@ -694,6 +696,8 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
 					int engine = Integer.parseInt(comp.getAttribute("engine")+"");
+					TrackingVehicleInfo info = (TrackingVehicleInfo)comp.getAttribute("info");
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					if(engine ==1){
 						comp.setVisible(true);
 						markers.get(deviceId).setVisible(true);
@@ -712,6 +716,8 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
 					int engine = Integer.parseInt(comp.getAttribute("engine") + "");
+					TrackingVehicleInfo info = (TrackingVehicleInfo)comp.getAttribute("info");
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					if (engine == 0) {
 						comp.setVisible(true);
 						markers.get(deviceId).setVisible(true);
@@ -730,6 +736,8 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
 					int speed = Integer.parseInt(comp.getAttribute("speed") + "");
+					TrackingVehicleInfo info = (TrackingVehicleInfo)comp.getAttribute("info");
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					if (speed >= 5) {
 						comp.setVisible(true);
 						markers.get(deviceId).setVisible(true);
@@ -748,6 +756,8 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
 					int speed = Integer.parseInt(comp.getAttribute("speed") + "");
+					TrackingVehicleInfo info = (TrackingVehicleInfo)comp.getAttribute("info");
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					if (speed < 5) {
 						comp.setVisible(true);
 						markers.get(deviceId).setVisible(true);
@@ -766,6 +776,7 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				if (comp instanceof Listitem) {
 					int deviceId = Integer.parseInt(comp.getAttribute("deviceId") + "");
 					TrackingVehicleInfo info = (TrackingVehicleInfo) comp.getAttribute("info");
+					markers.get(deviceId).setIconImage(info.getImageSrc());
 					if (info.isLostDigital()) {
 						comp.setVisible(true);
 						markers.get(deviceId).setVisible(true);
@@ -788,6 +799,7 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 			marker = new VMarker(json.getLatitude(), json.getLongitude());
 			marker.setId("vehicle_" + deviceId);
 			marker.setLabel(model.getTaxiNumber());
+			marker.setLabelClass("vmarker_label");
 			marker.setIconImage(model.getImage().getSrc());
 			marker.setParent(vMaps);
 			if(json.getLatitude()== 0 && json.getLongitude()==0){
@@ -805,6 +817,11 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 		}
 		if(model.getImage()!=null)
 			marker.setIconImage(model.getImage().getSrc());
+		if(marker.isOpen()){
+			OnlineInfo info = new OnlineInfo(deviceId, marker);
+			marker.setContent(info.getContent());
+			vMaps.panTo(json.getLatitude(), json.getLongitude());
+		}
 	}
 	
 	private void insertBefore(Vehicle vehicle){
@@ -825,10 +842,13 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 				}
 			}
 			vMaps.closeAllInfo();
-			OnlineInfo info = new OnlineInfo(deviceId, markers.get(deviceId));
-			markers.get(deviceId).setContent(info.getContent());
-			markers.get(deviceId).setOpen(true);
-			markers.get(deviceId).autoPan(true);
+			if(deviceId>0){
+				vMaps.setZoom(19);
+				OnlineInfo info = new OnlineInfo(deviceId, markers.get(deviceId));
+				markers.get(deviceId).setContent(info.getContent());
+				markers.get(deviceId).setOpen(true);
+				vMaps.setCenter(markers.get(deviceId).getPosition());
+			}
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -957,7 +977,10 @@ public class TrackingOnlines extends Div implements EventListener<Event> {
 					int deviceId = Integer.parseInt(item.getAttribute("deviceId") + "");
 					VMarker marker = markers.get(deviceId);
 					if(marker.getPosition().lat > 0 && marker.getPosition().lng > 0){
+						vMaps.setZoom(19);
 						OnlineInfo info = new OnlineInfo(deviceId, marker);
+						TrackingVehicleInfo trackingVehicleInfo = (TrackingVehicleInfo)item.getAttribute("info");
+						marker.setIconImage(trackingVehicleInfo.getImageSrc());
 						marker.setContent(info.getContent());
 						vMaps.panTo(marker.getPosition());
 						marker.setOpen(true);

@@ -204,7 +204,6 @@ public class TrackingHistory extends Div implements EventListener<Event> {
 		paneldetail.setParent(parent);
 		paneldetail.setTitle("Chi tiết hành trình");
 		paneldetail.setCollapsible(true);
-		paneldetail.setSizable(true);
 		paneldetail.setOpen(false);
 		paneldetail.setSclass("z-panel-layout-history");
 		Panelchildren panelch = new Panelchildren();
@@ -431,15 +430,14 @@ public class TrackingHistory extends Div implements EventListener<Event> {
 			if (!timerun.isRunning()) {
 				if (listHistoryTab.isBeginRun()) {
 					clearMap();
-					// vmaphistory.setZoom(15);
 					listHistoryTab.setBeginRun(false);
 				}
 				listHistoryTab.setParentMarkerRun(vmaphistory);
+				listHistoryTab.setContenMarkerRun(false);
 				Events.postEvent(Events.ON_TIMER, timerun, null);
 				timerun.start();
 
 			} else {
-				// timerun.stop();
 				Env.getHomePage().showNotification("Lịch sử đang chạy! ", Clients.NOTIFICATION_TYPE_WARNING);
 			}
 
@@ -524,7 +522,8 @@ public class TrackingHistory extends Div implements EventListener<Event> {
 					Env.getHomePage().showValidateForm(msgerror, Clients.NOTIFICATION_TYPE_WARNING);
 				} else {
 					Clients.showBusy(divcenter, "Processing...!");
-					if (genaralTab.getMapGenaral().size() > 1 || listHistoryTab.getMapTabList().size() > 1) {
+					if (xemcungbando.isChecked()
+							&& (genaralTab.getMapGenaral().size() > 1 || listHistoryTab.getMapTabList().size() > 1)) {
 						Env.getHomePage().showNotification("Chỉ được phép xem cùng lúc 2 xe!",
 								Clients.NOTIFICATION_TYPE_INFO);
 					} else {
@@ -542,8 +541,8 @@ public class TrackingHistory extends Div implements EventListener<Event> {
 						} else {
 							Env.getHomePage().showNotification("Không có dữ liệu !", Clients.NOTIFICATION_TYPE_INFO);
 						}
-						Clients.clearBusy(divcenter);
 					}
+					Clients.clearBusy(divcenter);
 				}
 
 			} else {

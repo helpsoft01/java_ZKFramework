@@ -247,14 +247,14 @@ public class ListBoxTabUnit extends Listbox {
 
 	public VehicleMarker getMarkerrun() {
 		if (markerrun == null) {
-			markerrun = new VehicleMarker(null, VehicleMarker.TYPE_NORMAL);
+			initMarkerrun(null);
 		}
 		return markerrun;
 	}
 
 	public void updateInforMarkerRun(GpsTrackingMsg data) {
 		if (markerrun == null) {
-			markerrun = new VehicleMarker(data, VehicleMarker.TYPE_NORMAL);
+			initMarkerrun(data);
 			AppLogger.logDebug.info("MarkerRun is Null");
 		} else {
 			markerrun.setLatLng(data.getLatlng());
@@ -322,6 +322,11 @@ public class ListBoxTabUnit extends Listbox {
 		}
 	}
 
+	private void initMarkerrun(GpsTrackingMsg data) {
+		markerrun = new VehicleMarker(data, VehicleMarker.TYPE_NORMAL);
+		markerrun.setAttribute("CheckControl", hienhanhtrinh);
+	}
+
 	private EventListener<Event> LISTENER_LISBOX = new EventListener<Event>() {
 		@Override
 		public void onEvent(Event event) throws Exception {
@@ -329,7 +334,7 @@ public class ListBoxTabUnit extends Listbox {
 			GpsTrackingMsg gpstmp = (GpsTrackingMsg) listbox.getSelectedItem().getValue();
 			if (gpstmp != null) {
 				if (markerrun == null) {
-					markerrun = new VehicleMarker(gpstmp, VehicleMarker.TYPE_NORMAL);
+					initMarkerrun(gpstmp);
 				} else {
 					markerrun.setData(gpstmp);
 					markerrun.setOpen(true);

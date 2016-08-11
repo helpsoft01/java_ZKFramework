@@ -1369,7 +1369,7 @@ public class TaxiOrdersDetailForm extends BasicDetailWindow implements FindAddre
 					tbOptionPricectadd.setValue(getTaxiOrder().getFareAdd().toString());
 					tbOptionPricectadd.setDisabled(false);
 					cbOptionloadkm.setValue(getTaxiOrder().getLoadData().toString());
-					
+
 					btOptionloadct.setVisible(false);
 					btloadMoney.setVisible(false);
 
@@ -1942,7 +1942,7 @@ public class TaxiOrdersDetailForm extends BasicDetailWindow implements FindAddre
 					getTaxiOrder().setMoneytotal(tbMoney.getValue());
 					getTaxiOrder().setTimect(tbOptionTimect.getValue());
 					getTaxiOrder().setFareEstimate(new BigDecimal(tbOptionPricect.getValue()));
-					
+
 					if (tbOptionPricectadd.getValue().length() > 0) {
 						getTaxiOrder().setFareAdd(new BigDecimal(tbOptionPricectadd.getValue()));
 					}
@@ -1957,7 +1957,7 @@ public class TaxiOrdersDetailForm extends BasicDetailWindow implements FindAddre
 				if (getTaxiOrder().getAirStation()) {
 					getTaxiOrder().setPriceOrderKm(tbOptionAirPricekm.getValue());
 					getTaxiOrder().setFareEstimate(new BigDecimal(tbOptionPrice.getValue()));
-				
+
 					if (tbOptionPriceadd.getText().length() > 0) {
 						getTaxiOrder().setTimeAdd(new BigDecimal(tbOptionPriceadd.getValue()));
 					}
@@ -1966,7 +1966,7 @@ public class TaxiOrdersDetailForm extends BasicDetailWindow implements FindAddre
 				/*
 				 * customer
 				 */
-				cust = changeCustomer(getTaxiOrder());
+				cust = changeCustomer(getTaxiOrder(), isNewCust);
 				getTaxiOrder().setPhoneNumber(tbPhone.getValue());
 				/*
 				 * update taxi order
@@ -2215,22 +2215,19 @@ public class TaxiOrdersDetailForm extends BasicDetailWindow implements FindAddre
 				tbOptionPricectadd.select();
 				return false;
 			}
-			if (tbMoney.getValue() == null
-					|| StringUtils.equals(tbMoney.getValue().toString().trim(), "")) {
+			if (tbMoney.getValue() == null || StringUtils.equals(tbMoney.getValue().toString().trim(), "")) {
 				tbMoney.setErrorMessage("NHẬP SỐ TIỀN");
 				tbMoney.focus();
 				tbMoney.select();
 				return false;
 			}
 
-			if (CommonUtils.containsNumber(tbMoney.getValue()) == false
-					&& tbMoney.getValue() != null) {
+			if (CommonUtils.containsNumber(tbMoney.getValue()) == false && tbMoney.getValue() != null) {
 				tbMoney.setErrorMessage("NHẬP SỐ TIÊN PHỤ TRỘI DẠNG SỐ...");
 				tbMoney.focus();
 				tbMoney.select();
 				return false;
 			}
-			
 
 		}
 
@@ -2383,7 +2380,7 @@ public class TaxiOrdersDetailForm extends BasicDetailWindow implements FindAddre
 		setModel(taxiOrder);
 	}
 
-	private Customer changeCustomer(TaxiOrder taxiOrder) {
+	private Customer changeCustomer(TaxiOrder taxiOrder, boolean isNew) {
 
 		Customer cust = taxiOrder.getCustomer();
 
@@ -2418,6 +2415,7 @@ public class TaxiOrdersDetailForm extends BasicDetailWindow implements FindAddre
 			cust.setAddressLng(taxiOrder.getBeginOrderLon());
 
 		}
+		// if (isNew)
 		cust.setLastTimeCall(new Timestamp(System.currentTimeMillis()));
 		cust.setNote(tbNoteForCustmer.getValue());
 
@@ -2427,8 +2425,8 @@ public class TaxiOrdersDetailForm extends BasicDetailWindow implements FindAddre
 	private EventListener<Event> EVENT_ON_CLICK_MONEY = new EventListener<Event>() {
 		@Override
 		public void onEvent(Event arg0) throws Exception {
-			if (tbOptionPricect.getValue() == null 
-					|| StringUtils.equals(tbOptionPricect.getValue().toString().trim(), "" )) {
+			if (tbOptionPricect.getValue() == null
+					|| StringUtils.equals(tbOptionPricect.getValue().toString().trim(), "")) {
 				tbOptionPricect.setErrorMessage("Chưa Nhập Số Tiền Dự Tính");
 			}
 			int money = Integer.parseInt(tbOptionPricect.getValue());

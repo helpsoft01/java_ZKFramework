@@ -5,6 +5,7 @@ import org.zkoss.zk.ui.Component;
 import com.google.maps.model.LatLng;
 import com.vietek.taxioperation.common.AppLogger;
 import com.vietek.taxioperation.util.IDGenerator;
+import com.vietek.taxioperation.util.MapUtils;
 
 public class VMarker extends VComponent{
 
@@ -22,6 +23,8 @@ public class VMarker extends VComponent{
 	private LatLng position;
 	private boolean clickable;
 	private boolean draggable;
+	private boolean isOpen;
+	private String address;
 //	private int opacity = 1;
 	private boolean visible = true;
 //	private String animation = "DROP";
@@ -49,6 +52,7 @@ public class VMarker extends VComponent{
 		clickable = true;
 		draggable = false;
 		visible = true;
+		isOpen = false;
 		if(position == null)
 			position = new LatLng(0.0, 0.0);
 		String script = "vietek.mapController.addMarker('" + getId() + "', "
@@ -99,30 +103,33 @@ public class VMarker extends VComponent{
 		super.setId(arg0);
 	}
 	
-	public void setContent(String content) {
-		if(!this.content.equals(content)){
-			this.content = content;
-			String cont = this.content;
-			if(this.content.contains("'")){
-				cont = this.content.replaceAll("'", "&#39;");
-			}
-			if(cont.contains("\\")){
-				cont = cont.replaceAll("\\", "&#92;");
-			}
-			if(cont.contains("\"")){
-				cont = cont.replaceAll("\"", "&quot;");
-			}
-			
-				String script = "vietek.mapController.setContent('"+ this.getId() + "','" + cont + "')";
-				this.addJSScriptSynch(script);
-		}
+	public void setLabelClass(String sclass){
+		String script = "vietek.mapController.setLabelClass('"+ this.getId() + "','" + sclass + "')";
+		this.addJSScriptSynch(script);
 	}
 	
-	public void setContent(VInfoWindow infoWindow){
-		
+	public void setContent(String content) {
+		this.content = content;
+		String cont = this.content;
+		if(this.content.contains("'")){
+				cont = this.content.replaceAll("'", "&#39;");
+		}
+		if(cont.contains("\\")){
+			cont = cont.replaceAll("\\", "&#92;");
+		}
+		if(cont.contains("\"")){
+			cont = cont.replaceAll("\"", "&quot;");
+		}
+		String script = "vietek.mapController.setContent('"+ this.getId() + "','" + cont + "')";
+		this.addJSScriptSynch(script);
 	}
+	
+//	public void setContent(VInfoWindow infoWindow){
+//		
+//	}
 	
 	public boolean setOpen(boolean flag){
+		isOpen = flag;
 		if(this.maps != null){
 			String script = "vietek.mapController.setOpenContent('" + this.maps.getId() + "','"+ this.getId() + "'," + flag + ")";
 			this.addJSScriptSynch(script);
@@ -131,11 +138,10 @@ public class VMarker extends VComponent{
 		return flag;
 	}
 	
-	public void autoPan(boolean flag){
-		String jsScript = "vietek.mapController.autoPanVMarker('" + getId() + "', " + !flag + ")";
-		this.addJSScriptSynch(jsScript);
+	public boolean isOpen(){
+		return isOpen;
 	}
-
+	
 	public void setIconImage(String image) {
 		try{
 			if (!this.image.equals(image)) {
@@ -248,12 +254,20 @@ public class VMarker extends VComponent{
 	public LatLng getPosition() {
 		return position;
 	}
+	
+	protected void setAddress(String address) {
+		this.address = address;
+	}
+	public String getAddress() {
+		return address;
+	}
 
 	/**
 	 * @param position the position to set
 	 */
 	public void setPosition(LatLng position) {
 		this.position = position;
+		this.address = MapUtils.convertLatLongToAddrest(position.lat, position.lng);
 		String script = "vietek.mapController.setPosition('" + getId() + "', " + position.lat + ", " + position.lng + ")";
 		this.addJSScriptSynch(script);
 	}

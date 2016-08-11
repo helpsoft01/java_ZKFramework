@@ -92,16 +92,24 @@ public class LoadVehicleProcessor extends Thread {
 				String key = vehicleDD.getFullName();
 				MapCommon.MAP_VEHICLE_INFO_FULL.put(key, vehicleDD);
 				VehicleDD tmp = vehicleDD;
-				
+
 				MapCommon.MAP_VEHICLEDD_ID.put(vehicleDD.getVehicle().getId() + "", vehicleDD);
 
 				tmp = (VehicleDD) MapCommon.MAP_VEHICLE_INFO.get(vehicleDD.getVehicle().getValue());
-				List<VehicleDD> lstTmp = (List<VehicleDD>) MapCommon.MAP_LIST_VEHICLE_INFO.get(vehicleDD.getVehicle().getValue());
+				@SuppressWarnings("unchecked")
+				List<VehicleDD> lstTmp = (List<VehicleDD>) MapCommon.MAP_LIST_VEHICLE_INFO
+						.get(vehicleDD.getVehicle().getValue());
 				if (tmp == null && lstTmp == null) {
 					MapCommon.MAP_VEHICLE_INFO.put(vehicleDD.getVehicle().getValue(), vehicleDD);
 				} else if (tmp == null && lstTmp != null) {
+					List<VehicleDD> lstAdd = new ArrayList<>();
 					boolean isNew = true;
 					for (VehicleDD vehicleDD2 : lstTmp) {
+						if (!lstAdd.contains(vehicleDD2)) {
+							lstAdd.add(vehicleDD2);
+						}
+					}
+					for (VehicleDD vehicleDD2 : lstAdd) {
 						if (vehicleDD.getVehicle().getId() == vehicleDD2.getVehicle().getId()) {
 							ObjectUtils.copyObjectSyn(vehicleDD, vehicleDD2);
 							isNew = false;
@@ -111,6 +119,7 @@ public class LoadVehicleProcessor extends Thread {
 					if (isNew) {
 						lstTmp.add(vehicleDD);
 					}
+					MapCommon.MAP_LIST_VEHICLE_INFO.put(vehicleDD.getVehicle().getValue(), lstAdd);
 				} else if (tmp != null && lstTmp == null) {
 					MapCommon.MAP_VEHICLE_INFO.remove(vehicleDD.getVehicle().getValue());
 					lstTmp = new ArrayList<>();

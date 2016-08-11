@@ -11,7 +11,6 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	<tx:annotation-driven />
-
 	<context:component-scan base-package="com.vietek.taxioperation" />
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
@@ -23,7 +22,8 @@
 		<property name="leakDetectionThreshold" value="30000" />
 		<property name="dataSourceProperties">
 			<props>
-				<prop key="url">jdbc:mysql://125.212.226.54:3306/vt_tms_dev?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</prop>
+				<prop key="url">jdbc:mysql://125.212.226.54:3306/vt_tms_dev?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8
+				</prop>
 				<prop key="user">root</prop>
 				<prop key="password">admin@123</prop>
 				<prop key="prepStmtCacheSize">250</prop>
