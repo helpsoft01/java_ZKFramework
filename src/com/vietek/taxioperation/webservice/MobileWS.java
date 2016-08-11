@@ -435,7 +435,6 @@ public class MobileWS {
 	}
 
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/phoneLog")
 	public CallLogResult sendCallLog(
