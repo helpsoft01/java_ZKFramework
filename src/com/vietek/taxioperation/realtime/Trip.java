@@ -526,6 +526,10 @@ public class Trip extends TimerTask {
 			if(this.getOrder().getPickedTaxi() == null){
 				this.getOrder().setPickedTaxi(getTaxi().getVehicle());
 			}
+			//Update total order success
+			int totalSuccess = this.getOrder().getCustomer().getTotalSuccessOrder();
+			this.getOrder().getCustomer().setTotalSuccessOrder(totalSuccess + 1);
+			this.getOrder().getCustomer().save();
 			// update status vehicle on map
 			if(this.getOrder().getVehicle() != null){
 				VehicleStatusDD.updateStatusPickup(this.getOrder().getVehicle().getId());
