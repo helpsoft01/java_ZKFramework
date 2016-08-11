@@ -12,10 +12,12 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zkmax.zul.Chosenbox;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Checkbox;
+import org.zkoss.zul.Div;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Row;
 import org.zkoss.zul.RowRenderer;
 import org.zkoss.zul.Rows;
+import org.zkoss.zul.Window;
 
 import com.vietek.taxioperation.database.ListObjectDatabase;
 import com.vietek.taxioperation.model.ParkingArea;
@@ -134,13 +136,24 @@ public class StatisticDriverInShifts extends AbstractReportWindow {
 				btnUpdate.setStyle("color : black;font-size : 12px");
 				btnUpdate.setHeight("25px");
 				row.appendChild(btnUpdate);
+				btnUpdate.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
+
+					@Override
+					public void onEvent(Event event) throws Exception {
+						updateDriverInShift(data);
+					}
+				});
 				
 				row.appendChild(new Label("" + ++index));
 				row.appendChild(new Label("" + dateformat.format(data.getIssueDate())));
-				row.appendChild(new Label("" + timeformat.format(data.getTimeLog() == null ? "" : data.getTimeLog())));
+				Label lbTimeLog = new Label("" + timeformat.format(data.getTimeLog() == null ? "" : data.getTimeLog()));
+				row.appendChild(lbTimeLog);
+//				row.appendChild(new Label("" + timeformat.format(data.getTimeLog() == null ? "" : data.getTimeLog())));
 				row.appendChild(new Label("" + data.getLicensePlate()));
 				row.appendChild(new Label("" + data.getVehicleNumber()));
-				row.appendChild(new Label("" + (data.getStaffCard() == null ? "" : "" + data.getStaffCard())));
+				Label lbStaffCard = new Label("" + (data.getStaffCard() == null ? "" : "" + data.getStaffCard()));
+				row.appendChild(lbStaffCard);
+//				row.appendChild(new Label("" + (data.getStaffCard() == null ? "" : "" + data.getStaffCard())));
 				row.appendChild(new Label("" + data.getDriverName()));
 				row.appendChild(new Label("" + data.getPhoneNumber()));
 				row.appendChild(new Label("" + data.getDriverState()));
@@ -196,6 +209,25 @@ public class StatisticDriverInShifts extends AbstractReportWindow {
 				}
 			}
 		});
+	}
+	
+	private void updateDriverInShift(RptDriverInShift data){
+		Window winUpdate = new Window();
+		winUpdate.setParent(this);
+		winUpdate.setTitle("Sửa thông tin");
+		winUpdate.setClosable(true);
+		winUpdate.setHeight("400px");
+		winUpdate.setWidth("400px");
+		winUpdate.doModal();
+		
+		Div div = new Div();
+		div.setParent(winUpdate);
+		div.setVflex("1");
+		div.setHflex("1");
+		
+		Label lb = new Label("Tao Gid cho viec Update");
+		lb.setParent(div);
+		
 	}
 
 }
